@@ -7,49 +7,30 @@ import org.openqa.selenium.WebElement;
 
 public class HomePageQA {
     WebDriver driver;
-    By ico_User = By.xpath("//a[@data-trigger='trigger']");
-    By btn_Login = By.id("mcLogin");
-    By btn_Cameras = By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/cameras']");
-    By btn_Lenses = By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/lenses']");
-    By btn_ClosePopupPromo = By.xpath("//button[@data-role='closeBtn']");
-    By btn_Logout = By.id("mcLogout");
+    private static WebElement element = null;
 
-    //Click user icon
-    public HomePageQA(WebDriver driver) {
-        this.driver = driver;
+    public static WebElement ico_User(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@data-trigger='trigger']"));
+        return element;
     }
-
-    public void clickOnUserIcon() {
-        WebElement iconUser = driver.findElement(ico_User);
-        iconUser.click();
+    public static WebElement btn_Login(WebDriver driver){
+        element = driver.findElement(By.id("mcLogin"));
+        return element;
     }
-
-    public void clickOnButtonLogin() {
-        WebElement btnLogin = driver.findElement(btn_Login);
-        btnLogin.click();
+    public static WebElement btn_Cameras(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/cameras']"));
+        return element;
     }
-
-    public void closePopupPromo() {
-        WebElement closeElement = driver.findElement(btn_ClosePopupPromo);
-        closeElement.click();
+    public static WebElement btn_Lenses(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/lenses']"));
+        return element;
     }
-
-    public boolean checkBtnLoginDisplayed() {
-        return driver.findElement(btn_Login).isDisplayed();
+    public static WebElement btn_ClosePopupPromo(WebDriver driver){
+        element = driver.findElement(By.xpath("//button[@data-role='closeBtn']"));
+        return element;
     }
-
-    public void clickOnCamerasBtn() {
-        WebElement btnCameras = driver.findElement(btn_Cameras);
-        btnCameras.click();
+    public static WebElement btn_Logout(WebDriver driver){
+        element = driver.findElement(By.id("mcLogout"));
+        return element;
     }
-
-    public void clickOnLensesBtn() {
-        WebElement btnLenses = driver.findElement(btn_Lenses);
-        btnLenses.click();
-    }
-    public void clickOnButtonLogout() {
-        WebElement btnLogout = driver.findElement(btn_Logout);
-        btnLogout.click();
-    }
-
 }
