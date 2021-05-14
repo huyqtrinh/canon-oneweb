@@ -1,38 +1,33 @@
+package testcasesPoC;
 
-import java.util.concurrent.TimeUnit;
-
-import PageObjects.HomePageCCI;
-import PageObjects.LoginPage;
+import Modules.LaunchBrowser;
+import Modules.LoginQA;
+import PageObjects.HomePageQA;
+import Ultilities.Constants;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class TestLogin {
-    String driverPath = "src/main/resources/WebDrivers/Chrome/chromedriver.exe";
-    WebDriver driver;
-    HomePageCCI objHomePage;
-    LoginPage objLoginPage;
+public class TC_001 {
 
+    WebDriver driver;
+    HomePageQA objHomePage;
+    String Browser = "Chrome";
+
+    //Step 1: Navigate to the CCI(Canada) application (https://mcstaging-estore.canon.ca/en_ca/)
     @BeforeTest
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", driverPath);
-        driver = new ChromeDriver();
+    public void StartBrowser() throws InterruptedException {
+        System.out.println("Start browser and navigate to Magento QA");
+        driver = LaunchBrowser.getDriver(Browser,Constants.MagentoQA_Url);
+
     }
 
     @Test()
-    public void test_Login_Logout() {
-        objHomePage = new HomePageCCI(driver);
-        objLoginPage = new LoginPage(driver);
+    public void Verify_Login_Logout() {
+        objHomePage = new HomePageQA(driver);
         try {
-            //Step 1: Navigate to the CCI(Canada) application (https://mcstaging-estore.canon.ca/en_ca/)
-            driver.manage().window().maximize();
-            driver.get("https://mcstaging-estore.canon.ca/en_ca/");
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            System.out.println("Navigate to page : " + driver.getTitle());
-
             //Close popup promo
             objHomePage.closePopupPromo();
             Thread.sleep(2000);
@@ -46,7 +41,7 @@ public class TestLogin {
             System.out.println("Button login displayed.");
             objHomePage.clickOnButtonLogin();
             Thread.sleep(5000);
-            objLoginPage.loginToCCI();
+            LoginQA.Execute(driver);
             Thread.sleep(30000);
 
             //Step 3: On successful login, user will be navigated to the same page where the user logged in from
