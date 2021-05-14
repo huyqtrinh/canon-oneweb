@@ -14,13 +14,13 @@ public class TC_001 {
 
     WebDriver driver;
     HomePageQA objHomePage;
-    String Browser = "Chrome";
+    String Browser = "WebDrivers.Edge";
 
     //Step 1: Navigate to the CCI(Canada) application (https://mcstaging-estore.canon.ca/en_ca/)
     @BeforeTest
     public void StartBrowser() throws InterruptedException {
         System.out.println("Start browser and navigate to Magento QA");
-        driver = LaunchBrowser.getDriver(Browser,Constants.MagentoQA_Url);
+        driver = LaunchBrowser.getDriver(Browser, Constants.MagentoQA_Url);
 
     }
 
@@ -46,7 +46,7 @@ public class TC_001 {
 
             //Step 3: On successful login, user will be navigated to the same page where the user logged in from
             String strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle,strHomeTitle );
+            Assert.assertEquals(strCurTitle, strHomeTitle);
             System.out.println("Login successful. User navigated to the same page where the user logged in from.");
 
 
@@ -64,7 +64,7 @@ public class TC_001 {
             objHomePage.clickOnButtonLogout();
             Thread.sleep(5000);
             strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle,strHomeTitle );
+            Assert.assertEquals(strCurTitle, strHomeTitle);
             System.out.println("Logout successful. User redirected to home page.");
 
             //Step 6: Reconfirm that the user is logged out by clicking on the user icon on the top right corner of the page
