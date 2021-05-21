@@ -130,9 +130,9 @@ public class TestcasesPoC {
             Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
             Reporter.log("Button login displayed.",true);
             MyActions.clickObject(btn_Login);
-            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
             LoginQA.Execute(driver);
-            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
 
             //Step 3: On successful login, user will be navigated to the same page where the user logged in from
             Reporter.log("Step 3: Verify after login:",true);
@@ -245,7 +245,7 @@ public class TestcasesPoC {
     public void TC_003_Verify_Create_and_move_Orders() {
         try {
 
-            Reporter.log("Start TC_001 on browser " + Constants.Browser,true);
+            Reporter.log("Start TC_003 on browser " + Constants.Browser,true);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
@@ -297,10 +297,13 @@ public class TestcasesPoC {
             //Step 6: Click on Add to Cart. An pop up page must appear with product details and pricing
             Reporter.log("Step 6: Verify after click button Add to Cart:",true);
             MyActions.clickObject(ProductDetailPage.btn_AddToCart(driver));
-            Thread.sleep(3000);
+            Thread.sleep(6000);
             display = MyActions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Popup not appear");
             Reporter.log("Pop up appeared.",true);
+            System.out.println(MyActions.checkDisplayed(AddToCartPopup.txt_ProductName(driver)));
+            System.out.println(MyActions.checkDisplayed(AddToCartPopup.txt_ProductPrice(driver)));
+            System.out.println(MyActions.checkDisplayed(AddToCartPopup.txt_ProductAttribute(driver)));
             Boolean checkProductDetail = MyActions.checkDisplayed(AddToCartPopup.txt_ProductName(driver)) && MyActions.checkDisplayed(AddToCartPopup.txt_ProductPrice(driver)) && MyActions.checkDisplayed(AddToCartPopup.txt_ProductAttribute(driver));
             Assert.assertEquals(checkProductDetail, Boolean.TRUE,"Product detail not display.");
             Reporter.log("Product detail and pricing displayed.",true);
@@ -308,7 +311,7 @@ public class TestcasesPoC {
             //Step 7: Click on Proceed to Cart. User must be navigated to the Shopping Cart
             Reporter.log("Step 7: Verify after click on Proceed to Cart:",true);
             MyActions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
-            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+            Thread.sleep(6000);
             display = MyActions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Shopping Cart.");
             Reporter.log("Navigated to Shopping Cart.",true);
@@ -316,7 +319,7 @@ public class TestcasesPoC {
             //Step 8: Click on Check out. User must be navigated to Check Out > Shipping options page
             Reporter.log("Step 8: Verify after click on Check out:",true);
             MyActions.clickObject(ShoppingCartPage.btn_Checkout(driver));
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_ContinueToPayment(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Shipping Options page.");
             Reporter.log("Navigated to Shipping Options Page.",true);
@@ -328,7 +331,7 @@ public class TestcasesPoC {
             //Step 10: Click on Continue To Payment button. Address verification pop up might appear
             Reporter.log("Step 10: Verify after click on Continue To Payment button:",true);
             MyActions.clickObject(CheckoutPage.btn_ContinueToPayment(driver));
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_UseVerifiedAddress(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Address verification pop up not appear");
             Reporter.log("Address verification pop up appeared.",true);
