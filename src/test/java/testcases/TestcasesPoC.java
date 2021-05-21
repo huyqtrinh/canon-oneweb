@@ -1,4 +1,4 @@
-package testcasesPoC;
+package testcases;
 
 import Modules.CCIAdmin.LoginAdmin;
 import Modules.Commons.LaunchBrowser;
@@ -18,6 +18,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -29,7 +30,6 @@ public class TestcasesPoC {
 
     WebDriver driver;
 
-    //Step 1: Navigate to the CCI(Canada) application (https://mcstaging-estore.canon.ca/en_ca/)
     @BeforeTest
     public void StartBrowser() throws InterruptedException {
 
@@ -40,7 +40,7 @@ public class TestcasesPoC {
     @Test()
     public void TC_001_Verify_Login_Logout() {
         try {
-            System.out.println("Start TC_001");
+            Reporter.log("Start TC_001 on browser " + Constants.Browser,true);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
@@ -48,32 +48,38 @@ public class TestcasesPoC {
                 Thread.sleep(2000);
             }
             String strHomeTitle = driver.getTitle();
+            Reporter.log("Step1: Verify page title:",true);
+            Assert.assertEquals(strHomeTitle, "Home page CCI EN", "Cannot open CCI application.");
+            Reporter.log("Navigated to CCI application.",true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             Boolean display = MyActions.checkDisplayed(btn_Login);
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Button login displayed.");
+            Reporter.log("Step 2: Verify button login displayed:",true);
+            Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
+            Reporter.log("Button login displayed.",true);
             MyActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
             //Step 3: On successful login, user will be navigated to the same page where the user logged in from
+            Reporter.log("Step 3: Verify after login:",true);
             String strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle, strHomeTitle);
-            System.out.println("LoginQA successful. User navigated to the same page where the user logged in from.");
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
+            Reporter.log("Login successful. User navigated to the same page where the user logged in from.",true);
 
 
             //Step 4: Browse the site (navigate to one or two pages)
+            Reporter.log("Step 4: Browse the site:",true);
             MyActions.clickObject(QAHomePage.btn_Cameras(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            System.out.println("Navigate to page : " + driver.getTitle());
+            Reporter.log("Navigate to page : " + driver.getTitle(),true);
             MyActions.clickObject(QAHomePage.btn_Lenses(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            System.out.println("Navigate to page : " + driver.getTitle());
+            Reporter.log("Navigate to page : " + driver.getTitle(),true);
 
             //Step 5: Click on the logout link and the user must log out successfully and must be redirected to home page.
             MyActions.clickObject(QAHomePage.ico_User(driver));
@@ -81,25 +87,29 @@ public class TestcasesPoC {
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(5000);
             strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle, strHomeTitle);
-            System.out.println("Logout successful. User redirected to home page.");
+            Reporter.log("Step 5: Verify after logout:",true);
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not redirected to home page.");
+            Reporter.log("Logout successful. User redirected to home page.",true);
 
             //Step 6: Reconfirm that the user is logged out by clicking on the user icon on the top right corner of the page
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             display = MyActions.checkDisplayed(QAHomePage.btn_Login(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Reconfirm that the user is logged out. Button LoginQA is displayed.");
+            Reporter.log("Step 6: Reconfirm after logged out:",true);
+            Assert.assertEquals(display, Boolean.TRUE, "User icon not displayed.");
+            Reporter.log("Reconfirm that the user is logged out. Button Login is displayed.",true);
+            MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Reporter.log(e.toString());
         }
     }
+
     @Test()
     public void TC_002_Verify_Rating_and_Review() {
         try {
 
-            System.out.println("Start TC_002");
+            Reporter.log("Start TC_002 on browser " + Constants.Browser);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
@@ -107,87 +117,98 @@ public class TestcasesPoC {
                 Thread.sleep(2000);
             }
             String strHomeTitle = driver.getTitle();
+            Reporter.log("Step1: Verify page title:");
+            Assert.assertEquals(strHomeTitle, "Home page CCI EN", "Cannot open CCI application.");
+            Reporter.log("Navigated to CCI application.",true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
-
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             Boolean display = MyActions.checkDisplayed(btn_Login);
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Button login displayed.");
+            Reporter.log("Step 2: Verify button login displayed:",true);
+            Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
+            Reporter.log("Button login displayed.",true);
             MyActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
             //Step 3: On successful login, user will be navigated to the same page where the user logged in from
+            Reporter.log("Step 3: Verify after login:",true);
             String strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle, strHomeTitle);
-            System.out.println("LoginQA successful. User navigated to the same page where the user logged in from.");
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
+            Reporter.log("Login successful. User navigated to the same page where the user logged in from.",true);
 
             //Step 4: Click on the Product Category from mega menu (Click on Cameras > Compact Cameras)
+            Reporter.log("Step 4: Verify after click on the Product Category from mega menu:",true);
             MyActions.clickObject(QAHomePage.btn_Cameras(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.");
-            System.out.println("Navigated to Compact Cameras");
+            Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.","Not navigate to Compact Cameras");
+            Reporter.log("Navigated to Compact Cameras",true);
 
             //Step 5: Click on Powershot SX540 HS from the Product List Page. This will navigate the user to Product Detail page (PDP)
+            Reporter.log("Step 5: Verify after click on Powershot SX540 HS from the Product List Page:",true);
             MyActions.clickObject(CamerasPage.txt_PowerShotSX540HS(driver));
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             String sProductName = MyActions.getTexts(ProductDetailPage.txt_ProductName(driver));
-            Assert.assertEquals(sProductName, "Powershot SX540 HS");
-            System.out.println("Navigated to Product Detail Page.");
+            Assert.assertEquals(sProductName, "Powershot SX540 HS","Not navigate to Product Detail page");
+            Reporter.log("Navigated to Product Detail Page.",true);
 
             //Step 6: Make a note of the number of reviews that are available for the product
+            Reporter.log("Step 6: Make a note of the number of reviews that are available for the product:",true);
             String sReviewNum = MyActions.getTexts(ProductDetailPage.txt_NumberOfReviews(driver));
-            System.out.println("Number of reviews that are available for the product: " + sReviewNum);
+            Reporter.log("Number of reviews that are available for the product: " + sReviewNum,true);
 
             //Step 7: Click on the Rating (Stars). This will navigate the user to Review section
+            Reporter.log("Step 7: Verify after click on the Rating (Stars)",true);
             MyActions.clickObject(ProductDetailPage.img_RatingStars(driver));
             Thread.sleep(500);
             display = MyActions.checkDisplayed(ProductDetailPage.btn_WriteAReview(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to review section.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to review section");
+            Reporter.log("Navigated to review section.",true);
 
             //Step 8: Compare the number of ratings in the Review section. Both should match
+            Reporter.log("Step 8: Compare the number of ratings in the Review section:",true);
             String sRvNum = ((JavascriptExecutor) driver).executeScript("res = arguments[0].split(\" \"); return res[2];", MyActions.getTexts(ProductDetailPage.txt_NumberOfReviews_ReviewSection(driver))).toString();
-            Assert.assertEquals(sRvNum, sReviewNum);
-            System.out.println("Number of reviews are all match.");
+            Assert.assertEquals(sRvNum, sReviewNum,"Number of review are not match");
+            Reporter.log("Number of reviews are all match.",true);
 
             //Step 9: Click on Write A Review button. User will be navigated to My Review page
+            Reporter.log("Step 9: Verify after click on Write A Review button.",true);
             MyActions.clickObject(ProductDetailPage.btn_WriteAReview(driver));
             WebDriverWait wait = new WebDriverWait(driver, 30);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("bv-text-field-title")));
             display = MyActions.checkDisplayed(PostReviewPopup.tbx_ReviewTitle(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to My Review page.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to My Review page");
+            Reporter.log("Navigated to My Review page.",true);
 
             //Step 10: Enter all the details and click on Post Review. A confirmation message will appear. User should be navigated back to the Review section
+            Reporter.log("Step 10: Enter all the details and click on Post Review.",true);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             MyActions.clickObject(PostReviewPopup.rad_OverallRating_5stars(driver));
             String sReviewContent = ("This is test review content. This is test review content. " + timestamp.getTime());
             String sReviewTitle = ("Test Review Title");
-            MyActions.setTexts(PostReviewPopup.tbx_ReviewTitle(driver),sReviewTitle);
-            MyActions.setTexts(PostReviewPopup.tbx_ReviewContent(driver),sReviewContent);
+            MyActions.setTexts(PostReviewPopup.tbx_ReviewTitle(driver), sReviewTitle);
+            MyActions.setTexts(PostReviewPopup.tbx_ReviewContent(driver), sReviewContent);
             MyActions.clickObject(PostReviewPopup.rad_RecommendYes(driver));
-            MyActions.setTexts(PostReviewPopup.tbx_NickName(driver),"automation test");
-            MyActions.setTexts(PostReviewPopup.tbx_Email(driver),"automation test");
-            MyActions.selectItemIndex(PostReviewPopup.slt_PurchaseLocation(driver),1);
-            MyActions.selectItemIndex(PostReviewPopup.slt_LengthUse(driver),1);
-            MyActions.selectItemIndex(PostReviewPopup.slt_Replacement(driver),1);
-            MyActions.selectItemIndex(PostReviewPopup.slt_Expertise(driver),1);
-            MyActions.selectItemIndex(PostReviewPopup.slt_Enthusiast(driver),1);
+            MyActions.setTexts(PostReviewPopup.tbx_NickName(driver), "automation test");
+            MyActions.setTexts(PostReviewPopup.tbx_Email(driver), "automation test");
+            MyActions.selectItemIndex(PostReviewPopup.slt_PurchaseLocation(driver), 1);
+            MyActions.selectItemIndex(PostReviewPopup.slt_LengthUse(driver), 1);
+            MyActions.selectItemIndex(PostReviewPopup.slt_Replacement(driver), 1);
+            MyActions.selectItemIndex(PostReviewPopup.slt_Expertise(driver), 1);
+            MyActions.selectItemIndex(PostReviewPopup.slt_Enthusiast(driver), 1);
             MyActions.clickObject(PostReviewPopup.rad_Features_5stars(driver));
             MyActions.clickObject(PostReviewPopup.rad_Performance_5stars(driver));
             MyActions.clickObject(PostReviewPopup.rad_Value_5stars(driver));
             MyActions.clickObject(PostReviewPopup.rad_Quality_5stars(driver));
             MyActions.clickObject(PostReviewPopup.rad_Satisfaction_5stars(driver));
             MyActions.clickObject(PostReviewPopup.rad_PromoScore_10(driver));
-            MyActions.setTexts(PostReviewPopup.tbx_PromoComment(driver),"Test promo comment.");
+            MyActions.setTexts(PostReviewPopup.tbx_PromoComment(driver), "Test promo comment.");
             MyActions.clickObject(PostReviewPopup.cbx_TermAndConditions(driver));
             Thread.sleep(2000);
             MyActions.clickObject(PostReviewPopup.btn_AcceptTerm(driver));
@@ -195,18 +216,20 @@ public class TestcasesPoC {
             Thread.sleep(2000);
 
             //Verify after click button post review
+            Reporter.log("Verify after click button post review",true);
             display = MyActions.checkDisplayed(PostReviewPopup.txt_ReviewSubmitted(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Confirmation message displayed");
+            Assert.assertEquals(display, Boolean.TRUE,"Confirmation message not display");
+            Reporter.log("Confirmation message displayed");
             MyActions.clickObject(PostReviewPopup.btn_CloseConfirmPopup(driver));
             display = MyActions.checkDisplayed(ProductDetailPage.btn_WriteAReview(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Back to Reviews section.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not back to Reviews section.");
+            Reporter.log("Back to Reviews section.",true);
 
             //Step 11: User must be able to view the latest review in the Review section.
+            Reporter.log("Step 11: Verify user can view the latest review in the Review section.",true);
             String content = MyActions.getTexts(ProductDetailPage.txt_ReviewContent_1st(driver));
             Assert.assertEquals(content, sReviewContent);
-            System.out.println("Latest review is displayed con Review section.");
+            Reporter.log("Latest review is displayed on Review section.",true);
 
             //Logout
             MyActions.clickObject(QAHomePage.ico_User(driver));
@@ -214,14 +237,15 @@ public class TestcasesPoC {
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(5000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Reporter.log(e.toString(),true);
         }
     }
+
     @Test()
     public void TC_003_Verify_Create_and_move_Orders() {
         try {
 
-            System.out.println("Start TC_003");
+            Reporter.log("Start TC_001 on browser " + Constants.Browser,true);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
@@ -229,175 +253,203 @@ public class TestcasesPoC {
                 Thread.sleep(2000);
             }
             String strHomeTitle = driver.getTitle();
+            Reporter.log("Step1: Verify page title:",true);
+            Assert.assertEquals(strHomeTitle, "Home page CCI EN", "Cannot open CCI application.");
+            Reporter.log("Navigated to CCI application.",true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
-
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             Boolean display = MyActions.checkDisplayed(btn_Login);
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Button login displayed.");
+            Reporter.log("Step 2: Verify button login displayed:",true);
+            Assert.assertEquals(display, Boolean.TRUE, "Button Login is not display.");
+            Reporter.log("Button login displayed.",true);
             MyActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
             //Step 3: On successful login, user will be navigated to the same page where the user logged in from
+            Reporter.log("Step 3: Verify after login:",true);
             String strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle, strHomeTitle);
-            System.out.println("LoginQA successful. User navigated to the same page where the user logged in from.");
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the same page user logged in from.");
+            Reporter.log("Login successful. User navigated to the same page where the user logged in from.",true);
 
             //Step 4: Click on the Product Category from mega menu (Click on Cameras > Compact Cameras)
+            Reporter.log("Step 4: Verify after click Product Category:",true);
             MyActions.clickObject(QAHomePage.btn_Cameras(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             strCurTitle = driver.getTitle();
-            Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.");
-            System.out.println("Navigated to Compact Cameras");
+            Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.","Not navigate to Compact Camera page.");
+            Reporter.log("Navigated to Compact Cameras",true);
 
             //Step 5: Click on Powershot SX540 HS from the Product List Page. This will navigate the user to Product Detail page (PDP)
+            Reporter.log("Step 5: Verify after click product name:",true);
             MyActions.clickObject(CamerasPage.txt_PowerShotSX540HS(driver));
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             String sProductName = MyActions.getTexts(ProductDetailPage.txt_ProductName(driver));
-            Assert.assertEquals(sProductName, "Powershot SX540 HS");
-            System.out.println("Navigated to Product Detail Page.");
+            Assert.assertEquals(sProductName, "Powershot SX540 HS","Not navigate to Product Detail page.");
+            Reporter.log("Navigated to Product Detail Page.",true);
 
             //Step 6: Click on Add to Cart. An pop up page must appear with product details and pricing
+            Reporter.log("Step 6: Verify after click button Add to Cart:",true);
             MyActions.clickObject(ProductDetailPage.btn_AddToCart(driver));
             Thread.sleep(3000);
             display = MyActions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Pop up appeared.");
+            Assert.assertEquals(display, Boolean.TRUE,"Popup not appear");
+            Reporter.log("Pop up appeared.",true);
             Boolean checkProductDetail = MyActions.checkDisplayed(AddToCartPopup.txt_ProductName(driver)) && MyActions.checkDisplayed(AddToCartPopup.txt_ProductPrice(driver)) && MyActions.checkDisplayed(AddToCartPopup.txt_ProductAttribute(driver));
-            Assert.assertEquals(checkProductDetail, Boolean.TRUE);
-            System.out.println("Product detail and pricing displayed.");
+            Assert.assertEquals(checkProductDetail, Boolean.TRUE,"Product detail not display.");
+            Reporter.log("Product detail and pricing displayed.",true);
 
             //Step 7: Click on Proceed to Cart. User must be navigated to the Shopping Cart
+            Reporter.log("Step 7: Verify after click on Proceed to Cart:",true);
             MyActions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             display = MyActions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to Shopping Cart.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Shopping Cart.");
+            Reporter.log("Navigated to Shopping Cart.",true);
 
             //Step 8: Click on Check out. User must be navigated to Check Out > Shipping options page
+            Reporter.log("Step 8: Verify after click on Check out:",true);
             MyActions.clickObject(ShoppingCartPage.btn_Checkout(driver));
             Thread.sleep(3000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_ContinueToPayment(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to Shipping Options Page.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Shipping Options page.");
+            Reporter.log("Navigated to Shipping Options Page.",true);
 
             //Step 9: Select Fixed option under Shipping Methods
+            Reporter.log("Step 9: Select Fixed option under Shipping Methods.",true);
             MyActions.clickObject(CheckoutPage.rad_Fixed(driver));
 
             //Step 10: Click on Continue To Payment button. Address verification pop up might appear
+            Reporter.log("Step 10: Verify after click on Continue To Payment button:",true);
             MyActions.clickObject(CheckoutPage.btn_ContinueToPayment(driver));
             Thread.sleep(3000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_UseVerifiedAddress(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Address verification pop up appeared.");
+            Assert.assertEquals(display, Boolean.TRUE,"Address verification pop up not appear");
+            Reporter.log("Address verification pop up appeared.",true);
 
             //Step 11: Click on Use Verified Address button. User should navigate to the Payment section
+            Reporter.log("Step 11: Verify after click on Use Verified Address button:",true);
             MyActions.clickObject(CheckoutPage.btn_UseVerifiedAddress(driver));
             Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.rad_PaymentMethod_Credit(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to payment section.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to payment section.");
+            Reporter.log("Navigated to payment section.",true);
 
             //Step 12: Select Credit Card Moneris
+            Reporter.log("Step 12: Select Credit Card Moneris.",true);
             MyActions.clickObject(CheckoutPage.rad_PaymentMethod_Credit(driver));
 
             //Step 13: Select Billing Address (Select Same as Shipping Address)
+            Reporter.log("Step 13: Select Billing Address (Select Same as Shipping Address)",true);
             MyActions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
 
             //Step 14: Click on Continue To Review. User should navigate to Review page
+            Reporter.log("Step 14: Verify after click on Continue To Review button:",true);
             String sGrandTotal = MyActions.getTexts(CheckoutPage.txt_OrderTotal(driver));
-            System.out.println("sGrandTotal: " + sGrandTotal);
             MyActions.clickObject(CheckoutPage.btn_ContinueToReview(driver));
             display = MyActions.checkDisplayed(CheckoutPage.btn_PlaceOrder(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to Review page.");
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Review page.");
+            Reporter.log("Navigated to Review page.",true);
 
             //Step 15: Scroll down and click on Place Order button. User should navigate to Thank You page
+            Reporter.log("Step 15: Verify after click on Place Order button:",true);
             MyActions.clickObject(CheckoutPage.btn_PlaceOrder(driver));
+            display = MyActions.checkDisplayed(CheckoutPage.txt_OrderNumber(driver));
+            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Thank You page.");
+            Reporter.log("Navigated to Thank You page.");
 
             //Step 16: Verify if the Order number appears on this page
+            Reporter.log("Step 16: Verify if the Order number appears on this page",true);
             display = MyActions.checkDisplayed(CheckoutPage.txt_OrderNumber(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Navigated to Thank you page. Order number is displayed");
+            Assert.assertEquals(display, Boolean.TRUE,"Order Number is not displayed.");
+            Reporter.log("Order number is displayed");
             String sOrderNumber = MyActions.getTexts(CheckoutPage.txt_OrderNumber(driver));
-            System.out.println("sOrderNumber: " + sOrderNumber);
 
             //Step 17: Add wait time for the order to show up in Magento Admin.
+            Reporter.log("Step 17: Add wait time for the order to show up in Magento Admin.",true);
             Thread.sleep(60000);
 
             //Step 18: Use the following URL to log into Magento Admin https://mcstaging-shop.usa.canon.com/admin
+            Reporter.log("Step 18: Navigate to Magento Admin.",true);
             driver.navigate().to(Constants.MagentoCCIAdmin_Url);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             String sPageTitle = driver.getTitle();
-            Assert.assertEquals(sPageTitle, "Magento Admin");
-            System.out.println("Navigated to Magento Admin.");
+            Assert.assertEquals(sPageTitle, "Magento Admin","Not navigate to Magento Admin.");
+            Reporter.log("Navigated to Magento Admin.",true);
 
             //Step 19: Login
+            Reporter.log("Step 19: Logging in to Magento Admin.",true);
             LoginAdmin.Execute(driver);
             display = MyActions.checkDisplayed(AdminHomePage.btn_Sales(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Login successful");
+            Assert.assertEquals(display, Boolean.TRUE,"Login not success.");
+            Reporter.log("Login successful");
 
             //Step 20: Navigate to Sales > Orders page
+            Reporter.log("Step 20: Navigate to Sales > Orders page.",true);
             MyActions.clickObject(AdminHomePage.btn_Sales(driver));
             Thread.sleep(600);
             MyActions.clickObject(AdminHomePage.btn_Orders(driver));
             Thread.sleep(10000);
 
             //Step 21: Enter the order # from step # 16 and click on Search
+            Reporter.log("Step 21: Enter the order # from step # 16 and click on Search",true);
             MyActions.setTexts(AdminHomePage.tbx_Search(driver), sOrderNumber);
             MyActions.clickObject(AdminHomePage.btn_Search(driver));
             Thread.sleep(5000);
 
             //Step 22: Verify that the Order detail appear in the table
-            String sOrderNumber_admin = MyActions.getDataFromCellTable(driver, OrdersPage.tbl_DataGrid(),1,2);
-            sOrderNumber_admin = "#"+sOrderNumber_admin;
-            Assert.assertEquals(sOrderNumber, sOrderNumber_admin);
-            System.out.println("Order number displayed correctly.");
-            String sGrandTotal_admin = MyActions.getDataFromCellTable(driver,OrdersPage.tbl_DataGrid(),1,8);
-            Assert.assertEquals(sGrandTotal_admin, sGrandTotal);
-            System.out.println("Grand total displayed correctly.");
+            Reporter.log("Step 22: Verify that the Order detail appear in the table:",true);
+            String sOrderNumber_admin = MyActions.getDataFromCellTable(driver, OrdersPage.tbl_DataGrid(), 1, 2);
+            sOrderNumber_admin = "#" + sOrderNumber_admin;
+            Assert.assertEquals(sOrderNumber, sOrderNumber_admin,"Order number displayed incorrect");
+            Reporter.log("Order number displayed correctly.",true);
+            String sGrandTotal_admin = MyActions.getDataFromCellTable(driver, OrdersPage.tbl_DataGrid(), 1, 8);
+            Assert.assertEquals(sGrandTotal_admin, sGrandTotal,"Grand total displayed correctly");
+            Reporter.log("Grand total displayed correctly.",true);
 
             //Step 23: A wait time may be needed in the script as it takes a few minutes for the order to show up in Magento Order Management.
             Thread.sleep(60000);
 
             //Step 24: Use the following URL to log into Magento Order Management (MOM) Order Management System (magento.com)
+            Reporter.log("Step 24: Navigate to Magento Order Management (MOM) Order Management System",true);
             driver.navigate().to(Constants.MagentoOrderManagement_Url);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             sPageTitle = driver.getTitle();
-            Assert.assertEquals(sPageTitle, "Order Management System");
-            System.out.println("Navigated to Order Management System.");
+            Assert.assertEquals(sPageTitle, "Order Management System","Not navigate to Order Management System");
+            Reporter.log("Navigated to Order Management System.",true);
 
             //Step 25: Username: gdewan, password C@non2021
+            Reporter.log("Step 25:Login to Order Management System.",true);
             LoginOrderManagement.Execute(driver);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             display = MyActions.checkDisplayed(OrderManagementHomePage.tbx_Search(driver));
-            Assert.assertEquals(display, Boolean.TRUE);
-            System.out.println("Login successful");
+            Assert.assertEquals(display, Boolean.TRUE,"Login unsuccessful.");
+            Reporter.log("Login successful",true);
 
             //Step 26: On the Dashboard, enter the order # and click on Search
-            MyActions.setTexts(OrderManagementHomePage.tbx_Search(driver),sOrderNumber);
+            Reporter.log("Step 26: On the Dashboard, enter the order # and click on Search",true);
+            MyActions.setTexts(OrderManagementHomePage.tbx_Search(driver), sOrderNumber);
             MyActions.clickObject(OrderManagementHomePage.btn_Search(driver));
             Thread.sleep(5000);
 
             //Step 27: Verify the Order #, Product name and Price
+            Reporter.log("Step 27: Verify the Order #, Product name and Price",true);
             String sOrderNumber_OM = MyActions.getTexts(DetailOrderPage.txt_OrderId(driver));
-            Assert.assertEquals(sOrderNumber_OM, sOrderNumber);
-            System.out.println("Order number on Orders Management displayed correctly.");
+            Assert.assertEquals(sOrderNumber_OM, sOrderNumber,"Order number on Orders Management displayed incorrect");
+            Reporter.log("Order number on Orders Management displayed correctly.");
             String sProductName_OM = MyActions.getTexts(DetailOrderPage.txt_ProductName(driver));
-            Assert.assertEquals(sProductName_OM, sProductName);
-            System.out.println("Product name on Orders Management displayed correctly.");
+            Assert.assertEquals(sProductName_OM, sProductName,"Product name on Orders Management displayed incorrect");
+            Reporter.log("Product name on Orders Management displayed correctly.");
             String sGrandPrice_OM = MyActions.getTexts(DetailOrderPage.txt_Price(driver));
-            sGrandPrice_OM = "$"+sGrandPrice_OM;
-            Assert.assertEquals(sGrandPrice_OM, sGrandTotal);
-            System.out.println("Grand total on Orders Management displayed correctly.");
+            sGrandPrice_OM = "$" + sGrandPrice_OM;
+            Assert.assertEquals(sGrandPrice_OM, sGrandTotal,"Price on Orders Management displayed incorrect");
+            Reporter.log("Grand total on Orders Management displayed correctly.");
 
 
         } catch (InterruptedException e) {
