@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="D:/IdeaProjects/canon-oneweb">
+<suite name="PoC Test">
+    <test thread-count="1" name="TC_001">
         <classes>
             <class name="testcasesPoC.TC_001">
                 <methods>
                     <include name="Verify_Login_Logout"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test thread-count="1" name="TC_002">
+        <classes>
+            <class name="testcasesPoC.TC_002">
+                <methods>
+                    <include name="Verify_Rating_and_Review"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test thread-count="1" name="TC_003">
+        <classes>
+            <class name="testcasesPoC.TC_003">
+                <methods>
+                    <include name="Verify_Create_and_move_Orders"/>
                 </methods>
             </class>
         </classes>
