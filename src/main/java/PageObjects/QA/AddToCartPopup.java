@@ -16,7 +16,7 @@ public class AddToCartPopup {
         return element;
     }
     public static WebElement txt_ProductPrice(WebDriver driver){
-        element = driver.findElement(By.xpath("//span[@class='price']"));
+        element = driver.findElement(By.xpath("//div[@class='product-price']"));
         return element;
     }
     public static WebElement txt_ProductAttribute(WebDriver driver){
