@@ -8,7 +8,7 @@ public class ShoppingCartPage {
     private static WebElement element = null;
 
     public static WebElement btn_Checkout(WebDriver driver){
-        element = driver.findElement(By.xpath("//button[@type='button'][@title='Checkout']"));
+        element = driver.findElement(By.xpath("//li/button[@type='button'][@title='Checkout']"));
         return element;
     }
 }

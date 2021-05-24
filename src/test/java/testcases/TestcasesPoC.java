@@ -48,9 +48,7 @@ public class TestcasesPoC {
                 Thread.sleep(2000);
             }
             String strHomeTitle = driver.getTitle();
-            Reporter.log("Step1: Verify page title:",true);
-            Assert.assertEquals(strHomeTitle, "Home page CCI EN", "Cannot open CCI application.");
-            Reporter.log("Navigated to CCI application.",true);
+            Reporter.log("Step 1: Navigated to CCI application.",true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
             MyActions.clickObject(QAHomePage.ico_User(driver));
@@ -117,9 +115,7 @@ public class TestcasesPoC {
                 Thread.sleep(2000);
             }
             String strHomeTitle = driver.getTitle();
-            Reporter.log("Step1: Verify page title:");
-            Assert.assertEquals(strHomeTitle, "Home page CCI EN", "Cannot open CCI application.");
-            Reporter.log("Navigated to CCI application.",true);
+            Reporter.log("Step 1: Navigated to CCI application.",true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
             MyActions.clickObject(QAHomePage.ico_User(driver));
@@ -160,7 +156,7 @@ public class TestcasesPoC {
 
             //Step 6: Make a note of the number of reviews that are available for the product
             Reporter.log("Step 6: Make a note of the number of reviews that are available for the product:",true);
-            String sReviewNum = MyActions.getTexts(ProductDetailPage.txt_NumberOfReviews(driver));
+            String sReviewNum = ProductDetailPage.txt_NumberOfReviews(driver).getAttribute("content");
             Reporter.log("Number of reviews that are available for the product: " + sReviewNum,true);
 
             //Step 7: Click on the Rating (Stars). This will navigate the user to Review section
@@ -187,6 +183,7 @@ public class TestcasesPoC {
             Reporter.log("Navigated to My Review page.",true);
 
             //Step 10: Enter all the details and click on Post Review. A confirmation message will appear. User should be navigated back to the Review section
+            Thread.sleep(2000);
             Reporter.log("Step 10: Enter all the details and click on Post Review.",true);
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             MyActions.clickObject(PostReviewPopup.rad_OverallRating_5stars(driver));
@@ -196,7 +193,7 @@ public class TestcasesPoC {
             MyActions.setTexts(PostReviewPopup.tbx_ReviewContent(driver), sReviewContent);
             MyActions.clickObject(PostReviewPopup.rad_RecommendYes(driver));
             MyActions.setTexts(PostReviewPopup.tbx_NickName(driver), "automation test");
-            MyActions.setTexts(PostReviewPopup.tbx_Email(driver), "automation test");
+            MyActions.setTexts(PostReviewPopup.tbx_Email(driver), "automation@gmail.com");
             MyActions.selectItemIndex(PostReviewPopup.slt_PurchaseLocation(driver), 1);
             MyActions.selectItemIndex(PostReviewPopup.slt_LengthUse(driver), 1);
             MyActions.selectItemIndex(PostReviewPopup.slt_Replacement(driver), 1);
@@ -212,8 +209,9 @@ public class TestcasesPoC {
             MyActions.clickObject(PostReviewPopup.cbx_TermAndConditions(driver));
             Thread.sleep(2000);
             MyActions.clickObject(PostReviewPopup.btn_AcceptTerm(driver));
-            MyActions.clickObject(PostReviewPopup.btn_PostReview(driver));
             Thread.sleep(2000);
+            MyActions.clickObject(PostReviewPopup.btn_PostReview(driver));
+            Thread.sleep(10000);
 
             //Verify after click button post review
             Reporter.log("Verify after click button post review",true);
@@ -232,10 +230,13 @@ public class TestcasesPoC {
             Reporter.log("Latest review is displayed on Review section.",true);
 
             //Logout
+            /*
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", QAHomePage.ico_User(driver));
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(5000);
+            */
         } catch (InterruptedException e) {
             Reporter.log(e.toString(),true);
         }
@@ -253,9 +254,7 @@ public class TestcasesPoC {
                 Thread.sleep(2000);
             }
             String strHomeTitle = driver.getTitle();
-            Reporter.log("Step1: Verify page title:",true);
-            Assert.assertEquals(strHomeTitle, "Home page CCI EN", "Cannot open CCI application.");
-            Reporter.log("Navigated to CCI application.",true);
+            Reporter.log("Step 1: Navigated to CCI application.",true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
             MyActions.clickObject(QAHomePage.ico_User(driver));
@@ -299,11 +298,8 @@ public class TestcasesPoC {
             MyActions.clickObject(ProductDetailPage.btn_AddToCart(driver));
             Thread.sleep(6000);
             display = MyActions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
-            Assert.assertEquals(display, Boolean.TRUE,"Popup not appear");
+            Assert.assertEquals(display, Boolean.TRUE,"Button ProceedToCart not appear. Popup not display.");
             Reporter.log("Pop up appeared.",true);
-            System.out.println(MyActions.checkDisplayed(AddToCartPopup.txt_ProductName(driver)));
-            System.out.println(MyActions.checkDisplayed(AddToCartPopup.txt_ProductPrice(driver)));
-            System.out.println(MyActions.checkDisplayed(AddToCartPopup.txt_ProductAttribute(driver)));
             Boolean checkProductDetail = MyActions.checkDisplayed(AddToCartPopup.txt_ProductName(driver)) && MyActions.checkDisplayed(AddToCartPopup.txt_ProductPrice(driver)) && MyActions.checkDisplayed(AddToCartPopup.txt_ProductAttribute(driver));
             Assert.assertEquals(checkProductDetail, Boolean.TRUE,"Product detail not display.");
             Reporter.log("Product detail and pricing displayed.",true);
@@ -311,9 +307,9 @@ public class TestcasesPoC {
             //Step 7: Click on Proceed to Cart. User must be navigated to the Shopping Cart
             Reporter.log("Step 7: Verify after click on Proceed to Cart:",true);
             MyActions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
-            Thread.sleep(6000);
+            Thread.sleep(10000);
             display = MyActions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
-            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Shopping Cart.");
+            Assert.assertEquals(display, Boolean.TRUE,"Button Check out not display. Not navigate to Shopping Cart.");
             Reporter.log("Navigated to Shopping Cart.",true);
 
             //Step 8: Click on Check out. User must be navigated to Check Out > Shipping options page
@@ -321,24 +317,30 @@ public class TestcasesPoC {
             MyActions.clickObject(ShoppingCartPage.btn_Checkout(driver));
             Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_ContinueToPayment(driver));
-            Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Shipping Options page.");
+            Assert.assertEquals(display, Boolean.TRUE,"Button Continue to Payment not display. Not navigate to Shipping Options page.");
             Reporter.log("Navigated to Shipping Options Page.",true);
 
             //Step 9: Select Fixed option under Shipping Methods
             Reporter.log("Step 9: Select Fixed option under Shipping Methods.",true);
+            MyActions.clickObject(CheckoutPage.rad_1stAddress(driver));
+            Thread.sleep(2000);
             MyActions.clickObject(CheckoutPage.rad_Fixed(driver));
 
             //Step 10: Click on Continue To Payment button. Address verification pop up might appear
-            Reporter.log("Step 10: Verify after click on Continue To Payment button:",true);
+            Reporter.log("Step 10: Click on Continue To Payment button, check if Address verification pop up appear.",true);
             MyActions.clickObject(CheckoutPage.btn_ContinueToPayment(driver));
-            Thread.sleep(5000);
+            Thread.sleep(10000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_UseVerifiedAddress(driver));
-            Assert.assertEquals(display, Boolean.TRUE,"Address verification pop up not appear");
-            Reporter.log("Address verification pop up appeared.",true);
+            if (display) {
+                Reporter.log("Address verification pop up appeared.", true);
+                MyActions.clickObject(CheckoutPage.btn_UseVerifiedAddress(driver));
+            }
+            else{
+                Reporter.log("Address verification pop up not appeared.", true);
+            }
 
             //Step 11: Click on Use Verified Address button. User should navigate to the Payment section
             Reporter.log("Step 11: Verify after click on Use Verified Address button:",true);
-            MyActions.clickObject(CheckoutPage.btn_UseVerifiedAddress(driver));
             Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.rad_PaymentMethod_Credit(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Not navigate to payment section.");
@@ -347,15 +349,19 @@ public class TestcasesPoC {
             //Step 12: Select Credit Card Moneris
             Reporter.log("Step 12: Select Credit Card Moneris.",true);
             MyActions.clickObject(CheckoutPage.rad_PaymentMethod_Credit(driver));
+            MyActions.clickObject(CheckoutPage.rad_1stCreditCard(driver));
 
             //Step 13: Select Billing Address (Select Same as Shipping Address)
             Reporter.log("Step 13: Select Billing Address (Select Same as Shipping Address)",true);
-            MyActions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
+            if(!CheckoutPage.cbx_SameAsShippingInf(driver).isSelected()) {
+                MyActions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
+            }
 
             //Step 14: Click on Continue To Review. User should navigate to Review page
             Reporter.log("Step 14: Verify after click on Continue To Review button:",true);
             String sGrandTotal = MyActions.getTexts(CheckoutPage.txt_OrderTotal(driver));
             MyActions.clickObject(CheckoutPage.btn_ContinueToReview(driver));
+            Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.btn_PlaceOrder(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Review page.");
             Reporter.log("Navigated to Review page.",true);
@@ -363,6 +369,7 @@ public class TestcasesPoC {
             //Step 15: Scroll down and click on Place Order button. User should navigate to Thank You page
             Reporter.log("Step 15: Verify after click on Place Order button:",true);
             MyActions.clickObject(CheckoutPage.btn_PlaceOrder(driver));
+            Thread.sleep(5000);
             display = MyActions.checkDisplayed(CheckoutPage.txt_OrderNumber(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Thank You page.");
             Reporter.log("Navigated to Thank You page.");
@@ -376,7 +383,7 @@ public class TestcasesPoC {
 
             //Step 17: Add wait time for the order to show up in Magento Admin.
             Reporter.log("Step 17: Add wait time for the order to show up in Magento Admin.",true);
-            Thread.sleep(60000);
+            Thread.sleep(30000);
 
             //Step 18: Use the following URL to log into Magento Admin https://mcstaging-shop.usa.canon.com/admin
             Reporter.log("Step 18: Navigate to Magento Admin.",true);
@@ -417,7 +424,7 @@ public class TestcasesPoC {
             Reporter.log("Grand total displayed correctly.",true);
 
             //Step 23: A wait time may be needed in the script as it takes a few minutes for the order to show up in Magento Order Management.
-            Thread.sleep(60000);
+            Thread.sleep(30000);
 
             //Step 24: Use the following URL to log into Magento Order Management (MOM) Order Management System (magento.com)
             Reporter.log("Step 24: Navigate to Magento Order Management (MOM) Order Management System",true);
