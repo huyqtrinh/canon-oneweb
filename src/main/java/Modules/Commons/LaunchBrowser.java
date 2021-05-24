@@ -1,6 +1,5 @@
 package Modules.Commons;
 
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,15 +20,7 @@ public class LaunchBrowser {
 
         if (sBrowser.equals("Chrome")) {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("user-data-dir=C:\\Users\\huyqtrinh.sp\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2");
             options.addArguments("--disable-extensions");
-            //options.addArguments("--incognito");
-            /*
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--dns-prefetch-disable");
-            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-             */
             options.merge(capabilities);
             driverPath = "src/main/resources/WebDrivers/chromedriver.exe";
             System.setProperty("webdriver.chrome.driver", driverPath);

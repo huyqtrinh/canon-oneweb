@@ -8,7 +8,7 @@ public class CheckoutPage {
     private static WebElement element = null;
 
     public static WebElement rad_Fixed(WebDriver driver){
-        element = driver.findElement(By.xpath("//input[@type='radio'][@name='ko_unique_1']"));
+        element = driver.findElement(By.xpath("//input[@type='radio'][@name='ko_unique_6']"));
         return element;
     }
     public static WebElement btn_ContinueToPayment(WebDriver driver){
@@ -20,11 +20,11 @@ public class CheckoutPage {
         return element;
     }
     public static WebElement rad_PaymentMethod_Credit(WebDriver driver){
-        element = driver.findElement(By.xpath("//input[@id='moneris']"));
+        element = driver.findElement(By.xpath("//*[@id='checkout-payment-method-load']/div/div[3]/div/div[3]/div[1]"));
         return element;
     }
     public static WebElement cbx_SameAsShippingInf(WebDriver driver){
-        element = driver.findElement(By.xpath("//input[@type='checkbox'][@name='billing-address-same-as-shipping']"));
+        element = driver.findElement(By.xpath("//div/div/input[@type='checkbox'][@name='billing-address-same-as-shipping']"));
         return element;
     }
     public static WebElement btn_ContinueToReview(WebDriver driver){
@@ -43,5 +43,12 @@ public class CheckoutPage {
         element = driver.findElement(By.xpath("//tr[@class='grand totals']/td[@class='amount']/strong/span"));
         return element;
     }
-
+    public static WebElement rad_1stAddress(WebDriver driver){
+        element = driver.findElement(By.xpath("//div/button[@class='action action-select-shipping-item'][1]"));
+        return element;
+    }
+    public static WebElement rad_1stCreditCard(WebDriver driver){
+        element = driver.findElement(By.xpath("//div[@class='payment-method'][1]"));
+        return element;
+    }
 }
