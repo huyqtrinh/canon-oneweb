@@ -20,6 +20,7 @@ public class LaunchBrowser {
 
         if (sBrowser.equals("Chrome")) {
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("user-data-dir=C:\\Users\\huyqtrinh.sp\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2");
             options.addArguments("--disable-extensions");
             options.merge(capabilities);
             driverPath = "src/main/resources/WebDrivers/chromedriver.exe";
