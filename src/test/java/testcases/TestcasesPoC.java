@@ -290,8 +290,9 @@ public class TestcasesPoC {
             MyActions.clickObject(CamerasPage.txt_PowerShotSX540HS(driver));
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             String sProductName = MyActions.getTexts(ProductDetailPage.txt_ProductName(driver));
-            Assert.assertEquals(sProductName, "Powershot SX540 HS","Not navigate to Product Detail page.");
+            Assert.assertEquals(sProductName, "PowerShot SX540 HS","Not navigate to Product Detail page.");
             Reporter.log("Navigated to Product Detail Page.",true);
+            Thread.sleep(3000);
 
             //Step 6: Click on Add to Cart. An pop up page must appear with product details and pricing
             Reporter.log("Step 6: Verify after click button Add to Cart:",true);
@@ -323,8 +324,9 @@ public class TestcasesPoC {
             //Step 9: Select Fixed option under Shipping Methods
             Reporter.log("Step 9: Select Fixed option under Shipping Methods.",true);
             MyActions.clickObject(CheckoutPage.rad_1stAddress(driver));
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             MyActions.clickObject(CheckoutPage.rad_Fixed(driver));
+            Thread.sleep(3000);
 
             //Step 10: Click on Continue To Payment button. Address verification pop up might appear
             Reporter.log("Step 10: Click on Continue To Payment button, check if Address verification pop up appear.",true);
@@ -350,12 +352,12 @@ public class TestcasesPoC {
             Reporter.log("Step 12: Select Credit Card Moneris.",true);
             MyActions.clickObject(CheckoutPage.rad_PaymentMethod_Credit(driver));
             MyActions.clickObject(CheckoutPage.rad_1stCreditCard(driver));
+            Thread.sleep(3000);
 
             //Step 13: Select Billing Address (Select Same as Shipping Address)
             Reporter.log("Step 13: Select Billing Address (Select Same as Shipping Address)",true);
-            if(!CheckoutPage.cbx_SameAsShippingInf(driver).isSelected()) {
-                MyActions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
-            }
+            MyActions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
+            Thread.sleep(5000);
 
             //Step 14: Click on Continue To Review. User should navigate to Review page
             Reporter.log("Step 14: Verify after click on Continue To Review button:",true);
@@ -373,6 +375,7 @@ public class TestcasesPoC {
             display = MyActions.checkDisplayed(CheckoutPage.txt_OrderNumber(driver));
             Assert.assertEquals(display, Boolean.TRUE,"Not navigate to Thank You page.");
             Reporter.log("Navigated to Thank You page.");
+            Thread.sleep(5000);
 
             //Step 16: Verify if the Order number appears on this page
             Reporter.log("Step 16: Verify if the Order number appears on this page",true);

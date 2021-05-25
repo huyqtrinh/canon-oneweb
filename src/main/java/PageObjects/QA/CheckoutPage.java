@@ -24,7 +24,7 @@ public class CheckoutPage {
         return element;
     }
     public static WebElement cbx_SameAsShippingInf(WebDriver driver){
-        element = driver.findElement(By.xpath("//div/div/input[@type='checkbox'][@name='billing-address-same-as-shipping']"));
+        element = driver.findElement(By.xpath("//*[@id='checkout-billing-address-cci']/div[2]/label"));
         return element;
     }
     public static WebElement btn_ContinueToReview(WebDriver driver){
@@ -32,7 +32,7 @@ public class CheckoutPage {
         return element;
     }
     public static WebElement btn_PlaceOrder(WebDriver driver){
-        element = driver.findElement(By.xpath("//button[@title='Place Order']"));
+        element = driver.findElement(By.xpath("//*[@id='review']/div[3]/button"));
         return element;
     }
     public static WebElement txt_OrderNumber(WebDriver driver){
