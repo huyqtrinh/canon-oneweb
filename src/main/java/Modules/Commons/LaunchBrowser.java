@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class LaunchBrowser {
     static WebDriver driver;
 
-    public static WebDriver getDriver(String sBrowser, String sURL) throws InterruptedException {
+    public static WebDriver getDriver(String sBrowser, String sURL) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("pageLoadStrategy", "normal");
         String driverPath;
@@ -35,8 +35,8 @@ public class LaunchBrowser {
             driver = new EdgeDriver(options);
         }
         driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
         driver.get(sURL);
-        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         return driver;

@@ -16,4 +16,9 @@ public class CamerasPage {
         element = driver.findElement(By.xpath("//*[@id=\"maincontent\"]/div[2]/div/div[3]/div/div/div[3]/div[2]/div/a/span"));
         return element;
     }
+    public static WebElement txt_ItemName(WebDriver driver,String itemName){
+        String xpath = "//strong[@class='product name product-item-name']/a[contains(text(),'"+itemName+"')]";
+        element = driver.findElement(By.xpath(xpath));
+        return element;
+    }
 }
