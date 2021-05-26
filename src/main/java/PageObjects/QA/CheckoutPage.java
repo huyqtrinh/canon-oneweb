@@ -40,7 +40,7 @@ public class CheckoutPage {
         return element;
     }
     public static WebElement txt_OrderTotal(WebDriver driver){
-        element = driver.findElement(By.xpath("//tr[@class='grand totals']/td[@class='amount']/strong/span"));
+        element = driver.findElement(By.xpath("//*[@id='checkout-step-review']/div[2]/div[2]/div/div[2]/div/div/span"));
         return element;
     }
     public static WebElement rad_1stAddress(WebDriver driver){
