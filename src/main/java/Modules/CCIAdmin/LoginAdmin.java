@@ -1,6 +1,6 @@
 package Modules.CCIAdmin;
 
-import PageObjects.CCIAdmin.AdminLoginPage;
+import PageObjects.WebBrowser.CCIAdmin.AdminLoginPage;
 import Ultilities.Constants;
 import org.openqa.selenium.WebDriver;
 
