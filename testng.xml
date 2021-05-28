@@ -3,7 +3,13 @@
 <suite name="PoC Test" thread-count="1">
     <test name="TestcasesPoC">
         <classes>
-            <class name="testcases.TestcasesPoC">
+<!--            <class name="testcases.TC_PoC">-->
+<!--                <methods>-->
+<!--                    <include name="TC_001_Verify_Login_Logout">-->
+<!--                    </include>-->
+<!--                </methods>-->
+<!--            </class>-->
+            <class name="testcases.TC_Emulator">
                 <methods>
                     <include name="TC_003_Verify_Create_and_move_Orders">
                     </include>

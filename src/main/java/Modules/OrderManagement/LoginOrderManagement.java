@@ -1,6 +1,6 @@
 package Modules.OrderManagement;
 
-import PageObjects.OrderManagement.OrderManagementLoginPage;
+import PageObjects.WebBrowser.OrderManagement.OrderManagementLoginPage;
 import Ultilities.Constants;
 import org.openqa.selenium.WebDriver;
 

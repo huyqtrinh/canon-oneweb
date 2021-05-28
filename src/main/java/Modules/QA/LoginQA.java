@@ -1,6 +1,6 @@
 package Modules.QA;
 
-import PageObjects.QA.QALoginPage;
+import PageObjects.WebBrowser.QA.QALoginPage;
 import Ultilities.Constants;
 import org.openqa.selenium.WebDriver;
 
