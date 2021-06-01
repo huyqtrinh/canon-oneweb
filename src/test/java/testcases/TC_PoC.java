@@ -251,9 +251,9 @@ public class TC_PoC {
         WebDriverWait wait = new WebDriverWait(driver,20);
         try {
 
-            Reporter.log("Start TC_003 on browser " + Constants.Browser + " with Emulator");
+            Reporter.log("Start TC_003 on browser " + Constants.Browser);
             //Close popup promo
-            WebElement btn_ClosePopupPromo = E_QAHomePage.btn_ClosePopupPromo(driver);
+            WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
                 MyActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
@@ -262,14 +262,11 @@ public class TC_PoC {
             Reporter.log("Step 1: Navigated to CCI application.", true);
 
             //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
-            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
+            MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
-            MyActions.clickObject(E_QAHomePage.menu_Account(driver));
-            Thread.sleep(2000);
-            WebElement btn_Login = E_QAHomePage.btn_Login(driver);
-            Reporter.log("Step 2: Clicking on menu icon to the top left corner of the page", true);
+            WebElement btn_Login = QAHomePage.btn_Login(driver);
             Boolean display = MyActions.checkDisplayed(btn_Login);
-            Reporter.log("Verify button login displayed:", true);
+            Reporter.log("Step 2: Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
             Reporter.log("Button login displayed.", true);
             MyActions.clickObject(btn_Login);
@@ -284,20 +281,18 @@ public class TC_PoC {
             Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
 
             //Step 4: Click on the Product Category from mega menu (Click on Cameras > Compact Cameras)
-            Reporter.log("Step 4: Click on the Product Category from mega menu:", true);
-            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
-            MyActions.clickObject(E_QAHomePage.btn_Cameras(driver));
-            Thread.sleep(1000);
-            MyActions.clickObject(CamerasPage.btn_CompactCameras(driver));
-            Thread.sleep(1000);
-            Reporter.log("Verify after click on the Product Category from mega menu:", true);
+            Reporter.log("Step 4: Verify after click on the Product Category from mega menu:", true);
+            MyActions.clickObject(QAHomePage.btn_Cameras(driver));
+            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+            driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
+            driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.", "Not navigate to Compact Cameras");
             Reporter.log("Navigated to Compact Cameras", true);
 
             //Step 5: Click on Powershot SX540 HS from the Product List Page. This will navigate the user to Product Detail page (PDP)
-            String sProductName = "PowerShot SX540 HS";
-            Reporter.log("Step 5: Click on PowerShot SX540 HS from the Product List Page. This will navigate the user to Product Detail page (PDP)", true);
+            String sProductName = "PowerShot G3 X";
+            Reporter.log("Step 5: Click on PowerShot G3 X HS from the Product List Page. This will navigate the user to Product Detail page (PDP)", true);
             MyActions.clickObject(CamerasPage.txt_ItemName(driver, sProductName));
             Reporter.log("Verify after click product name:", true);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);

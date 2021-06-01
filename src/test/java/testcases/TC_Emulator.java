@@ -34,6 +34,86 @@ public class TC_Emulator {
     }
 
     @Test()
+    public void TC_001_Verify_Login_Logout() {
+        try {
+            Reporter.log("Start TC_001 on browser " + Constants.Browser + " with Emulator");
+            //Close popup promo
+            WebElement btn_ClosePopupPromo = E_QAHomePage.btn_ClosePopupPromo(driver);
+            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
+                MyActions.clickObject(btn_ClosePopupPromo);
+                Thread.sleep(2000);
+            }
+            String strHomeTitle = driver.getTitle();
+            Reporter.log("Step 1: Navigated to CCI application.", true);
+
+            //Step 2: Log into the application with above credentials clicking on user icon to the top right corner of the page
+            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
+            Thread.sleep(2000);
+            MyActions.clickObject(E_QAHomePage.menu_Account(driver));
+            Thread.sleep(2000);
+            WebElement btn_Login = E_QAHomePage.btn_Login(driver);
+            Reporter.log("Step 2: Clicking on menu icon to the top left corner of the page", true);
+            Boolean display = MyActions.checkDisplayed(btn_Login);
+            Reporter.log("Verify button login displayed:", true);
+            Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
+            Reporter.log("Button login displayed.", true);
+            MyActions.clickObject(btn_Login);
+            driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+            LoginQA.Execute(driver);
+            driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+
+            //Step 3: On successful login, user will be navigated to the same page where the user logged in from
+            Reporter.log("Step 3: Verify after login:", true);
+            String strCurTitle = driver.getTitle();
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
+            Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
+
+
+            //Step 4: Browse the site (navigate to one or two pages)
+            Reporter.log("Step 4: Browse the site:", true);
+            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
+            Thread.sleep(1000);
+            MyActions.clickObject(E_QAHomePage.btn_Cameras(driver));
+            Thread.sleep(1000);
+            MyActions.clickObject(E_QAHomePage.btn_All_Cameras(driver));
+            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+            Reporter.log("Navigate to page : " + driver.getTitle(), true);
+            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
+            Thread.sleep(1000);
+            MyActions.clickObject(E_QAHomePage.btn_Lenses(driver));
+            Thread.sleep(1000);
+            MyActions.clickObject(E_QAHomePage.btn_All_Lenses(driver));
+            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+            Reporter.log("Navigate to page : " + driver.getTitle(), true);
+
+            //Step 5: Click on the logout link and the user must log out successfully and must be redirected to home page.
+            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
+            Thread.sleep(1000);
+            MyActions.clickObject(E_QAHomePage.menu_Account(driver));
+            Thread.sleep(1000);
+            MyActions.clickObject(E_QAHomePage.btn_Logout(driver));
+            Thread.sleep(1000);
+            strCurTitle = driver.getTitle();
+            Reporter.log("Step 5: Verify after logout:", true);
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not redirected to home page.");
+            Reporter.log("Logout successful. User redirected to home page.", true);
+
+            //Step 6: Reconfirm that the user is logged out by clicking on the user icon on the top right corner of the page
+            MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
+            Thread.sleep(2000);
+            MyActions.clickObject(E_QAHomePage.menu_Account(driver));
+            Thread.sleep(2000);
+            display = MyActions.checkDisplayed(E_QAHomePage.btn_Login(driver));
+            Reporter.log("Step 6: Reconfirm after logged out:", true);
+            Assert.assertEquals(display, Boolean.TRUE, "User icon not displayed.");
+            Reporter.log("Reconfirm that the user is logged out. Button Login is displayed.", true);
+
+        } catch (InterruptedException e) {
+            Reporter.log(e.toString());
+        }
+    }
+
+    @Test()
     public void TC_002_Verify_Rating_and_Review() {
         try {
 
@@ -224,9 +304,9 @@ public class TC_Emulator {
             Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.", "Not navigate to Compact Cameras");
             Reporter.log("Navigated to Compact Cameras", true);
 
-            //Step 5: Click on Powershot SX540 HS from the Product List Page. This will navigate the user to Product Detail page (PDP)
+            //Step 5: Click on PowerShot SX540 HS from the Product List Page. This will navigate the user to Product Detail page (PDP)
             String sProductName = "PowerShot G3 X";
-            Reporter.log("Step 5: Click on Powershot G3 X from the Product List Page. This will navigate the user to Product Detail page (PDP)", true);
+            Reporter.log("Step 5: Click on PowerShot G3 X from the Product List Page. This will navigate the user to Product Detail page (PDP)", true);
             MyActions.clickObject(CamerasPage.txt_ItemName(driver, sProductName));
             Reporter.log("Verify after click product name:", true);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -394,7 +474,7 @@ public class TC_Emulator {
 
             //Step 26: On the Dashboard, enter the order # and click on Search
             Reporter.log("Step 26: On the Dashboard, enter the order # and click on Search", true);
-            OrderManagementHomePage.tbx_Search(driver).sendKeys(Keys.CONTROL+ "F5");
+            OrderManagementHomePage.tbx_Search(driver).sendKeys(Keys.CONTROL + "F5");
             MyActions.setTexts(OrderManagementHomePage.tbx_Search(driver), sOrderNumber);
             MyActions.clickObject(OrderManagementHomePage.btn_Search(driver));
             Thread.sleep(5000);
