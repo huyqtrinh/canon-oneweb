@@ -7,11 +7,19 @@
                 <methods>
                     <include name="TC_001_Verify_Login_Logout">
                     </include>
+<!--                    <include name="TC_002_Verify_Rating_and_Review">-->
+<!--                    </include>-->
+<!--                    <include name="TC_003_Verify_Create_and_move_Orders">-->
+<!--                    </include>-->
                 </methods>
             </class>
 <!--            <class name="testcases.TC_Emulator">-->
 <!--                <methods>-->
 <!--                    <include name="TC_001_Verify_Login_Logout">-->
+<!--                    </include>-->
+<!--                    <include name="TC_002_Verify_Rating_and_Review">-->
+<!--                    </include>-->
+<!--                    <include name="TC_003_Verify_Create_and_move_Orders">-->
 <!--                    </include>-->
 <!--                </methods>-->
 <!--            </class>-->

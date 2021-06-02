@@ -75,15 +75,11 @@ public class TC_Emulator {
             Thread.sleep(1000);
             MyActions.clickObject(E_QAHomePage.btn_Cameras(driver));
             Thread.sleep(1000);
-            MyActions.clickObject(E_QAHomePage.btn_All_Cameras(driver));
-            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             Reporter.log("Navigate to page : " + driver.getTitle(), true);
             MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
             Thread.sleep(1000);
             MyActions.clickObject(E_QAHomePage.btn_Lenses(driver));
             Thread.sleep(1000);
-            MyActions.clickObject(E_QAHomePage.btn_All_Lenses(driver));
-            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             Reporter.log("Navigate to page : " + driver.getTitle(), true);
 
             //Step 5: Click on the logout link and the user must log out successfully and must be redirected to home page.
@@ -153,9 +149,9 @@ public class TC_Emulator {
             Reporter.log("Step 4: Click on the Product Category from mega menu:", true);
             MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
             MyActions.clickObject(E_QAHomePage.btn_Cameras(driver));
-            Thread.sleep(1000);
-            MyActions.clickObject(CamerasPage.btn_CompactCameras(driver));
-            Thread.sleep(1000);
+            Thread.sleep(5000);
+            driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
+            Thread.sleep(5000);
             Reporter.log("Verify after click on the Product Category from mega menu:", true);
             strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.", "Not navigate to Compact Cameras");
@@ -296,9 +292,9 @@ public class TC_Emulator {
             Reporter.log("Step 4: Click on the Product Category from mega menu:", true);
             MyActions.clickObject(E_QAHomePage.menu_MenuList(driver));
             MyActions.clickObject(E_QAHomePage.btn_Cameras(driver));
-            Thread.sleep(1000);
-            MyActions.clickObject(CamerasPage.btn_CompactCameras(driver));
-            Thread.sleep(1000);
+            Thread.sleep(4000);
+            driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
+            Thread.sleep(5000);
             Reporter.log("Verify after click on the Product Category from mega menu:", true);
             strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, "Shop Canon Compact Cameras | Canon Canada, Inc.", "Not navigate to Compact Cameras");
