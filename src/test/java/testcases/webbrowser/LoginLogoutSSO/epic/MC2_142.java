@@ -1,0 +1,82 @@
+package testcases.webbrowser.LoginLogoutSSO.epic;
+
+import Ultilities.Constants;
+import com.modules.Commons.LaunchBrowser;
+import com.modules.Commons.MyActions;
+import com.modules.QA.page.LoginQA;
+import com.pageobjects.WebBrowser.CustomerLogin.page.CustomerLoginPage;
+import com.pageobjects.WebBrowser.QA.page.QAHomePage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
+
+
+public class MC2_142 {
+    WebDriver driver;
+
+    @BeforeTest
+    public void StartBrowser() {
+
+        driver = LaunchBrowser.getDriver(Constants.Browser, Constants.MagentoCustomerLogin_Url);
+    }
+
+    @Test()
+    public void TC_001_Verify_Login_MyAccount() {
+        try {
+            Reporter.log("Start TC_001 on browser " + Constants.Browser, true);
+            Thread.sleep(2000);
+
+            //Step 1: Clicks on the Login With Single Sign On button and redirected to the FDS Login Page
+            Reporter.log("Step 1: Clicks on the Login With Single Sign On button redirected to the FDS Login Page", true);
+            WebElement btn_SignIn = CustomerLoginPage.btn_SignIn(driver);
+            MyActions.clickObject(btn_SignIn);
+            driver.manage().timeouts().implicitlyWait(180, TimeUnit.SECONDS);
+
+            //Step 2: Enters valid credentials. Authenticated and redirected to the commerce website
+            Reporter.log("Step 2: Enters in valid credentials. Authenticated and redirected to the commerce website ", true);
+            LoginQA.Execute(driver);
+            driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
+
+            //Step 3: Navigates to the customer account page
+            Reporter.log("Step 3: Navigates to the customer account page ", true);
+            String strHomeTitle = driver.getTitle();
+            String strCurTitle = "Home page CCI EN";
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigated to the commerce website.");
+            Reporter.log("Login successful. User navigated to the commerce website.", true);
+            driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
+            WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
+            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
+                MyActions.clickObject(btn_ClosePopupPromo);
+                Thread.sleep(2000);
+            }
+            MyActions.clickObject(QAHomePage.ico_User(driver));
+            Thread.sleep(2000);
+            WebElement btn_MyAccount = QAHomePage.btn_Login(driver);
+            MyActions.clickObject(btn_MyAccount);
+
+            //Step 4: Verify My Account page displayed
+            String strMyAccountTittle = driver.getTitle();
+            String strMACurTittle = "My Account";
+            Reporter.log("Step 4: Verify My Account page displayed:", true);
+            Assert.assertEquals(strMACurTittle, strMyAccountTittle, "My Account page is not displayed.");
+            Reporter.log("My Account is displayed.", true);
+        } catch (InterruptedException e) {
+            Reporter.log(e.toString());
+        }
+    }
+
+
+
+    @AfterTest
+    public void closeDriver() {
+        driver.manage().deleteAllCookies();
+        driver.quit();
+    }
+
+}

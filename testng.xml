@@ -3,16 +3,16 @@
 <suite name="PoC Test" thread-count="1">
     <test name="TestcasesPoC">
         <classes>
-            <class name="testcases.poc.TC_PoC">
-                <methods>
-                    <include name="TC_001_Verify_Login_Logout">
-                    </include>
+<!--            <class name="testcases.poc.TC_PoC">-->
+<!--                <methods>-->
+<!--                    <include name="TC_001_Verify_Login_Logout">-->
+<!--                    </include>-->
 <!--                    <include name="TC_002_Verify_Rating_and_Review">-->
 <!--                    </include>-->
 <!--                    <include name="TC_003_Verify_Create_and_move_Orders">-->
 <!--                    </include>-->
-                </methods>
-            </class>
+<!--                </methods>-->
+<!--            </class>-->
 <!--            <class name="testcases.poc.TC_Emulator">-->
 <!--                <methods>-->
 <!--                    <include name="TC_001_Verify_Login_Logout">-->
@@ -23,6 +23,12 @@
 <!--                    </include>-->
 <!--                </methods>-->
 <!--            </class>-->
+                    <class name="testcases.webbrowser.LoginLogoutSSO.epic.MC2_142">
+                        <methods>
+                            <include name="TC_001_Verify_Login_MyAccount">
+                            </include>
+                        </methods>
+                    </class>
         </classes>
     </test>
 </suite>
