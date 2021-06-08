@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="PoC Test" thread-count="1">
-    <test name="TestcasesPoC">
+<suite name="Login.Logou.SSO" thread-count="1">
+    <test name="MC2-141">
         <classes>
-            <class name="testcases.poc.TC_PoC">
+            <class name="testcases.webbrowser.LoginLogoutSSO.epic.MC2_141">
                 <methods>
-                    <include name="TC_001_Verify_Login_Logout">
+                    <include
+                            name="HIT_MC2_141_TC001_Login_Validate_login_from_the_Canada_frontend_application_with_registered_User">
                     </include>
-<!--                    <include name="TC_002_Verify_Rating_and_Review">-->
-<!--                    </include>-->
-<!--                    <include name="TC_003_Verify_Create_and_move_Orders">-->
-<!--                    </include>-->
+                    <include
+                            name="HIT_MC2_141_TC002_Login_Validate_login_from_MyCanon_application_and_navigate_to_MagentoCanada_with_registered_user">
+                    </include>
+                    <include
+                            name="HIT_MC2_141_TC003_Validate_login_from_the_Magento_frontend_application_with_Registered_user_with_invalid_Password">
+                    </include>
+                    <include
+                            name="HIT_MC2_141_TC004_Validate_login_from_the_checkout_page_with_Registered_user_and_check_the_SSO_session_between_Magento_and_MyCanon">
+                    </include>
+                    <include
+                            name="HIT_MC2_141_TC005_Validate_login_from_the_checkout_page_with_Registered_user_with_invalid_credential">
+                    </include>
+                    <include
+                            name="HIT_MC2_141_TC006_Validate_login_from_the_Magento_application_and_Navigate_to_MyCanon_Profile_page">
+                    </include>
                 </methods>
             </class>
-<!--            <class name="testcases.poc.TC_Emulator">-->
-<!--                <methods>-->
-<!--                    <include name="TC_001_Verify_Login_Logout">-->
-<!--                    </include>-->
-<!--                    <include name="TC_002_Verify_Rating_and_Review">-->
-<!--                    </include>-->
-<!--                    <include name="TC_003_Verify_Create_and_move_Orders">-->
-<!--                    </include>-->
-<!--                </methods>-->
-<!--            </class>-->
         </classes>
     </test>
 </suite>
