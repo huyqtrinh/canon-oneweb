@@ -21,4 +21,8 @@ public class QALoginPage {
         element = driver.findElement(By.xpath("//button[@type='submit']"));
         return element;
     }
+    public static WebElement txt_ErrorMessage(WebDriver driver) {
+        element = driver.findElement(By.xpath("//*[@id='msg']"));
+        return element;
+    }
 }

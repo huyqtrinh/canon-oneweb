@@ -17,6 +17,10 @@ public class QAHomePage {
         element = driver.findElement(By.id("mcLogin"));
         return element;
     }
+    public static WebElement btn_MyAccount(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/customer/account/index']"));
+        return element;
+    }
     public static WebElement btn_Cameras(WebDriver driver){
         element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/cameras']"));
         return element;
@@ -33,5 +37,8 @@ public class QAHomePage {
         element = driver.findElement(By.id("mcLogout"));
         return element;
     }
-
+    public static WebElement txt_UsernameText(WebDriver driver){
+        element = driver.findElement(By.xpath("//span[@class='username-text']"));
+        return element;
+    }
 }
