@@ -2,9 +2,9 @@ package Ultilities;
 
 public class Constants {
     public static boolean Emulator = false;
-    public static String Browser = "Chrome";
-    public static String MagentoQA_Username = "automation@gmail.com";
-    public static String MagentoQA_Password = "Canon123";
+    public static String Browser = "Edge";
+    public static String MagentoQA_Username = "canonestore@gmail.com";
+    public static String MagentoQA_Password = "Canon$5678";
     public static String MagentoQA_Url= "https://mcstaging-estore.canon.ca/en_ca/";
 
     public static String MagentoCCIAdmin_Username1 = "amiyapuram";
@@ -19,6 +19,6 @@ public class Constants {
     public static String MagentoOrderManagement_Password2 = "Canon@123";
     public static String MagentoOrderManagement_Url= "https://canon-stg.mcom.magento.com/admin/login";
 
-    public static String MagentoCustomerLogin_Url= "https://mcstaging-estore.canon.ca/en_ca/customer/account/login";
-    public static String MagentoCustomerMyAccount_Url= "https://mcstaging-estore.canon.ca/en_ca/customer/account";
+    public static String Wrong_Username = "mamabear@gmail.com";
+    public static String Wrong_Password = "abcde123";
 }

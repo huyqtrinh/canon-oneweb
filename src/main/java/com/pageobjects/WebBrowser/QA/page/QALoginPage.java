@@ -21,4 +21,19 @@ public class QALoginPage {
         element = driver.findElement(By.xpath("//button[@type='submit']"));
         return element;
     }
+
+    public static WebElement btn_forgot(WebDriver driver) {
+        element = driver.findElement(By.xpath("//a[text()='Forgot your password?']"));
+        return element;
+    }
+
+    public static WebElement btn_signup(WebDriver driver) {
+        element = driver.findElement(By.xpath("//a[text()=' Sign Up']"));
+        return element;
+    }
+
+    public static WebElement msg_alert(WebDriver driver) {
+        element = driver.findElement(By.id("msg"));
+        return element;
+    }
 }

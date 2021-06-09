@@ -20,4 +20,30 @@ public class LoginQA {
         Thread.sleep(3000);
 
     }
+    public static void Execute_Wrong_Pass(WebDriver driver) throws InterruptedException {
+
+        QALoginPage.tb_Username(driver).clear();
+        QALoginPage.tb_Password(driver).clear();
+        Thread.sleep(2000);
+
+        QALoginPage.tb_Username(driver).sendKeys(Constants.MagentoQA_Username);
+        QALoginPage.tb_Password(driver).sendKeys(Constants.Wrong_Password);
+        Thread.sleep(3000);
+
+        QALoginPage.btn_LogIn(driver).click();
+        Thread.sleep(3000);
+    }
+    public static void Execute_Wrong_Email_Pass(WebDriver driver) throws InterruptedException {
+
+        QALoginPage.tb_Username(driver).clear();
+        QALoginPage.tb_Password(driver).clear();
+        Thread.sleep(2000);
+
+        QALoginPage.tb_Username(driver).sendKeys(Constants.Wrong_Username);
+        QALoginPage.tb_Password(driver).sendKeys(Constants.Wrong_Password);
+        Thread.sleep(3000);
+
+        QALoginPage.btn_LogIn(driver).click();
+        Thread.sleep(3000);
+    }
 }
