@@ -2,7 +2,7 @@ package Ultilities;
 
 public class Constants {
     public static boolean Emulator = false;
-    public static String Browser = "Chrome";
+    public static String Browser = "FireFox";
     public static String MagentoQA_Username = "automation@gmail.com";
     public static String MagentoQA_Password = "Canon123";
     public static String MagentoQA_Url= "https://mcstaging-estore.canon.ca/en_ca/";

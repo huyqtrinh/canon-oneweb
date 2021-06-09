@@ -64,8 +64,10 @@ public class QAHomePage {
         element = driver.findElement(By.xpath("//*[@id=\"tabs-amasty_search_products_tab\"]/div/ul/li[3]"));
         return element;
     }
-    public static WebElement lb_NoSearchResult_Line4(WebDriver driver){
+    public static WebElement lb_NoSearchResult_Line4(WebDriver driver) {
         element = driver.findElement(By.xpath("//*[@id=\"tabs-amasty_search_products_tab\"]/div/ul/li[4]"));
+        return element;
+    }
 
     public static WebElement txt_UsernameText(WebDriver driver){
         element = driver.findElement(By.xpath("//span[@class='username-text']"));

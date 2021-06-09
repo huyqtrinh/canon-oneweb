@@ -17,7 +17,7 @@ public class LoginQA {
 
         QALoginPage.btn_LogIn(driver).click();
 
-        Thread.sleep(3000);
+        Thread.sleep(10000);
 
     }
     public static void Invalid_Execute(WebDriver driver) throws InterruptedException {
