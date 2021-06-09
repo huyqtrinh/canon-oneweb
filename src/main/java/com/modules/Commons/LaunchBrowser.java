@@ -19,9 +19,7 @@ public class LaunchBrowser {
 
     public static WebDriver getDriver(String sBrowser) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("pageLoadStrategy", "normal");
         String driverPath;
-
         switch (sBrowser) {
             case "Chrome": {
                 ChromeOptions options = new ChromeOptions();
