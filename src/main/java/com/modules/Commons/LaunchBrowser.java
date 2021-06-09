@@ -17,11 +17,9 @@ import java.util.concurrent.TimeUnit;
 public class LaunchBrowser {
     static WebDriver driver;
 
-    public static WebDriver getDriver(String sBrowser, String sURL) {
+    public static WebDriver getDriver(String sBrowser) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("pageLoadStrategy", "normal");
         String driverPath;
-
         switch (sBrowser) {
             case "Chrome": {
                 ChromeOptions options = new ChromeOptions();
@@ -57,9 +55,6 @@ public class LaunchBrowser {
             }
         }
         driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.get(sURL);
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         return driver;
     }
 }

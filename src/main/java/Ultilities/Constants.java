@@ -18,4 +18,7 @@ public class Constants {
     public static String MagentoOrderManagement_Username2 = "Amiyapuram";
     public static String MagentoOrderManagement_Password2 = "Canon@123";
     public static String MagentoOrderManagement_Url= "https://canon-stg.mcom.magento.com/admin/login";
+
+    public static String MyAccountPage_firstName = "Doe";
+    public static String MyAccountPage_lastName = "John";
 }

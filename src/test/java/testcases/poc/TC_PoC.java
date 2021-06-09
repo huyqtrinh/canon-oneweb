@@ -33,13 +33,15 @@ public class TC_PoC {
     @BeforeTest
     public void StartBrowser() {
 
-        driver = LaunchBrowser.getDriver(Constants.Browser, Constants.MagentoQA_Url);
+        driver = LaunchBrowser.getDriver(Constants.Browser);
     }
 
     @Test()
     public void TC_001_Verify_Login_Logout() {
         try {
             Reporter.log("Start TC_001 on browser " + Constants.Browser, true);
+            this.driver.get(Constants.MagentoQA_Url);
+            this.driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
