@@ -31,7 +31,6 @@ public class TC_Emulator {
     public void StartBrowser() {
 
         driver = LaunchBrowser.getDriver(Constants.Browser);
-        driver.get(Constants.MagentoQA_Url);
     }
 
     @Test()

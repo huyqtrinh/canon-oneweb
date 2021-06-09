@@ -34,7 +34,6 @@ public class TC_PoC {
     public void StartBrowser() {
 
         driver = LaunchBrowser.getDriver(Constants.Browser);
-        driver.get(Constants.MagentoQA_Url);
     }
 
     @Test()

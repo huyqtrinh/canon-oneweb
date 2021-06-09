@@ -1,5 +1,6 @@
 package com.modules.Commons;
 
+import com.pageobjects.WebBrowser.QA.page.QAHomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,5 +34,17 @@ public class MyActions {
         WebElement element = driver.findElement(By.xpath(xpathToData));
         return element.getText();
 
+    }
+    public static void HandlingPromoPopup(WebDriver driver) throws InterruptedException {
+        try {
+            //Close popup promo
+            WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
+            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
+                MyActions.clickObject(btn_ClosePopupPromo);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
