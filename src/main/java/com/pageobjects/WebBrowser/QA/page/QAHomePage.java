@@ -37,6 +37,10 @@ public class QAHomePage {
         element = driver.findElement(By.id("mcLogout"));
         return element;
     }
+    public static WebElement lb_UserName(WebDriver driver){
+        element = driver.findElement(By.className("username-text"));
+        return element;
+    }
 
     public static WebElement tb_Search(WebDriver driver){
         element = driver.findElement(By.id("search"));

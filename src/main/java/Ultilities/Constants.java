@@ -21,4 +21,7 @@ public class Constants {
 
     public static String MyAccountPage_firstName = "Doe";
     public static String MyAccountPage_lastName = "John";
+
+    public static String Wrong_Username = "mamabear@gmail.com";
+    public static String Wrong_Password = "abcde123";
 }
