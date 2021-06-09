@@ -115,7 +115,7 @@ import org.testng.annotations.Test;
                 }
 
                 String strHomeTitle = this.driver.getTitle();
-
+                //Step 1: Login the account
                 MyActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
                 WebElement btn_Login = QAHomePage.btn_Login(this.driver);
@@ -124,11 +124,12 @@ import org.testng.annotations.Test;
                 Reporter.log("Step 2: Verify login button displayed", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Failed! Login button is not displayed.");
                 Reporter.log("Success! Login button displayed.", true);
-
                 MyActions.clickObject(btn_Login);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
                 LoginQA.Execute(this.driver);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
+
+                //Step 2: Open My profile page
                 Reporter.log("Step 3: Verify my account displayed", true);
                 Thread.sleep(8000L);
                 MyActions.clickObject(QAHomePage.ico_User(this.driver));
@@ -139,6 +140,7 @@ import org.testng.annotations.Test;
                 Reporter.log("Success! My Account button is displayed and redirected to My Account page");
                 Reporter.log("Step 4: Apply changes to account", true);
 
+                //Step 3: Make changes in My Profile(First name and last name)
                 MyActions.clickObject(MyAccountPage.btn_Edit_AccountInf(this.driver));
                 Thread.sleep(8000L);
                 MyAccountPage.tbx_FirstName(this.driver).clear();
@@ -155,6 +157,7 @@ import org.testng.annotations.Test;
                 MyActions.clickObject(QAHomePage.btn_Logout(this.driver));
                 Thread.sleep(8000L);
 
+                //Step 4: Log out and Log in again
                 String strCurTitle = this.driver.getTitle();
                 Reporter.log("Step 5: Verify after logout:", true);
                 Assert.assertEquals(strCurTitle, strHomeTitle, "Failed! Unable to redirected to home page.");
@@ -169,6 +172,7 @@ import org.testng.annotations.Test;
                 LoginQA.Execute(this.driver);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
 
+                //Step 5: Verify the changes in My Profile page
                 Reporter.log("Step 7: Confirm changes in My Profile", true);
                 Thread.sleep(8000L);
                 MyActions.clickObject(QAHomePage.ico_User(this.driver));
