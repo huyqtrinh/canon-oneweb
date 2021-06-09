@@ -32,10 +32,6 @@ public class QALoginPage {
         return element;
     }
 
-    public static WebElement msg_alert(WebDriver driver) {
-        element = driver.findElement(By.id("msg"));
-        return element;
-    }
     public static WebElement txt_ErrorMessage(WebDriver driver) {
         element = driver.findElement(By.xpath("//*[@id='msg']"));
         return element;

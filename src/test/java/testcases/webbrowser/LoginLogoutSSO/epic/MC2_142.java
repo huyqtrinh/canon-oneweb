@@ -7,7 +7,6 @@ import com.modules.QA.page.LoginQA;
 import com.pageobjects.WebBrowser.QA.page.MyAccountPage;
 import com.pageobjects.WebBrowser.QA.page.QAHomePage;
 import com.pageobjects.WebBrowser.QA.page.QALoginPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -49,44 +48,40 @@ public class MC2_142 {
             Thread.sleep(8000);
 
             //Step 2: Click on Your Account dropdown link and click on Login link
-            Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link.", true);
+            Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_Login);
             Thread.sleep(8000);
 
-            //Step 3: Provide valid login credentials and click on login CTA
-            Reporter.log("Step 3: Provide valid login credentials and click on login CTA.", true);
+            //Step 3: User should provide valid login credentials and click on login CTA
+            Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             Thread.sleep(8000);
-
-            //Step 4: Verify after login
-            Reporter.log("Step 4: Verify after login:", true);
-            String strMyCanonTitle = driver.getTitle();
-            Assert.assertEquals(strMyCanonTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
+            Reporter.log("Verify after login:", true);
+            strCurTitle = driver.getTitle();
+            Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
             Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
             driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
             Thread.sleep(8000);
-
-            //Step 5: Navigated to My Canon page
-            Reporter.log("Step 5: Click on Your Account dropdown link and click on My Account.", true);
+            Reporter.log("Navigated MyCanon.", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_MyAccount = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_MyAccount);
             Thread.sleep(8000);
 
-            //Step 6: Verify user details in My Cannon page
-            Reporter.log("Step 6: Verify user details displayed in My Cannon page:", true);
-            WebElement class_userDetail = MyAccountPage.class_UserDetail(driver);
-            Boolean User_detail_display = MyActions.checkDisplayed(class_userDetail);
+            //Step 4: User should able to see all the user details in the page
+            Reporter.log("Step 4: User should able to see all the user details in the page:", true);
+            WebElement txt_UserDetail = MyAccountPage.txt_UserDetail(driver);
+            Boolean User_detail_display = MyActions.checkDisplayed(txt_UserDetail);
             Assert.assertEquals(User_detail_display, Boolean.TRUE, "User detail not displayed.");
             Reporter.log("User detail displayed.", true);
             Thread.sleep(8000);
 
-            //Step 7: Logout for next test case
-            Reporter.log("Step 7: Logout for next test case.", true);
+            //Step 5: Logout for next test case
+            Reporter.log("Step 5: Logout for next test case", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
@@ -99,9 +94,10 @@ public class MC2_142 {
     @Test()
     public void HIT_MC2_142_TC02_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_navigating_to_the_commerce_website_after_logging_in_a_SSO_application() {
         try {
-            //Step 1: Launch Canada web application with the URL
+            //Step 1: Log into SSO application. Navigating to the commerce website.
             Reporter.log("Start TC_02 on browser " + Constants.Browser, true);
-            Reporter.log("Step 1: Launch Canada web application with the URL", true);
+            Reporter.log("Step 1: Log into SSO application. Navigating to the commerce website", true);
+            Reporter.log("Launch Canada web application with the URL", true);
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
@@ -114,37 +110,31 @@ public class MC2_142 {
             Assert.assertEquals(strCurTitle, strHomeTitle, "Canada home page not displayed.");
             Reporter.log("Canada home page displayed.", true);
             Thread.sleep(8000);
-
-            //Step 2: Click on Your Account dropdown link and click on Login link
-            Reporter.log("Step 2: Click on Account button dropdown link and click on Login link.", true);
+            Reporter.log("Click on Account button dropdown link and click on Login link.", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_Login);
             Thread.sleep(8000);
-
-            //Step 3: Provide valid login credentials and click on login CTA
-            Reporter.log("Step 3: Provide valid login credentials and click on login CTA.", true);
+            Reporter.log("Provide valid login credentials and click on login CTA.", true);
             LoginQA.Execute(driver);
             Thread.sleep(8000);
-
-            //Step 4: Verify after login
-            Reporter.log("Step 4: Verify after login:", true);
+            Reporter.log("Verify after login:", true);
             String strMyCanonTitle = driver.getTitle();
             Assert.assertEquals(strMyCanonTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
             Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
             driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
             Thread.sleep(8000);
             //Verify User's name
-            Reporter.log("Verify User's name is displayed:", true);
+            Reporter.log("Verify User's name is displayed at the top right corner:", true);
             WebElement lb_UserName = QAHomePage.lb_UserName(driver);
             Boolean lb_UserName_display = MyActions.checkDisplayed(lb_UserName);
             Assert.assertEquals(lb_UserName_display, Boolean.TRUE, "User's name not displayed.");
             Reporter.log("User's name displayed.", true);
             Thread.sleep(8000);
 
-            //Step 5: Click on Account button and verify item in Account dropdown displayed
-            Reporter.log("Step 5: Click on Account button and verify item in Account dropdown displayed.", true);
+            //Step 5: Click on Account button at the top right corner.
+            Reporter.log("Step 2: Click on Account button and verify item in Account dropdown displayed.", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             //Verify My Account button
@@ -162,8 +152,8 @@ public class MC2_142 {
             Reporter.log("Button Logout displayed.", true);
             Thread.sleep(8000);
 
-            //Step 6: Logout for next test case
-            Reporter.log("Step 6: Logout for next test case.", true);
+            //Step 3: Logout for next test case
+            Reporter.log("Step 3: Logout for next test case.", true);
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
         } catch (InterruptedException e) {
@@ -190,45 +180,37 @@ public class MC2_142 {
             Reporter.log("Canada home page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 2: Click on Your Account dropdown link and click on Login button
-            Reporter.log("Step 2: Click on Account button dropdown link and click on Login button.", true);
+            //Step 2: Log in with  SSO application. Refresh the commerce website
+            Reporter.log("Step 2: Log in with  SSO application. Refresh the commerce website", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_Login);
             Thread.sleep(8000);
-
-            //Step 3: Provide valid login credentials and click on login CTA
-            Reporter.log("Step 3: Provide valid login credentials and click on login CTA.", true);
+            Reporter.log("Provide valid login credentials and click on login CTA.", true);
             LoginQA.Execute(driver);
             Thread.sleep(10000);
-
-            //Step 4: Verify after login
-            Reporter.log("Step 4: Verify after login:", true);
+            Reporter.log("Verify after login:", true);
             strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
             Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
             driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
             Thread.sleep(8000);
-
-            //Step 5: Navigated to My Canon page
-            Reporter.log("Step 5: Click on Account button and click on My Account.", true);
+            Reporter.log("Navigated to My Canon page.", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_MyAccount = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_MyAccount);
             Thread.sleep(8000);
-
-            //Step 6: Verify My Canon page displayed
-            Reporter.log("Step 6: Verify My Canon page displayed:", true);
+            Reporter.log("Verify My Canon page displayed:", true);
             String strMyCanonTitle = driver.getTitle();
             strCurTitle = "My Account";
             Assert.assertEquals(strCurTitle, strMyCanonTitle, "My Canon page not displayed.");
             Reporter.log("My Canon page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 7: Click on Account button and verify item in Account dropdown displayed
-            Reporter.log("Step 7: Click on Account button and verify item in Account dropdown displayed.", true);
+            //Step 3: Click on Account button at the top right corner
+            Reporter.log("Step 3: Click on Account button at the top right corner", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             //Verify My Account button
@@ -246,17 +228,18 @@ public class MC2_142 {
             Reporter.log("Button Logout displayed.", true);
             Thread.sleep(8000);
 
-            //Step 8: Logout and navigate to commerce website
+            //Step 4: Navigating to the commerce website
+            Reporter.log("Step 4: Navigating to the commerce website", true);
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
             strCurTitle = driver.getTitle();
-            Reporter.log("Step 8: Verify after logout:", true);
+            Reporter.log("Verify after logout:", true);
             Assert.assertEquals(strCurTitle, strHomeTitle, "Not redirected to home page.");
             Reporter.log("Logout successful. User redirected to home page.", true);
             Thread.sleep(8000);
 
-            //Step 9: Login again
-            Reporter.log("Step 9: Login again.", true);
+            //Step 5: Log in a SSO application. Refresh the commerce website
+            Reporter.log("Step 5: Log in a SSO application. Refresh the commerce website", true);
             //Close popup
             btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
@@ -281,8 +264,8 @@ public class MC2_142 {
             Reporter.log("User's name displayed.", true);
             Thread.sleep(8000);
 
-            //Step 10: Click on Account button and verify item in Account dropdown displayed
-            Reporter.log("Step 10: Click on Account button and verify item in Account dropdown displayed.", true);
+            //Step 6: Click on Account button at the top right corner
+            Reporter.log("Step 6: Click on Account button at the top right corner", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             //Verify My Account button
@@ -300,8 +283,8 @@ public class MC2_142 {
             Reporter.log("Button Logout displayed.", true);
             Thread.sleep(8000);
 
-            //Step 11: Logout for next test case
-            Reporter.log("Step 11: Logout for next test case.", true);
+            //Step 7: Logout for next test case
+            Reporter.log("Step 7: Logout for next test case.", true);
             MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
         } catch (InterruptedException e) {
@@ -328,16 +311,21 @@ public class MC2_142 {
             Reporter.log("Canada home page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 2: Click on Account button dropdown link and click on Login link
-            Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link.", true);
+            //Step 2: Click on Account button at the top right corner. Click on Sign In CTA in the Account dropdown.
+            Reporter.log("Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_Login);
             Thread.sleep(8000);
+            Reporter.log("Verify Login page displayed:", true);
+            String strLoginTitle = "Canon Federation SSO";
+            strCurTitle = driver.getTitle();
+            Assert.assertEquals(strCurTitle, strLoginTitle, "Login page not displayed.");
+            Reporter.log("Login page displayed.", true);
 
             //Step 3: Check the login page
-            Reporter.log("Step 3: Check the login page.", true);
+            Reporter.log("Step 3: Check the login page", true);
             //Verify input username enabled
             Reporter.log("Verify input username enabled:", true);
             boolean tb_Username_Enable = QALoginPage.tb_Username(driver).isEnabled();
@@ -369,8 +357,8 @@ public class MC2_142 {
             Reporter.log("Signup button displayed.", true);
             Thread.sleep(8000);
 
-            //Step 4: Input email and password to the corresponding field in the Login page.
-            Reporter.log("Step 4: Input email and password to the corresponding field in the Login page.", true);
+            //Step 4: Input email and password to the corresponding field in the Login page
+            Reporter.log("Step 4: Input email and password to the corresponding field in the Login page", true);
             QALoginPage.tb_Username(driver).clear();
             QALoginPage.tb_Password(driver).clear();
             Thread.sleep(8000);
@@ -390,23 +378,6 @@ public class MC2_142 {
             } else {
                 Reporter.log("Inputted values are not displayed in the username field.", true);
             }
-            Thread.sleep(8000);
-            QALoginPage.btn_LogIn(driver).click();
-            Thread.sleep(8000);
-
-            //Step 5: Verify after login
-            Reporter.log("Step 5: Verify after login:", true);
-            String strMyCanonTitle = driver.getTitle();
-            Assert.assertEquals(strMyCanonTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
-            Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
-            driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
-            Thread.sleep(8000);
-
-            //Step 6 : Logout for next test case
-            Reporter.log("Step 6: Logout for next test case.", true);
-            MyActions.clickObject(QAHomePage.ico_User(driver));
-            Thread.sleep(8000);
-            MyActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
         } catch (InterruptedException e) {
             Reporter.log(e.toString());
@@ -432,40 +403,46 @@ public class MC2_142 {
             Reporter.log("Canada home page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 2: Click on Account button dropdown link and click on Login link
-            Reporter.log("Step 2: Click on Your Account dropdown and click on Login link.", true);
+            //Step 2: Click on Account button at the top right corner. Click on Sign In CTA in the Account dropdown.
+            Reporter.log("Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
             MyActions.clickObject(btn_Login);
             Thread.sleep(8000);
             Reporter.log("Verify Login page displayed:", true);
-            String strLoginTitle = driver.getTitle();
-            strCurTitle = "Canon Federation SSO";
+            String strLoginTitle = "Canon Federation SSO";
+            strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, strLoginTitle, "Login page not displayed.");
             Reporter.log("Login page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 3: Input correct email and wrong password to the corresponding field and lick on Sign In button.
-            Reporter.log("Step 3: Input correct email and wrong password to the corresponding field and lick on Sign In button.", true);
+            //Step 3: Input invalid email and password to the corresponding field in the Login page (correct email, wrong password).
+            Reporter.log("Step 3: Input invalid email and password to the corresponding field in the Login page (correct email, wrong password)", true);
             LoginQA.Execute_Wrong_Pass(driver);
             Thread.sleep(8000);
+
+            //Step 4: Click on Sign In button
+            Reporter.log("Step 4: Click on Sign In button", true);
             Reporter.log("Verify alert message 'The email address or password you provided is incorrect' displayed:", true);
-            WebElement msg_alert = QALoginPage.msg_alert(driver);
-            Boolean msg_alert_display = MyActions.checkDisplayed(msg_alert);
-            Assert.assertEquals(msg_alert_display, Boolean.TRUE, "Alert message is not displayed.");
-            Reporter.log("Alert message displayed.", true);
+            String displayMsg = MyActions.getTexts(QALoginPage.txt_ErrorMessage(driver));
+            String errorMsg = "The email address or password you provided is incorrect. Please try entering this information again.";
+            Assert.assertEquals(displayMsg, errorMsg, "Error message not display correctly.");
+            Reporter.log("Error message displayed correctly.", true);
             Thread.sleep(8000);
 
-            //Step 4: Input wrong email and wrong password to the corresponding field and lick on Sign In button.
-            Reporter.log("Step 4: Input wrong email and wrong password to the corresponding field and lick on Sign In button.", true);
+            //Step 5: Input invalid email and password to the corresponding field in the Login page (wrong email, wrong password).
+            Reporter.log("Step 5: Input invalid email and password to the corresponding field in the Login page (wrong email, wrong password)", true);
             LoginQA.Execute_Wrong_Email_Pass(driver);
             Thread.sleep(8000);
+
+            //Step 6: Click on Sign In button
+            Reporter.log("Step 6: Click on Sign In button", true);
             Reporter.log("Verify alert message 'The email address or password you provided is incorrect' displayed:", true);
-            msg_alert = QALoginPage.msg_alert(driver);
-            msg_alert_display = MyActions.checkDisplayed(msg_alert);
-            Assert.assertEquals(msg_alert_display, Boolean.TRUE, "Alert message is not displayed.");
-            Reporter.log("Alert message displayed.", true);
+            displayMsg = MyActions.getTexts(QALoginPage.txt_ErrorMessage(driver));
+            errorMsg = "The email address or password you provided is incorrect. Please try entering this information again.";
+            Assert.assertEquals(displayMsg, errorMsg, "Error message not display correctly.");
+            Reporter.log("Error message displayed correctly.", true);
             Thread.sleep(8000);
         } catch (InterruptedException e) {
             Reporter.log(e.toString());
@@ -491,8 +468,8 @@ public class MC2_142 {
             Reporter.log("Canada home page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 2: Click on Account button dropdown link and click on Login link
-            Reporter.log("Step 2: Click on Your Account dropdown and click on Login link.", true);
+            //Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown.
+            Reporter.log("Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown", true);
             MyActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
@@ -505,16 +482,17 @@ public class MC2_142 {
             Reporter.log("Login page displayed.", true);
             Thread.sleep(8000);
 
-            //Step 3: Input email and password to the corresponding field and lick on Sign In button.
-            Reporter.log("Step 3: Input email and password to the corresponding field and lick on Sign In button.", true);
+            //Step 3: Input correct email and password to the corresponding fields.
+            Reporter.log("Step 3: Input correct email and password to the corresponding fields", true);
             LoginQA.Execute(driver);
             Thread.sleep(8000);
 
-            //Step 4: Verify after login
-            Reporter.log("Step 4: Verify after login:", true);
+            //Step 4: Click on Sign In button.
+            Reporter.log("Step 4: Click on Sign In button:", true);
+            Reporter.log("Verify navigated to Homepage:", true);
             String strMyCanonTitle = driver.getTitle();
-            Assert.assertEquals(strMyCanonTitle, strHomeTitle, "Not navigated to the same page user logged in from.");
-            Reporter.log("Login successful. User navigated to the same page where the user logged in from.", true);
+            Assert.assertEquals(strMyCanonTitle, strHomeTitle, "Not navigated to Homepage.");
+            Reporter.log("Login successful. User navigated to Homepage.", true);
             driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             Reporter.log(e.toString());

@@ -24,7 +24,7 @@ public class MyAccountPage {
         element = driver.findElement(By.xpath("//button[@type='submit'][@title='Save']"));
         return element;
     }
-    public static WebElement class_UserDetail(WebDriver driver){
+    public static WebElement txt_UserDetail(WebDriver driver){
         element = driver.findElement(By.xpath("//div[@class='box-content']"));
         return element;
     }
