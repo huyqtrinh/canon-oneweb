@@ -37,6 +37,36 @@ public class QAHomePage {
         element = driver.findElement(By.id("mcLogout"));
         return element;
     }
+
+    public static WebElement tb_Search(WebDriver driver){
+        element = driver.findElement(By.id("search"));
+        return element;
+    }
+    public static WebElement lb_SearchResult(WebDriver driver){
+        element = driver.findElement(By.id("toolbar-amount"));
+        return element;
+    }
+
+    public static WebElement lb_SearchResultNumber(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"toolbar-amount\"]/div/span"));
+        return element;
+    }
+
+    public static WebElement lb_NoSearchResult_Line1(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"tabs-amasty_search_products_tab\"]/div/ul/li[1]"));
+        return element;
+    }
+    public static WebElement lb_NoSearchResult_Line2(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"tabs-amasty_search_products_tab\"]/div/ul/li[2]"));
+        return element;
+    }
+    public static WebElement lb_NoSearchResult_Line3(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"tabs-amasty_search_products_tab\"]/div/ul/li[3]"));
+        return element;
+    }
+    public static WebElement lb_NoSearchResult_Line4(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"tabs-amasty_search_products_tab\"]/div/ul/li[4]"));
+
     public static WebElement txt_UsernameText(WebDriver driver){
         element = driver.findElement(By.xpath("//span[@class='username-text']"));
         return element;
