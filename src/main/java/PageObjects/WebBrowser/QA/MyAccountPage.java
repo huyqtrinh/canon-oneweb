@@ -28,4 +28,36 @@ public class MyAccountPage {
         element = driver.findElement(By.xpath("//div[@class='box-content']"));
         return element;
     }
+    public static WebElement LeftMenu_MyAccount(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"My Account\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_MyOrders(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"My Orders\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_MySubscriptions(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"My Subscriptions\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_MyWishList(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"My Wish List\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_StoreCredit(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"Store Credit\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_GiftCard(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"Gift Card\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_CompanyStructure(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"Company Structure\")]"));
+        return element;
+    }
+    public static WebElement LeftMenu_AccountSettings(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"block-collapsible-nav\"]/ul/li/*[contains(text(),\"Account Settings\")]"));
+        return element;
+    }
 }
