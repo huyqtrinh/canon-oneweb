@@ -39,6 +39,8 @@ public class TC_Emulator {
             Reporter.log("Start TC_001 on browser " + Constants.Browser + " with Emulator");
             //Close popup promo
             WebElement btn_ClosePopupPromo = E_QAHomePage.btn_ClosePopupPromo(driver);
+            this.driver.get(Constants.MagentoQA_Url);
+            this.driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
             if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
                 MyActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
