@@ -16,4 +16,36 @@ public class CamerasPage {
         element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras']"));
         return element;
     }
+    public static WebElement btn_ShopAllCameras(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[2]/div/div[1]/div[1]/div[2]/div/a/span"));
+        return element;
+    }
+    public static WebElement btn_ShopAllLenses(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[2]/div/div[1]/div[1]/a/div/div/div/button"));
+        return element;
+    }
+    public static WebElement btn_ShopAllPrinters(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[2]/div/div[1]/div[1]/a/div/div/div/button"));
+        return element;
+    }
+    public static WebElement txt_Lighting(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[5]/div[2]/div[1]/h1/a"));
+        return element;
+    }
+    public static WebElement txt_Camcorders(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[5]/div[2]/div[1]/h1/a"));
+        return element;
+    }
+    public static WebElement txt_Ink_Paper_Toner(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[5]/div[2]/div[1]/h1/a"));
+        return element;
+    }
+    public static WebElement txt_Accessories_Merchandise(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[5]/div[2]/div[1]/h1/a"));
+        return element;
+    }
+    public static WebElement txt_OtherProducts(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='maincontent']/div[5]/div[2]/div[1]/h1/a"));
+        return element;
+    }
 }

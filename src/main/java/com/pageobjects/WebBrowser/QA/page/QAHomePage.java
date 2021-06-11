@@ -29,6 +29,30 @@ public class QAHomePage {
         element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/lenses']"));
         return element;
     }
+    public static WebElement btn_Printers(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/printers']"));
+        return element;
+    }
+    public static WebElement btn_Lighting(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/lighting']"));
+        return element;
+    }
+    public static WebElement btn_Camcorders(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/camcorders']"));
+        return element;
+    }
+    public static WebElement btn_InkPaperToner(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/ink-paper-toner']"));
+        return element;
+    }
+    public static WebElement btn_AccessoriesMerchandise(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/accessories-merchandise']"));
+        return element;
+    }
+    public static WebElement btn_OtherProducts(WebDriver driver){
+        element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/other-products']"));
+        return element;
+    }
     public static WebElement btn_ClosePopupPromo(WebDriver driver){
         element = driver.findElement(By.xpath("//button[@data-role='closeBtn']"));
         return element;
@@ -76,5 +100,8 @@ public class QAHomePage {
     public static WebElement txt_UsernameText(WebDriver driver){
         element = driver.findElement(By.xpath("//span[@class='username-text']"));
         return element;
+    }
+    public static String btn_CLoseFlyoutMenu(){
+        return "//button[@class='menu-close']";
     }
 }
