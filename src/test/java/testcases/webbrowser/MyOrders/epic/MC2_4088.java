@@ -89,7 +89,7 @@ public class MC2_4088 {
     }
 
     @Test()
-    public void HIT_MC2_4088_TC_001_Update_Address_in_My_Canon() throws InterruptedException {
+    public void HIT_MC2_4088_TC_002_Update_Address_in_My_Canon() throws InterruptedException {
 
     }
     @AfterTest
