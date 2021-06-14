@@ -2,7 +2,7 @@ package testcases.MegaMenu;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.LoginQA;
 import PageObjects.WebBrowser.QA.CamerasPage;
 import PageObjects.WebBrowser.QA.QAHomePage;
@@ -36,8 +36,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -47,7 +47,7 @@ public class MC2_634 {
 
             //Step 2: Click on main menu link
             Reporter.log("Step 2: Click on main menu link", true);
-            Actions.clickObject(QAHomePage.btn_Cameras(driver));
+            CommonActions.clickObject(QAHomePage.btn_Cameras(driver));
             /*
             Will be update when page 404 is available
              */
@@ -66,8 +66,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -77,16 +77,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -95,7 +95,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -108,15 +108,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Cameras(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[1]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Camera mega menu link
             Reporter.log("Step 5: Click on Cameras mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Cameras(driver));
+            CommonActions.clickObject(QAHomePage.btn_Cameras(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.btn_ShopAllCameras(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.btn_ShopAllCameras(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/cameras", "Failed. Link not open on the same tab");
@@ -136,8 +136,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -147,16 +147,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -165,7 +165,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -178,15 +178,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Lenses(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[2]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Lenses mega menu link
             Reporter.log("Step 5: Click on Lenses mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Lenses(driver));
+            CommonActions.clickObject(QAHomePage.btn_Lenses(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.btn_ShopAllLenses(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.btn_ShopAllLenses(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/lenses", "Failed. Link not open on the same tab");
@@ -206,8 +206,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -217,16 +217,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -235,7 +235,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -248,15 +248,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Printers(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[3]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Printers mega menu link
             Reporter.log("Step 5: Click on Printers mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Printers(driver));
+            CommonActions.clickObject(QAHomePage.btn_Printers(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.btn_ShopAllPrinters(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.btn_ShopAllPrinters(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/printers", "Failed. Link not open on the same tab");
@@ -276,8 +276,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -287,16 +287,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -305,7 +305,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -318,15 +318,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Lighting(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[4]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Lighting mega menu link
             Reporter.log("Step 5: Click on Lighting mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Lighting(driver));
+            CommonActions.clickObject(QAHomePage.btn_Lighting(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Lighting(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Lighting(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/lighting", "Failed. Link not open on the same tab");
@@ -346,8 +346,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -357,16 +357,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -375,7 +375,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -388,15 +388,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Camcorders(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[5]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Camcorders mega menu link
             Reporter.log("Step 5: Click on Camcorders mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Camcorders(driver));
+            CommonActions.clickObject(QAHomePage.btn_Camcorders(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Camcorders(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Camcorders(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/camcorders", "Failed. Link not open on the same tab");
@@ -416,8 +416,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -427,16 +427,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -445,7 +445,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -458,15 +458,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_InkPaperToner(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[6]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Ink,Paper&Toner mega menu link
             Reporter.log("Step 5: Click on Ink,Paper&Toner mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_InkPaperToner(driver));
+            CommonActions.clickObject(QAHomePage.btn_InkPaperToner(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Ink_Paper_Toner(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Ink_Paper_Toner(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/ink-paper-toner", "Failed. Link not open on the same tab");
@@ -486,8 +486,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -497,16 +497,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -515,7 +515,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -528,15 +528,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_AccessoriesMerchandise(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[7]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Accessories&Merchandise mega menu link
             Reporter.log("Step 5: Click on Accessories&Merchandise mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_AccessoriesMerchandise(driver));
+            CommonActions.clickObject(QAHomePage.btn_AccessoriesMerchandise(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Accessories_Merchandise(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Accessories_Merchandise(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/accessories-merchandise", "Failed. Link not open on the same tab");
@@ -556,8 +556,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -567,16 +567,16 @@ public class MC2_634 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(2000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Boolean display = Actions.checkDisplayed(btn_Login);
+            Boolean display = CommonActions.checkDisplayed(btn_Login);
             Reporter.log("Verify button login displayed:", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Button Login is not displayed.");
             Reporter.log("Passed. Button login displayed.", true);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Not navigated to Mycanon login screen");
             Reporter.log("Passed. Navigated to Mycanon login screen", true);
@@ -585,7 +585,7 @@ public class MC2_634 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Login not successfully.");
             Reporter.log("Passed. Login successfully.", true);
             strCurTitle = driver.getTitle();
@@ -598,15 +598,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_OtherProducts(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[8]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 5: Click on Other Products mega menu link
             Reporter.log("Step 5: Click on Accessories&Merchandise mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_OtherProducts(driver));
+            CommonActions.clickObject(QAHomePage.btn_OtherProducts(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_OtherProducts(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_OtherProducts(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/other-products", "Failed. Link not open on the same tab");
@@ -626,8 +626,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -641,15 +641,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Cameras(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[1]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Camera mega menu link
             Reporter.log("Step 3: Click on Cameras mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Cameras(driver));
+            CommonActions.clickObject(QAHomePage.btn_Cameras(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.btn_ShopAllCameras(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.btn_ShopAllCameras(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/cameras", "Failed. Link not open on the same tab");
@@ -669,8 +669,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -684,15 +684,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Lenses(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[2]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Lenses mega menu link
             Reporter.log("Step 3: Click on Lenses mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Lenses(driver));
+            CommonActions.clickObject(QAHomePage.btn_Lenses(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.btn_ShopAllLenses(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.btn_ShopAllLenses(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/lenses", "Failed. Link not open on the same tab");
@@ -712,8 +712,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -727,15 +727,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Printers(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[3]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Printers mega menu link
             Reporter.log("Step 3: Click on Printers mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Printers(driver));
+            CommonActions.clickObject(QAHomePage.btn_Printers(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.btn_ShopAllPrinters(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.btn_ShopAllPrinters(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/printers", "Failed. Link not open on the same tab");
@@ -755,8 +755,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -770,15 +770,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Lighting(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[4]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Lighting mega menu link
             Reporter.log("Step 3: Click on Lighting mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Lighting(driver));
+            CommonActions.clickObject(QAHomePage.btn_Lighting(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Lighting(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Lighting(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/lighting", "Failed. Link not open on the same tab");
@@ -798,8 +798,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -813,15 +813,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_Camcorders(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[5]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Camcorders mega menu link
             Reporter.log("Step 3: Click on Camcorders mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_Camcorders(driver));
+            CommonActions.clickObject(QAHomePage.btn_Camcorders(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Camcorders(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Camcorders(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/camcorders", "Failed. Link not open on the same tab");
@@ -841,8 +841,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -856,15 +856,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_InkPaperToner(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[6]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Ink,Paper&Toner mega menu link
             Reporter.log("Step 3: Click on Ink,Paper&Toner mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_InkPaperToner(driver));
+            CommonActions.clickObject(QAHomePage.btn_InkPaperToner(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Ink_Paper_Toner(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Ink_Paper_Toner(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/ink-paper-toner", "Failed. Link not open on the same tab");
@@ -884,8 +884,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -899,15 +899,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_AccessoriesMerchandise(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[7]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Accessories&Merchandise mega menu link
             Reporter.log("Step 3: Click on Accessories&Merchandise mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_AccessoriesMerchandise(driver));
+            CommonActions.clickObject(QAHomePage.btn_AccessoriesMerchandise(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_Accessories_Merchandise(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_Accessories_Merchandise(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/accessories-merchandise", "Failed. Link not open on the same tab");
@@ -927,8 +927,8 @@ public class MC2_634 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -942,15 +942,15 @@ public class MC2_634 {
             actions.moveToElement(QAHomePage.btn_OtherProducts(driver)).perform();
             Thread.sleep(2000);
             String xpath = "("+QAHomePage.btn_CLoseFlyoutMenu()+")"+"[8]";
-            display = Actions.checkDisplayed(driver.findElement(By.xpath(xpath)));
+            display = CommonActions.checkDisplayed(driver.findElement(By.xpath(xpath)));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. Flyout menu not displayed");
             Reporter.log("Passed. Flyout menu displayed", true);
 
             //Step 3: Click on Other Products mega menu link
             Reporter.log("Step 3: Click on Accessories&Merchandise mega menu link", true);
-            Actions.clickObject(QAHomePage.btn_OtherProducts(driver));
+            CommonActions.clickObject(QAHomePage.btn_OtherProducts(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(CamerasPage.txt_OtherProducts(driver));
+            display = CommonActions.checkDisplayed(CamerasPage.txt_OtherProducts(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Failed. The category homepage of corresponding category not displayed");
             Reporter.log("Passed. The category homepage of corresponding category displayed", true);
             Assert.assertEquals(driver.getCurrentUrl(), "https://mcstaging-estore.canon.ca/en_ca/other-products", "Failed. Link not open on the same tab");

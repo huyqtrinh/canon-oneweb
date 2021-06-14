@@ -1,6 +1,6 @@
 package Modules.QA;
 
-import Utilities.Actions;
+import Utilities.CommonActions;
 import PageObjects.WebBrowser.QA.MyOrdersPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MyOrderPageActions {
     public static void SearchString(WebDriver driver, String sSearchKey) throws InterruptedException {
-        Actions.setTexts(MyOrdersPage.tbx_Search(driver), sSearchKey);
+        CommonActions.setTexts(MyOrdersPage.tbx_Search(driver), sSearchKey);
         Thread.sleep(1000);
         MyOrdersPage.tbx_Search(driver).sendKeys(Keys.RETURN);
         Thread.sleep(1000);
@@ -22,14 +22,14 @@ public class MyOrderPageActions {
           String sOrderStatus, String sOrderDateFrom, String sOrderDateTo, String sOrderMin, String sOrderMax)
             throws InterruptedException
         {
-            if (Actions.checkDisplayed(MyOrdersPage.btn_Filter(driver))) {
-                Actions.clickObject(MyOrdersPage.btn_Filter(driver));
+            if (CommonActions.checkDisplayed(MyOrdersPage.btn_Filter(driver))) {
+                CommonActions.clickObject(MyOrdersPage.btn_Filter(driver));
                 Thread.sleep(1000);
             }
             if (!sOrderNum.equals("")){
-                Actions.setTexts(MyOrdersPage.tb_Filter_OrderNumber(driver), sOrderNum); }
+                CommonActions.setTexts(MyOrdersPage.tb_Filter_OrderNumber(driver), sOrderNum); }
             if (!sInvoiceNum.equals("")){
-                Actions.setTexts(MyOrdersPage.tb_Filter_InvoiceNumber(driver), sInvoiceNum); }
+                CommonActions.setTexts(MyOrdersPage.tb_Filter_InvoiceNumber(driver), sInvoiceNum); }
             if (!sCreatedBy.equals(""))
             {
                 Select DDL_CreatedBy = new Select(driver.findElement(By.id("created-by")));
@@ -41,13 +41,13 @@ public class MyOrderPageActions {
                 DDL_OrderStatus.selectByVisibleText(sOrderStatus);
             }
             if (!sOrderDateFrom.equals("")) {
-                Actions.setTexts(MyOrdersPage.tb_Filter_OrderDateFrom(driver), sOrderDateFrom);}
-            if (!sOrderDateTo.equals("")) { Actions.setTexts(MyOrdersPage.tb_Filter_OrderDateTo(driver), sOrderDateTo); }
-            if (!sOrderMin.equals("")) { Actions.setTexts(MyOrdersPage.tb_Filter_OrderTotalMin(driver), sOrderMin); }
-            if (!sOrderMax.equals("")) { Actions.setTexts(MyOrdersPage.tb_Filter_OrderTotalMax(driver), sOrderMax); }
+                CommonActions.setTexts(MyOrdersPage.tb_Filter_OrderDateFrom(driver), sOrderDateFrom);}
+            if (!sOrderDateTo.equals("")) { CommonActions.setTexts(MyOrdersPage.tb_Filter_OrderDateTo(driver), sOrderDateTo); }
+            if (!sOrderMin.equals("")) { CommonActions.setTexts(MyOrdersPage.tb_Filter_OrderTotalMin(driver), sOrderMin); }
+            if (!sOrderMax.equals("")) { CommonActions.setTexts(MyOrdersPage.tb_Filter_OrderTotalMax(driver), sOrderMax); }
             Thread.sleep(1000);
 
-            Actions.clickObject(MyOrdersPage.btn_Apply(driver));
+            CommonActions.clickObject(MyOrdersPage.btn_Apply(driver));
             Thread.sleep(1000);
         }
     public static boolean VerifyFilterOrder(WebDriver driver, String sOrderNum, String sInvoiceNum, String sCreatedBy,
@@ -99,8 +99,8 @@ public class MyOrderPageActions {
         return bool_FindingStatus;
     }
     public static void ClearFilterOrder(WebDriver driver) throws InterruptedException {
-        if (Actions.checkDisplayed(MyOrdersPage.href_ClearAll(driver))) {
-            Actions.clickObject(MyOrdersPage.href_ClearAll(driver));
+        if (CommonActions.checkDisplayed(MyOrdersPage.href_ClearAll(driver))) {
+            CommonActions.clickObject(MyOrdersPage.href_ClearAll(driver));
             Thread.sleep(1000);
         }
     }

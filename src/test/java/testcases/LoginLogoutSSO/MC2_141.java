@@ -2,7 +2,7 @@ package testcases.LoginLogoutSSO;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.LoginQA;
 import PageObjects.MobileEmulator.QA.E_QAHomePage;
 import org.openqa.selenium.*;
@@ -32,8 +32,8 @@ public class MC2_141 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -44,29 +44,29 @@ public class MC2_141 {
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
                 WebElement btn_Login = E_QAHomePage.btn_Login(driver);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
                 Thread.sleep(2000);
                 WebElement btn_Login = QAHomePage.btn_Login(driver);
-                Boolean display = Actions.checkDisplayed(btn_Login);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
 
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to Mycanon login screen");
             Reporter.log("Navigated to Mycanon login screen", true);
@@ -76,15 +76,15 @@ public class MC2_141 {
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
-                display = Actions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
+                display = CommonActions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
-                display = Actions.checkDisplayed(QAHomePage.btn_Logout(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
+                display = CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver));
             }
             Assert.assertEquals(display, Boolean.TRUE, "Login not successfully.");
             Reporter.log("Login successfully.", true);
@@ -106,8 +106,8 @@ public class MC2_141 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -115,28 +115,28 @@ public class MC2_141 {
             Assert.assertEquals(strCurTitle, strHomeTitle, "Canada home page not displayed.");
             Reporter.log("Canada home page displayed.", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
                 WebElement btn_Login = E_QAHomePage.btn_Login(driver);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
                 Thread.sleep(2000);
                 WebElement btn_Login = QAHomePage.btn_Login(driver);
-                Boolean display = Actions.checkDisplayed(btn_Login);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            Boolean display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            Boolean display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to Mycanon login screen");
             Reporter.log("Navigated to Mycanon login screen", true);
@@ -146,15 +146,15 @@ public class MC2_141 {
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
-                display = Actions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
+                display = CommonActions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
-                display = Actions.checkDisplayed(QAHomePage.btn_Logout(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
+                display = CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver));
             }
             Assert.assertEquals(display, Boolean.TRUE, "Login not successfully.");
             Reporter.log("Login successfully.", true);
@@ -176,8 +176,8 @@ public class MC2_141 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -188,28 +188,28 @@ public class MC2_141 {
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
                 WebElement btn_Login = E_QAHomePage.btn_Login(driver);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
                 Thread.sleep(2000);
                 WebElement btn_Login = QAHomePage.btn_Login(driver);
-                Boolean display = Actions.checkDisplayed(btn_Login);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-            display = Actions.checkDisplayed(QALoginPage.btn_LogIn(driver));
+            display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to Mycanon login screen");
             Reporter.log("Navigated to Mycanon login screen", true);
@@ -218,7 +218,7 @@ public class MC2_141 {
             Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
             LoginQA.Invalid_Execute(driver);
             Thread.sleep(2000);
-            String displayMsg = Actions.getTexts(QALoginPage.txt_ErrorMessage(driver));
+            String displayMsg = CommonActions.getTexts(QALoginPage.txt_ErrorMessage(driver));
             String errorMsg = "The email address or password you provided is incorrect. Please try entering this information again.";
             Assert.assertEquals(displayMsg, errorMsg, "Error message not display correctly.");
             Reporter.log("Error message displayed correctly.", true);
@@ -237,8 +237,8 @@ public class MC2_141 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -249,9 +249,9 @@ public class MC2_141 {
             //Step 2: Mouse over on the Product Meganu menu and select any subcategory link from the list displayed
             Reporter.log("Step 2: Mouse over on the Product Meganu menu and select any subcategory link from the list displayed", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.btn_Cameras(driver));
+                CommonActions.clickObject(E_QAHomePage.btn_Cameras(driver));
                 Thread.sleep(5000);
                 driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
                 Thread.sleep(5000);
@@ -267,9 +267,9 @@ public class MC2_141 {
             //Step 3: Click on any Product form the PLP and click on Add to Cart CTA
             Reporter.log("Step 3: Click on any Product form the PLP and click on Add to Cart CTA", true);
             String sProductName = "PowerShot G3 X";
-            Actions.clickObject(CamerasPage.txt_ItemName(driver, sProductName));
+            CommonActions.clickObject(CamerasPage.txt_ItemName(driver, sProductName));
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            String sProductName_PDP = Actions.getTexts(ProductDetailPage.txt_ProductName(driver));
+            String sProductName_PDP = CommonActions.getTexts(ProductDetailPage.txt_ProductName(driver));
             Assert.assertEquals(sProductName_PDP, sProductName, "Not navigate to Product Detail page.");
             Reporter.log("Navigated to Product Detail Page.", true);
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -277,43 +277,43 @@ public class MC2_141 {
             JavascriptExecutor executor = (JavascriptExecutor)driver;
             executor.executeScript("arguments[0].click();", ProductDetailPage.btn_AddToCart(driver));
             Thread.sleep(10000);
-            display = Actions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
+            display = CommonActions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
 
             //Step 4: User should able to see a popup window where we should able to click on Proceed to Cart link
             Reporter.log("Step 4: User should able to see a popup window where we should able to click on Proceed to Cart link", true);
-            display = Actions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
+            display = CommonActions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Button ProceedToCart not appear. Popup not display.");
             Reporter.log("Pop up appeared.", true);
             Reporter.log("Click on Proceed to Cart", true);
-            Actions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
+            CommonActions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
             Thread.sleep(10000);
-            display = Actions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
+            display = CommonActions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Button Check out not display. Not navigate to Shopping Cart.");
             Reporter.log("Navigated to Shopping Cart.", true);
 
             //Step 5: Click on Checkout link on the page
             Reporter.log("Step 5: Click on Checkout link on the page", true);
-            Actions.clickObject(ShoppingCartPage.btn_Checkout(driver));
+            CommonActions.clickObject(ShoppingCartPage.btn_Checkout(driver));
             Thread.sleep(6000);
-            display = Actions.checkDisplayed(CustomerLoginPage.btn_Signin(driver));
+            display = CommonActions.checkDisplayed(CustomerLoginPage.btn_Signin(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to login screen");
             Reporter.log("Navigated to login screen", true);
 
             //Step 6: Click on the SignIn CTA and User should provide Valid login credentials
             Reporter.log("Step 6: Click on the SignIn CTA and User should provide Valid login credentials", true);
-            Actions.clickObject(CustomerLoginPage.btn_Signin(driver));
+            CommonActions.clickObject(CustomerLoginPage.btn_Signin(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
-                display = Actions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
+                display = CommonActions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
             }
             else {
-                display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+                display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             }
             Assert.assertEquals(display, Boolean.TRUE, "Login not successfully");
             Reporter.log("Login successfully.", true);
@@ -322,25 +322,25 @@ public class MC2_141 {
             Reporter.log("Navigated to Shopping Cart.", true);
 
             //Step 7: Click on Checkout CTA in the page and provide valid Credit card details and click on Submit CTA
-            Actions.clickObject(ShoppingCartPage.btn_Checkout(driver));
+            CommonActions.clickObject(ShoppingCartPage.btn_Checkout(driver));
             Thread.sleep(5000);
             executor.executeScript("arguments[0].click()", CheckoutPage.rad_1stAddress(driver));
             Thread.sleep(3000);
-            Actions.clickObject(CheckoutPage.rad_Fixed(driver));
+            CommonActions.clickObject(CheckoutPage.rad_Fixed(driver));
             Thread.sleep(3000);
-            Actions.clickObject(CheckoutPage.btn_ContinueToPayment(driver));
+            CommonActions.clickObject(CheckoutPage.btn_ContinueToPayment(driver));
             Thread.sleep(15000);
-            Actions.clickObject(CheckoutPage.btn_UseVerifiedAddress(driver));
-            Actions.clickObject(CheckoutPage.rad_PaymentMethod_Credit(driver));
-            Actions.clickObject(CheckoutPage.rad_1stCreditCard(driver));
+            CommonActions.clickObject(CheckoutPage.btn_UseVerifiedAddress(driver));
+            CommonActions.clickObject(CheckoutPage.rad_PaymentMethod_Credit(driver));
+            CommonActions.clickObject(CheckoutPage.rad_1stCreditCard(driver));
             Thread.sleep(3000);
-            Actions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
+            CommonActions.clickObject(CheckoutPage.cbx_SameAsShippingInf(driver));
             Thread.sleep(5000);
-            Actions.clickObject(CheckoutPage.btn_ContinueToReview(driver));
+            CommonActions.clickObject(CheckoutPage.btn_ContinueToReview(driver));
             Thread.sleep(3000);
-            Actions.clickObject(CheckoutPage.btn_PlaceOrder(driver));
+            CommonActions.clickObject(CheckoutPage.btn_PlaceOrder(driver));
             Thread.sleep(5000);
-            display = Actions.checkDisplayed(CheckoutPage.txt_OrderNumber(driver));
+            display = CommonActions.checkDisplayed(CheckoutPage.txt_OrderNumber(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Submit order unsuccessfully");
             Reporter.log("Submit order successfully.");
             Thread.sleep(5000);
@@ -352,7 +352,7 @@ public class MC2_141 {
             ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
             Thread.sleep(5000);
-            display = Actions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
+            display = CommonActions.checkDisplayed(QAHomePage.txt_UsernameText(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Session is not active");
             Reporter.log("Logged in Canada Homepage successfully as the Magento session is Active", true);
 
@@ -371,8 +371,8 @@ public class MC2_141 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -383,9 +383,9 @@ public class MC2_141 {
             //Step 2: Mouse over on the Product Meganu menu and select any subcategory link from the list displayed
             Reporter.log("Step 2: Mouse over on the Product Meganu menu and select any subcategory link from the list displayed", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.btn_Cameras(driver));
+                CommonActions.clickObject(E_QAHomePage.btn_Cameras(driver));
                 Thread.sleep(5000);
                 driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras");
                 Thread.sleep(5000);
@@ -401,9 +401,9 @@ public class MC2_141 {
             //Step 3: Click on any Product form the PLP and click on Add to Cart CTA
             Reporter.log("Step 3: Click on any Product form the PLP and click on Add to Cart CTA", true);
             String sProductName = "PowerShot G3 X";
-            Actions.clickObject(CamerasPage.txt_ItemName(driver, sProductName));
+            CommonActions.clickObject(CamerasPage.txt_ItemName(driver, sProductName));
             driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-            String sProductName_PDP = Actions.getTexts(ProductDetailPage.txt_ProductName(driver));
+            String sProductName_PDP = CommonActions.getTexts(ProductDetailPage.txt_ProductName(driver));
             Assert.assertEquals(sProductName_PDP, sProductName, "Not navigate to Product Detail page.");
             Reporter.log("Navigated to Product Detail Page.", true);
             Reporter.log("Click button Add to Cart", true);
@@ -414,31 +414,31 @@ public class MC2_141 {
 
             //Step 4: User should able to see a popup window where we should able to click on Proceed to Cart link
             Reporter.log("Step 4: User should able to see a popup window where we should able to click on Proceed to Cart link", true);
-            display = Actions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
+            display = CommonActions.checkDisplayed(AddToCartPopup.btn_ProceedToCart(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Button ProceedToCart not appear. Popup not display.");
             Reporter.log("Pop up appeared.", true);
             Reporter.log("Click on Proceed to Cart", true);
-            Actions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
+            CommonActions.clickObject(AddToCartPopup.btn_ProceedToCart(driver));
             Thread.sleep(10000);
-            display = Actions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
+            display = CommonActions.checkDisplayed(ShoppingCartPage.btn_Checkout(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Button Check out not display. Not navigate to Shopping Cart.");
             Reporter.log("Navigated to Shopping Cart.", true);
 
             //Step 5: Click on Checkout link on the page
             Reporter.log("Step 5: Click on Checkout link on the page", true);
-            Actions.clickObject(ShoppingCartPage.btn_Checkout(driver));
+            CommonActions.clickObject(ShoppingCartPage.btn_Checkout(driver));
             Thread.sleep(6000);
-            display = Actions.checkDisplayed(CustomerLoginPage.btn_Signin(driver));
+            display = CommonActions.checkDisplayed(CustomerLoginPage.btn_Signin(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to login screen");
             Reporter.log("Navigated to login screen", true);
 
             //Step 6: Click on the SignIn CTA and User should provide invalid login credentials
             Reporter.log("Step 6: Click on the SignIn CTA and User should provide invalid login credentials", true);
-            Actions.clickObject(CustomerLoginPage.btn_Signin(driver));
+            CommonActions.clickObject(CustomerLoginPage.btn_Signin(driver));
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             LoginQA.Invalid_Execute(driver);
             Thread.sleep(2000);
-            String displayMsg = Actions.getTexts(QALoginPage.txt_ErrorMessage(driver));
+            String displayMsg = CommonActions.getTexts(QALoginPage.txt_ErrorMessage(driver));
             String errorMsg = "The email address or password you provided is incorrect. Please try entering this information again.";
             Assert.assertEquals(displayMsg, errorMsg, "Error message not display correctly.");
             Reporter.log("Error message displayed correctly.", true);
@@ -459,8 +459,8 @@ public class MC2_141 {
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(2000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -471,26 +471,26 @@ public class MC2_141 {
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
                 WebElement btn_Login = E_QAHomePage.btn_Login(driver);
                 Thread.sleep(1000);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
                 Thread.sleep(2000);
                 WebElement btn_Login = QAHomePage.btn_Login(driver);
-                Boolean display = Actions.checkDisplayed(btn_Login);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
                 Reporter.log("Verify button login displayed:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
                 Reporter.log("Button login displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
             }
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to Mycanon login screen");
@@ -501,15 +501,15 @@ public class MC2_141 {
             LoginQA.Execute(driver);
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
-                display = Actions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
+                display = CommonActions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
-                display = Actions.checkDisplayed(QAHomePage.btn_Logout(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
+                display = CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver));
             }
             Assert.assertEquals(display, Boolean.TRUE, "Login not successfully.");
             Reporter.log("Login successfully.", true);
@@ -521,18 +521,18 @@ public class MC2_141 {
             //Step 4: Click on the My Profile link available in the right top corner on the page
             Reporter.log("Click on the My Profile link available in the right top corner on the page", true);
             if(Constants.Emulator){
-                Actions.clickObject(E_QAHomePage.menu_MenuList(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
-                Actions.clickObject(E_QAHomePage.menu_Account(driver));
+                CommonActions.clickObject(E_QAHomePage.menu_Account(driver));
                 Thread.sleep(1000);
-                display = Actions.checkDisplayed(E_QAHomePage.btn_Login(driver));
+                display = CommonActions.checkDisplayed(E_QAHomePage.btn_Login(driver));
             }
             else {
-                Actions.clickObject(QAHomePage.ico_User(driver));
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
                 driver.navigate().to("https://mcstaging-estore.canon.ca/en_ca/customer/account/index");
             }
             Thread.sleep(5000);
-            display = Actions.checkDisplayed(MyAccountPage.btn_Edit_AccountInf(driver));
+            display = CommonActions.checkDisplayed(MyAccountPage.btn_Edit_AccountInf(driver));
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to MyCanon profile page");
             Reporter.log("Navigated to MyCanon profile page", true);
         } catch (InterruptedException e) {
