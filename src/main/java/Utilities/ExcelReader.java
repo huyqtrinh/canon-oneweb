@@ -83,7 +83,6 @@ public class ExcelReader {
     }
 
     public Integer getRowNum(){
-        int rowCount;
         return sheet.getLastRowNum()-sheet.getFirstRowNum();
     }
 
