@@ -1,12 +1,12 @@
 package testcases.webbrowser.Product_Facets.epic;
 
-import Ultilities.Constants;
-import com.modules.Commons.LaunchBrowser;
-import com.modules.Commons.MyActions;
-import com.modules.QA.page.LoginQA;
-import com.pageobjects.WebBrowser.QA.page.CamerasPage;
-import com.pageobjects.WebBrowser.QA.page.QAHomePage;
-import com.pageobjects.WebBrowser.QA.page.ShopAllCamerasPage;
+import PageObjects.WebBrowser.QA.CamerasPage;
+import PageObjects.WebBrowser.QA.QAHomePage;
+import Utilities.Actions;
+import Utilities.Constants;
+import Modules.Commons.LaunchBrowser;
+
+import PageObjects.WebBrowser.QA.ShopAllCamerasPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,8 +38,8 @@ public class MC2_437 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
-                MyActions.clickObject(btn_ClosePopupPromo);
+            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
+                Actions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -51,7 +51,7 @@ public class MC2_437 {
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
-            MyActions.clickObject(btn_Cameras);
+            Actions.clickObject(btn_Cameras);
             Thread.sleep(8000);
             Reporter.log("Verify Cameras page displayed:", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
@@ -64,11 +64,11 @@ public class MC2_437 {
             //Step 3: Click on "Shop all cameras"
             Reporter.log("Step 3: Click on 'Shop all cameras:", true);
             WebElement btn_ShopAllCameras = CamerasPage.btn_ShopAllCameras(driver);
-            MyActions.clickObject(btn_ShopAllCameras);
+            Actions.clickObject(btn_ShopAllCameras);
 
             //Step 4: Verify "+" for color under shopping option.
             WebElement lb_ViewMore = ShopAllCamerasPage.lb_ViewMore(driver);
-            MyActions.clickObject(lb_ViewMore);
+            Actions.clickObject(lb_ViewMore);
             Reporter.log("Step 4: Verify '+' for color under shopping option:", true);
             WebElement css_Plus = ShopAllCamerasPage.css_Plus(driver);
             String css_Plus_Display = ((JavascriptExecutor)driver).executeScript("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('content');",css_Plus).toString();
@@ -89,8 +89,8 @@ public class MC2_437 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
-                MyActions.clickObject(btn_ClosePopupPromo);
+            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
+                Actions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -102,7 +102,7 @@ public class MC2_437 {
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
-            MyActions.clickObject(btn_Cameras);
+            Actions.clickObject(btn_Cameras);
             Thread.sleep(8000);
             Reporter.log("Verify Cameras page displayed:", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
@@ -114,11 +114,11 @@ public class MC2_437 {
             //Step 3: Click on "Shop all cameras"
             Reporter.log("Step 3: Click on 'Shop all cameras", true);
             WebElement btn_ShopAllCameras = CamerasPage.btn_ShopAllCameras(driver);
-            MyActions.clickObject(btn_ShopAllCameras);
+            Actions.clickObject(btn_ShopAllCameras);
 
             //Step 4: Verify "+" for color under shopping option
             WebElement lb_ViewMore = ShopAllCamerasPage.lb_ViewMore(driver);
-            MyActions.clickObject(lb_ViewMore);
+            Actions.clickObject(lb_ViewMore);
             Reporter.log("Step 4: Verify '+' for color under shopping option:", true);
             WebElement lb_Color = ShopAllCamerasPage.lb_Color(driver);
             WebElement css_Plus = ShopAllCamerasPage.css_Plus(driver);
@@ -129,10 +129,10 @@ public class MC2_437 {
 
             //Step 5: Verify Click on "+" for colors
             Reporter.log("Step 5: Verify Click on '+' for color:", true);
-            MyActions.clickObject(lb_Color);
+            Actions.clickObject(lb_Color);
             int row = 4;
             WebElement lb_ColorExpand = ShopAllCamerasPage.lb_ColorExpand(driver,row);
-            Boolean lb_ColorExpand_Display = MyActions.checkDisplayed(lb_ColorExpand);
+            Boolean lb_ColorExpand_Display = Actions.checkDisplayed(lb_ColorExpand);
             Assert.assertEquals(lb_ColorExpand_Display, Boolean.TRUE, "'+' not clicked.");
             Reporter.log("'+' clicked.", true);
             Reporter.log("Verify Colors displayed:", true);
@@ -153,8 +153,8 @@ public class MC2_437 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
-                MyActions.clickObject(btn_ClosePopupPromo);
+            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
+                Actions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -166,7 +166,7 @@ public class MC2_437 {
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
-            MyActions.clickObject(btn_Cameras);
+            Actions.clickObject(btn_Cameras);
             Thread.sleep(8000);
             Reporter.log("Verify Cameras page displayed'", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
@@ -178,12 +178,12 @@ public class MC2_437 {
             //Step 3: Click on "Shop all cameras"
             Reporter.log("Step 3: Click on 'Shop all cameras'", true);
             WebElement btn_ShopAllCameras = CamerasPage.btn_ShopAllCameras(driver);
-            MyActions.clickObject(btn_ShopAllCameras);
+            Actions.clickObject(btn_ShopAllCameras);
 
             //Step 4: Verify "+" for color under shopping option
             //driver.get("https://mcstaging-estore.canon.ca/en_ca/cameras/all-cameras");
             WebElement lb_ViewMore = ShopAllCamerasPage.lb_ViewMore(driver);
-            MyActions.clickObject(lb_ViewMore);
+            Actions.clickObject(lb_ViewMore);
             Reporter.log("Step 4: Verify '+' for color under shopping option:", true);
             WebElement lb_Color = ShopAllCamerasPage.lb_Color(driver);
             WebElement css_Plus = ShopAllCamerasPage.css_Plus(driver);
@@ -194,10 +194,10 @@ public class MC2_437 {
 
             //Step 5: Verify Click on "+" for colors
             Reporter.log("Step 5: Verify Click on '+' for color:", true);
-            MyActions.clickObject(lb_Color);
+            Actions.clickObject(lb_Color);
             int row = 4;
             WebElement lb_ColorExpand = ShopAllCamerasPage.lb_ColorExpand(driver,row);
-            Boolean lb_ColorExpand_Display = MyActions.checkDisplayed(lb_ColorExpand);
+            Boolean lb_ColorExpand_Display = Actions.checkDisplayed(lb_ColorExpand);
             Assert.assertEquals(lb_ColorExpand_Display, Boolean.TRUE, "'+' not clicked.");
             Reporter.log("'+' clicked.", true);
             Reporter.log("Verify Colors displayed:", true);
@@ -250,7 +250,7 @@ public class MC2_437 {
             Reporter.log("Step 6: Click on any color which listed under colors", true);
             WebElement Color_Black = ShopAllCamerasPage.Color_Black(driver,row);
             String Color_Black_Text = Color_Black.getCssValue("background-color");
-            MyActions.clickObject(Color_Black);
+            Actions.clickObject(Color_Black);
 
             Reporter.log(Color_Black_Text, true);
             WebElement Circle_Color = ShopAllCamerasPage.Circle_Color(driver);
@@ -258,7 +258,7 @@ public class MC2_437 {
             Reporter.log("Selected color visibly with " + Circle_Color_Display + " color", true);
 
             WebElement btn_Clear_Filter = ShopAllCamerasPage.btn_Clear_Filter(driver);
-            MyActions.clickObject(btn_Clear_Filter);
+            Actions.clickObject(btn_Clear_Filter);
 //
 //            if(btn_Clear_Filter.isDisplayed()) {
 //                Reporter.log("Filter not clear.", true);
@@ -281,8 +281,8 @@ public class MC2_437 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
-                MyActions.clickObject(btn_ClosePopupPromo);
+            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
+                Actions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -294,7 +294,7 @@ public class MC2_437 {
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
-            MyActions.clickObject(btn_Cameras);
+            Actions.clickObject(btn_Cameras);
             Thread.sleep(8000);
             Reporter.log("Verify Cameras page displayed'", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
@@ -306,7 +306,7 @@ public class MC2_437 {
             //Step 3: Click on "Shop all cameras"
             Reporter.log("Step 3: Click on 'Shop all cameras'", true);
             WebElement btn_ShopAllCameras = CamerasPage.btn_ShopAllCameras(driver);
-            MyActions.clickObject(btn_ShopAllCameras);
+            Actions.clickObject(btn_ShopAllCameras);
 
             //Step 4: Verify "+" for color under shopping option
             //Step 5: Verify Click on "+" for colors
@@ -325,8 +325,8 @@ public class MC2_437 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (MyActions.checkDisplayed(btn_ClosePopupPromo)) {
-                MyActions.clickObject(btn_ClosePopupPromo);
+            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
+                Actions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = "Home page CCI EN";
@@ -338,7 +338,7 @@ public class MC2_437 {
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
-            MyActions.clickObject(btn_Cameras);
+            Actions.clickObject(btn_Cameras);
             Thread.sleep(8000);
             Reporter.log("Verify Cameras page displayed'", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
@@ -350,11 +350,11 @@ public class MC2_437 {
             //Step 3: Click on "Shop all cameras"
             Reporter.log("Step 3: Click on 'Shop all cameras'", true);
             WebElement btn_ShopAllCameras = CamerasPage.btn_ShopAllCameras(driver);
-            MyActions.clickObject(btn_ShopAllCameras);
+            Actions.clickObject(btn_ShopAllCameras);
 
             //Step 4: Verify "+" for color under shopping option
             WebElement lb_ViewMore = ShopAllCamerasPage.lb_ViewMore(driver);
-            MyActions.clickObject(lb_ViewMore);
+            Actions.clickObject(lb_ViewMore);
 
 
             //Step 5: Verify Click on "+" for colors
