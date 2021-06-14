@@ -16,4 +16,8 @@ public class CamerasPage {
         element = driver.findElement(By.xpath("//a[@href='https://mcstaging-estore.canon.ca/en_ca/cameras/compact-cameras']"));
         return element;
     }
+    public static WebElement btn_ShopAllCameras(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id=\"maincontent\"]/div[2]/div[1]/div[1]/div[1]/div[2]/div/a"));
+        return element;
+    }
 }
