@@ -2,7 +2,7 @@ package testcases.LoginLogoutSSO;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.LoginQA;
 import PageObjects.WebBrowser.QA.MyAccountPage;
 import PageObjects.WebBrowser.QA.QAHomePage;
@@ -35,22 +35,22 @@ import org.testng.annotations.Test;
                 this.driver.get(Constants.MagentoQA_Url);
                 this.driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
                 WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(this.driver);
-                if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                    Actions.clickObject(btn_ClosePopupPromo);
+                if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                    CommonActions.clickObject(btn_ClosePopupPromo);
                     Thread.sleep(2000L);
                 }
 
                 String strHomeTitle = this.driver.getTitle();
 
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
                 WebElement btn_Login = QAHomePage.btn_Login(this.driver);
-                Boolean display = Actions.checkDisplayed(btn_Login);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
                 Thread.sleep(8000L);
                 Reporter.log("Step 2: Verify login button displayed", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Failed! Login button is not displayed.");
                 Reporter.log("Success! Login button displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
                 LoginQA.Execute(this.driver);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
@@ -61,22 +61,22 @@ import org.testng.annotations.Test;
                 Assert.assertEquals(strCurTitle, strHomeTitle, "Failed! Unable to navigated to the the same page.");
                 Reporter.log("Success! Able to navigated to the same page.", true);
 
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(2000L);
-                Actions.clickObject(QAHomePage.btn_Logout(this.driver));
+                CommonActions.clickObject(QAHomePage.btn_Logout(this.driver));
                 Thread.sleep(5000L);
                 strCurTitle = this.driver.getTitle();
                 Reporter.log("Step 4: Verify after logout:", true);
                 Assert.assertEquals(strCurTitle, strHomeTitle, "Failed! Unable to redirected to home page.");
                 Reporter.log("Success! Able to redirected to home page.", true);
 
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(2000L);
-                display = Actions.checkDisplayed(QAHomePage.btn_Login(this.driver));
+                display = CommonActions.checkDisplayed(QAHomePage.btn_Login(this.driver));
                 Reporter.log("Step 5: Recheck after logged out:", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Failed! Login button is not displayed.");
                 Reporter.log("Success! Button Login is displayed. Confirmed that user has logged out.", true);
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(5000L);
             } catch (InterruptedException var6) {
                 var6.printStackTrace();
@@ -91,8 +91,8 @@ import org.testng.annotations.Test;
                 this.driver.get(Constants.MagentoQA_Url);
                 this.driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
                 WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(this.driver);
-                if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                    Actions.clickObject(btn_ClosePopupPromo);
+                if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                    CommonActions.clickObject(btn_ClosePopupPromo);
                     Thread.sleep(2000L);
                 }
             } catch (InterruptedException var2) {
@@ -109,22 +109,22 @@ import org.testng.annotations.Test;
                 this.driver.get(Constants.MagentoQA_Url);
                 this.driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
                 WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(this.driver);
-                if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                    Actions.clickObject(btn_ClosePopupPromo);
+                if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                    CommonActions.clickObject(btn_ClosePopupPromo);
                     Thread.sleep(8000L);
                 }
 
                 String strHomeTitle = this.driver.getTitle();
                 //Step 1: Login the account
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
                 WebElement btn_Login = QAHomePage.btn_Login(this.driver);
-                Boolean display = Actions.checkDisplayed(btn_Login);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
                 Thread.sleep(8000L);
                 Reporter.log("Step 2: Verify login button displayed", true);
                 Assert.assertEquals(display, Boolean.TRUE, "Failed! Login button is not displayed.");
                 Reporter.log("Success! Login button displayed.", true);
-                Actions.clickObject(btn_Login);
+                CommonActions.clickObject(btn_Login);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
                 LoginQA.Execute(this.driver);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
@@ -132,16 +132,16 @@ import org.testng.annotations.Test;
                 //Step 2: Open My profile page
                 Reporter.log("Step 3: Verify my account displayed", true);
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.btn_Login(this.driver));
+                CommonActions.clickObject(QAHomePage.btn_Login(this.driver));
                 Thread.sleep(8000L);
                 Assert.assertEquals(display, Boolean.TRUE, "Failed! My Account button is not displayed.");
                 Reporter.log("Success! My Account button is displayed and redirected to My Account page");
                 Reporter.log("Step 4: Apply changes to account", true);
 
                 //Step 3: Make changes in My Profile(First name and last name)
-                Actions.clickObject(MyAccountPage.btn_Edit_AccountInf(this.driver));
+                CommonActions.clickObject(MyAccountPage.btn_Edit_AccountInf(this.driver));
                 Thread.sleep(8000L);
                 MyAccountPage.tbx_FirstName(this.driver).clear();
                 MyAccountPage.tbx_LastName(this.driver).clear();
@@ -150,11 +150,11 @@ import org.testng.annotations.Test;
                 String display_firstname = this.driver.findElement(By.id("firstname")).getAttribute("value");
                 MyAccountPage.tbx_LastName(this.driver).sendKeys(Constants.MyAccountPage_lastName);
                 String display_lastname = this.driver.findElement(By.id("lastname")).getAttribute("value");
-                Actions.clickObject(MyAccountPage.btn_Save(this.driver));
+                CommonActions.clickObject(MyAccountPage.btn_Save(this.driver));
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.btn_Logout(this.driver));
+                CommonActions.clickObject(QAHomePage.btn_Logout(this.driver));
                 Thread.sleep(8000L);
 
                 //Step 4: Log out and Log in again
@@ -165,9 +165,9 @@ import org.testng.annotations.Test;
                 Thread.sleep(8000L);
 
                 Reporter.log("Step 6: Log in the account", true);
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.btn_Login(this.driver));
+                CommonActions.clickObject(QAHomePage.btn_Login(this.driver));
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
                 LoginQA.Execute(this.driver);
                 this.driver.manage().timeouts().pageLoadTimeout(60L, TimeUnit.SECONDS);
@@ -175,11 +175,11 @@ import org.testng.annotations.Test;
                 //Step 5: Verify the changes in My Profile page
                 Reporter.log("Step 7: Confirm changes in My Profile", true);
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.ico_User(this.driver));
+                CommonActions.clickObject(QAHomePage.ico_User(this.driver));
                 Thread.sleep(8000L);
-                Actions.clickObject(QAHomePage.btn_Login(this.driver));
+                CommonActions.clickObject(QAHomePage.btn_Login(this.driver));
                 Thread.sleep(8000L);
-                Actions.clickObject(MyAccountPage.btn_Edit_AccountInf(this.driver));
+                CommonActions.clickObject(MyAccountPage.btn_Edit_AccountInf(this.driver));
                 String display_firstname_change = this.driver.findElement(By.id("firstname")).getAttribute("value");
                 String display_lastname_change = this.driver.findElement(By.id("lastname")).getAttribute("value");
                 Thread.sleep(8000L);
