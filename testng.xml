@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PoC Test" thread-count="1">
+    <test name="TestcasesPoC">
+        <classes>
+
+            <class name="testcases.LoginLogoutSSO.MC2_142">
+                <methods>
+                    <include
+                            name="HIT_MC2_142_TC001_Login_Validate_login_from_the_Canada_frontend_application_with_registered_User_and_Navigate_to_Mycanon_page">
+                    </include>
+                    <include
+                            name="HIT_MC2_142_TC02_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_navigating_to_the_commerce_website_after_logging_in_a_SSO_application">
+                    </include>
+                    <include
+                            name="HIT_MC2_142_TC03_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_refresh_the_commerce_website_after_logging_in_a_SSO_application">
+                    </include>
+                    <include
+                            name="HIT_MC2_142_TC04_Login_Logout_SSO_Verify_Login_page_of_the_Canada_webpage">
+                    </include>
+                    <include
+                            name="HIT_MC2_142_TC05_Login_Logout_SSO_Verify_that_user_should_not_login_with_invalid_credentials_with_Email_and_Password">
+                    </include>
+                    <include
+                            name="HIT_MC2_142_TC06_Login_Logout_SSO_Verify_Login_function_when_user_is_at_Home_Page">
+                    </include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
