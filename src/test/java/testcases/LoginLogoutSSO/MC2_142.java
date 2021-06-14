@@ -2,7 +2,7 @@ package testcases.LoginLogoutSSO;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.LoginQA;
 import PageObjects.WebBrowser.QA.MyAccountPage;
 import PageObjects.WebBrowser.QA.QAHomePage;
@@ -37,8 +37,8 @@ public class MC2_142 {
             Thread.sleep(8000);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = driver.getTitle();
@@ -49,10 +49,10 @@ public class MC2_142 {
 
             //Step 2: Click on Your Account dropdown link and click on Login link
             Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
 
             //Step 3: User should provide valid login credentials and click on login CTA
@@ -66,25 +66,25 @@ public class MC2_142 {
             driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
             Thread.sleep(8000);
             Reporter.log("Navigated MyCanon.", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_MyAccount = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_MyAccount);
+            CommonActions.clickObject(btn_MyAccount);
             Thread.sleep(8000);
 
             //Step 4: User should able to see all the user details in the page
             Reporter.log("Step 4: User should able to see all the user details in the page:", true);
             WebElement txt_UserDetail = MyAccountPage.txt_UserDetail(driver);
-            Boolean User_detail_display = Actions.checkDisplayed(txt_UserDetail);
+            Boolean User_detail_display = CommonActions.checkDisplayed(txt_UserDetail);
             Assert.assertEquals(User_detail_display, Boolean.TRUE, "User detail not displayed.");
             Reporter.log("User detail displayed.", true);
             Thread.sleep(8000);
 
             //Step 5: Logout for next test case
             Reporter.log("Step 5: Logout for next test case", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
-            Actions.clickObject(QAHomePage.btn_Logout(driver));
+            CommonActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
         } catch (InterruptedException e) {
             Reporter.log(e.toString());
@@ -101,8 +101,8 @@ public class MC2_142 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = driver.getTitle();
@@ -111,10 +111,10 @@ public class MC2_142 {
             Reporter.log("Canada home page displayed.", true);
             Thread.sleep(8000);
             Reporter.log("Click on Account button dropdown link and click on Login link.", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
             Reporter.log("Provide valid login credentials and click on login CTA.", true);
             LoginQA.Execute(driver);
@@ -128,33 +128,33 @@ public class MC2_142 {
             //Verify User's name
             Reporter.log("Verify User's name is displayed at the top right corner:", true);
             WebElement lb_UserName = QAHomePage.lb_UserName(driver);
-            Boolean lb_UserName_display = Actions.checkDisplayed(lb_UserName);
+            Boolean lb_UserName_display = CommonActions.checkDisplayed(lb_UserName);
             Assert.assertEquals(lb_UserName_display, Boolean.TRUE, "User's name not displayed.");
             Reporter.log("User's name displayed.", true);
             Thread.sleep(8000);
 
             //Step 5: Click on Account button at the top right corner.
             Reporter.log("Step 2: Click on Account button and verify item in Account dropdown displayed.", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             //Verify My Account button
             Reporter.log("Verify My Account button in Account dropdown is displayed:", true);
             WebElement btn_MyAccount = QAHomePage.btn_Login(driver);
-            Boolean btn_MyAccount_display = Actions.checkDisplayed(btn_MyAccount);
+            Boolean btn_MyAccount_display = CommonActions.checkDisplayed(btn_MyAccount);
             Assert.assertEquals(btn_MyAccount_display, Boolean.TRUE, "Button My Account not displayed.");
             Reporter.log("Button My Account displayed.", true);
             Thread.sleep(8000);
             //Verify Logout button
             Reporter.log("Verify Logout button in Account dropdown is displayed:", true);
             WebElement btn_Logout = QAHomePage.btn_Logout(driver);
-            Boolean btn_Logout_display = Actions.checkDisplayed(btn_Logout);
+            Boolean btn_Logout_display = CommonActions.checkDisplayed(btn_Logout);
             Assert.assertEquals(btn_Logout_display, Boolean.TRUE, "Button Logout is not displayed.");
             Reporter.log("Button Logout displayed.", true);
             Thread.sleep(8000);
 
             //Step 3: Logout for next test case
             Reporter.log("Step 3: Logout for next test case.", true);
-            Actions.clickObject(QAHomePage.btn_Logout(driver));
+            CommonActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
         } catch (InterruptedException e) {
             Reporter.log(e.toString());
@@ -170,8 +170,8 @@ public class MC2_142 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = driver.getTitle();
@@ -182,10 +182,10 @@ public class MC2_142 {
 
             //Step 2: Log in with  SSO application. Refresh the commerce website
             Reporter.log("Step 2: Log in with  SSO application. Refresh the commerce website", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
             Reporter.log("Provide valid login credentials and click on login CTA.", true);
             LoginQA.Execute(driver);
@@ -197,10 +197,10 @@ public class MC2_142 {
             driver.manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
             Thread.sleep(8000);
             Reporter.log("Navigated to My Canon page.", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_MyAccount = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_MyAccount);
+            CommonActions.clickObject(btn_MyAccount);
             Thread.sleep(8000);
             Reporter.log("Verify My Canon page displayed:", true);
             String strMyCanonTitle = driver.getTitle();
@@ -211,26 +211,26 @@ public class MC2_142 {
 
             //Step 3: Click on Account button at the top right corner
             Reporter.log("Step 3: Click on Account button at the top right corner", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             //Verify My Account button
             Reporter.log("Verify My Account button in Account dropdown is displayed:", true);
             btn_MyAccount = QAHomePage.btn_Login(driver);
-            Boolean btn_MyAccount_display = Actions.checkDisplayed(btn_MyAccount);
+            Boolean btn_MyAccount_display = CommonActions.checkDisplayed(btn_MyAccount);
             Assert.assertEquals(btn_MyAccount_display, Boolean.TRUE, "Button My Account not displayed.");
             Reporter.log("Button My Account displayed.", true);
             Thread.sleep(8000);
             //Verify Logout button
             Reporter.log("Verify Logout button in Account dropdown is displayed:", true);
             WebElement btn_Logout = QAHomePage.btn_Logout(driver);
-            Boolean btn_Logout_display = Actions.checkDisplayed(btn_Logout);
+            Boolean btn_Logout_display = CommonActions.checkDisplayed(btn_Logout);
             Assert.assertEquals(btn_Logout_display, Boolean.TRUE, "Button Logout is not displayed.");
             Reporter.log("Button Logout displayed.", true);
             Thread.sleep(8000);
 
             //Step 4: Navigating to the commerce website
             Reporter.log("Step 4: Navigating to the commerce website", true);
-            Actions.clickObject(QAHomePage.btn_Logout(driver));
+            CommonActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
             strCurTitle = driver.getTitle();
             Reporter.log("Verify after logout:", true);
@@ -242,14 +242,14 @@ public class MC2_142 {
             Reporter.log("Step 5: Log in a SSO application. Refresh the commerce website", true);
             //Close popup
             btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
             LoginQA.Execute(driver);
             Thread.sleep(8000);
@@ -259,33 +259,33 @@ public class MC2_142 {
             //Verify User's name
             Reporter.log("Verify User's name is displayed at the top right corner:", true);
             WebElement lb_UserName = QAHomePage.lb_UserName(driver);
-            Boolean lb_UserName_display = Actions.checkDisplayed(lb_UserName);
+            Boolean lb_UserName_display = CommonActions.checkDisplayed(lb_UserName);
             Assert.assertEquals(lb_UserName_display, Boolean.TRUE, "User's name not displayed.");
             Reporter.log("User's name displayed.", true);
             Thread.sleep(8000);
 
             //Step 6: Click on Account button at the top right corner
             Reporter.log("Step 6: Click on Account button at the top right corner", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             //Verify My Account button
             Reporter.log("Verify My Account button in Account dropdown is displayed:", true);
             btn_MyAccount = QAHomePage.btn_Login(driver);
-            btn_MyAccount_display = Actions.checkDisplayed(btn_MyAccount);
+            btn_MyAccount_display = CommonActions.checkDisplayed(btn_MyAccount);
             Assert.assertEquals(btn_MyAccount_display, Boolean.TRUE, "Button My Account not displayed.");
             Reporter.log("Button My Account displayed.", true);
             Thread.sleep(8000);
             //Verify Logout button
             Reporter.log("Verify Logout button in Account dropdown is displayed:", true);
             btn_Logout = QAHomePage.btn_Logout(driver);
-            btn_Logout_display = Actions.checkDisplayed(btn_Logout);
+            btn_Logout_display = CommonActions.checkDisplayed(btn_Logout);
             Assert.assertEquals(btn_Logout_display, Boolean.TRUE, "Button Logout is not displayed.");
             Reporter.log("Button Logout displayed.", true);
             Thread.sleep(8000);
 
             //Step 7: Logout for next test case
             Reporter.log("Step 7: Logout for next test case.", true);
-            Actions.clickObject(QAHomePage.btn_Logout(driver));
+            CommonActions.clickObject(QAHomePage.btn_Logout(driver));
             Thread.sleep(8000);
         } catch (InterruptedException e) {
             Reporter.log(e.toString());
@@ -301,8 +301,8 @@ public class MC2_142 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = driver.getTitle();
@@ -313,10 +313,10 @@ public class MC2_142 {
 
             //Step 2: Click on Account button at the top right corner. Click on Sign In CTA in the Account dropdown.
             Reporter.log("Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
             Reporter.log("Verify Login page displayed:", true);
             String strLoginTitle = "Canon Federation SSO";
@@ -345,14 +345,14 @@ public class MC2_142 {
             //Verify forgot password button displayed
             Reporter.log("Verify forgot password button displayed:", true);
             WebElement btn_forgot = QALoginPage.btn_forgot(driver);
-            Boolean btn_forgot_display = Actions.checkDisplayed(btn_forgot);
+            Boolean btn_forgot_display = CommonActions.checkDisplayed(btn_forgot);
             Assert.assertEquals(btn_forgot_display, Boolean.TRUE, "Forgot password button not displayed.");
             Reporter.log("Forgot password button displayed.", true);
             Thread.sleep(8000);
             //Verify Signup button displayed
             Reporter.log("Verify signup button button displayed:", true);
             WebElement btn_signup = QALoginPage.btn_signup(driver);
-            Boolean btn_signup_display = Actions.checkDisplayed(btn_signup);
+            Boolean btn_signup_display = CommonActions.checkDisplayed(btn_signup);
             Assert.assertEquals(btn_signup_display, Boolean.TRUE, "Signup button not displayed.");
             Reporter.log("Signup button displayed.", true);
             Thread.sleep(8000);
@@ -393,8 +393,8 @@ public class MC2_142 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = driver.getTitle();
@@ -405,10 +405,10 @@ public class MC2_142 {
 
             //Step 2: Click on Account button at the top right corner. Click on Sign In CTA in the Account dropdown.
             Reporter.log("Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
             Reporter.log("Verify Login page displayed:", true);
             String strLoginTitle = "Canon Federation SSO";
@@ -425,7 +425,7 @@ public class MC2_142 {
             //Step 4: Click on Sign In button
             Reporter.log("Step 4: Click on Sign In button", true);
             Reporter.log("Verify alert message 'The email address or password you provided is incorrect' displayed:", true);
-            String displayMsg = Actions.getTexts(QALoginPage.txt_ErrorMessage(driver));
+            String displayMsg = CommonActions.getTexts(QALoginPage.txt_ErrorMessage(driver));
             String errorMsg = "The email address or password you provided is incorrect. Please try entering this information again.";
             Assert.assertEquals(displayMsg, errorMsg, "Error message not display correctly.");
             Reporter.log("Error message displayed correctly.", true);
@@ -439,7 +439,7 @@ public class MC2_142 {
             //Step 6: Click on Sign In button
             Reporter.log("Step 6: Click on Sign In button", true);
             Reporter.log("Verify alert message 'The email address or password you provided is incorrect' displayed:", true);
-            displayMsg = Actions.getTexts(QALoginPage.txt_ErrorMessage(driver));
+            displayMsg = CommonActions.getTexts(QALoginPage.txt_ErrorMessage(driver));
             errorMsg = "The email address or password you provided is incorrect. Please try entering this information again.";
             Assert.assertEquals(displayMsg, errorMsg, "Error message not display correctly.");
             Reporter.log("Error message displayed correctly.", true);
@@ -458,8 +458,8 @@ public class MC2_142 {
             driver.get(Constants.MagentoQA_Url);
             //Close popup promo
             WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
-            if (Actions.checkDisplayed(btn_ClosePopupPromo)) {
-                Actions.clickObject(btn_ClosePopupPromo);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
                 Thread.sleep(8000);
             }
             String strHomeTitle = driver.getTitle();
@@ -470,10 +470,10 @@ public class MC2_142 {
 
             //Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown.
             Reporter.log("Step 2: Click on Account button at the top right corner and click on Sign In CTA in the Account dropdown", true);
-            Actions.clickObject(QAHomePage.ico_User(driver));
+            CommonActions.clickObject(QAHomePage.ico_User(driver));
             Thread.sleep(8000);
             WebElement btn_Login = QAHomePage.btn_Login(driver);
-            Actions.clickObject(btn_Login);
+            CommonActions.clickObject(btn_Login);
             Thread.sleep(8000);
             Reporter.log("Verify Login page displayed:", true);
             String strLoginTitle = driver.getTitle();

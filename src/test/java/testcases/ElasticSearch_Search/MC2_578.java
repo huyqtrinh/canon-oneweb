@@ -2,7 +2,7 @@ package testcases.ElasticSearch_Search;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.Search;
 import PageObjects.WebBrowser.QA.QAHomePage;
 import org.openqa.selenium.By;
@@ -40,7 +40,7 @@ public class MC2_578 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
         Thread.sleep(12000);
         Reporter.log("Step 2: Enter the text \"@#$!%\"  in search text box and press Enter");
         Search.SearchString(driver, var_invalidSearchString);
@@ -74,7 +74,7 @@ public class MC2_578 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
         Thread.sleep(12000);
         Reporter.log("Step 2: Enter the search string in search text box and press Enter");
         Search.SearchString(driver, var_validSearchString);
@@ -83,7 +83,7 @@ public class MC2_578 {
         try {
             Reporter.log("Step 3: Verify the products in each results");
 
-            Assert.assertTrue(Actions.checkDisplayed(QAHomePage.lb_SearchResult(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.lb_SearchResult(driver)));
 
             // [SN] Run loop to check search result
             int VP_NumofSearchResult = Integer.parseInt(QAHomePage.lb_SearchResultNumber(driver).getText());
@@ -109,7 +109,7 @@ public class MC2_578 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
         Thread.sleep(12000);
         Reporter.log("Step 2: Enter the synonym search string in search text box and press Enter");
         Search.SearchString(driver, var_incorrectSearchString);
@@ -118,7 +118,7 @@ public class MC2_578 {
         try {
             Reporter.log("Step 3: Get and verify Search Result");
 
-            Assert.assertTrue(Actions.checkDisplayed(QAHomePage.lb_SearchResult(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.lb_SearchResult(driver)));
 
             // [SN] Run loop to check search result
             int VP_NumofSearchResult = Integer.parseInt(QAHomePage.lb_SearchResultNumber(driver).getText());
