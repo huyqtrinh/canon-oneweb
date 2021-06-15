@@ -1,4 +1,4 @@
-package testcases.MyOrders;
+package testcases.MyOrders.MC2_4088;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
