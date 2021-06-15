@@ -26,7 +26,7 @@ public class MC2_5948 {
     }
 
     @Test()
-    public void HIT_MC2_142_TC02_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_navigating_to_the_commerce_website_after_logging_in_a_SSO_application() {
+    public void MC2_5948_TC02_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_navigating_to_the_commerce_website_after_logging_in_a_SSO_application() {
         try {
             //Step 1: Log into SSO application. Navigating to the commerce website.
             Reporter.log("Start TC_02 on browser " + Constants.Browser, true);

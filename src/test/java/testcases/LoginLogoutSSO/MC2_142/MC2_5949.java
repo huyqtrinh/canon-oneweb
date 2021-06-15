@@ -26,7 +26,7 @@ public class MC2_5949 {
     }
 
     @Test()
-    public void HIT_MC2_142_TC03_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_refresh_the_commerce_website_after_logging_in_a_SSO_application() {
+    public void MC2_5949_TC03_Login_Logout_SSO_Verify_that_user_is_logged_in_automatically_when_refresh_the_commerce_website_after_logging_in_a_SSO_application() {
         try {
             //Step 1: Launch Canada web application with the URL
             Reporter.log("Start TC_03 on browser " + Constants.Browser, true);

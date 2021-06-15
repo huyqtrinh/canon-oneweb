@@ -26,7 +26,7 @@ public class MC2_5952 {
     }
 
     @Test()
-    public void HIT_MC2_142_TC06_Login_Logout_SSO_Verify_Login_function_when_user_is_at_Home_Page() {
+    public void MC2_5952_TC06_Login_Logout_SSO_Verify_Login_function_when_user_is_at_Home_Page() {
         try {
             //Step 1: Launch Canada web application with the URL
             Reporter.log("Start TC_06 on browser " + Constants.Browser, true);

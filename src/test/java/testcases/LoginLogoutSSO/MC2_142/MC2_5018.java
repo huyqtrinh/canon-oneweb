@@ -26,7 +26,7 @@ public class MC2_5018 {
     }
 
     @Test()
-    public void HIT_MC2_142_TC001_Login_Validate_login_from_the_Canada_frontend_application_with_registered_User_and_Navigate_to_Mycanon_page() {
+    public void MC2_5018_TC001_Login_Validate_login_from_the_Canada_frontend_application_with_registered_User_and_Navigate_to_Mycanon_page() {
         try {
             //Step 1: Launch Canada web application with the URL
             Reporter.log("Start TC_001 on browser " + Constants.Browser, true);

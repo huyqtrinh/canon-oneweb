@@ -27,7 +27,7 @@ public class MC2_5951 {
     }
 
     @Test()
-    public void HIT_MC2_142_TC05_Login_Logout_SSO_Verify_that_user_should_not_login_with_invalid_credentials_with_Email_and_Password() {
+    public void MC2_5951_TC05_Login_Logout_SSO_Verify_that_user_should_not_login_with_invalid_credentials_with_Email_and_Password() {
         try {
             //Step 1: Launch Canada web application with the URL
             Reporter.log("Start TC_05 on browser " + Constants.Browser, true);
