@@ -2,7 +2,7 @@ package testcases.MyOrders;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.LoginQA;
 import PageObjects.WebBrowser.QA.MyAccountPage;
 import PageObjects.WebBrowser.QA.QAHomePage;
@@ -34,7 +34,7 @@ public class MC2_4088 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(QAHomePage.ico_User(driver)));
@@ -46,26 +46,26 @@ public class MC2_4088 {
 
         //Step 2: Click on Your Account dropdown link and click on Login link
         Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
         Thread.sleep(2000);
 
         Reporter.log("Verify button login displayed:", true);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
         Reporter.log("Button login displayed.", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-        Assert.assertTrue(Actions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
+        Assert.assertTrue(CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
         Reporter.log("Navigated to Mycanon login screen", true);
 
         //Step 3: User should provide valid login credentials and click on login CTA
         Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
         LoginQA.Execute(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
 
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
         Reporter.log("Login successfully.", true);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the Canada Home page");
@@ -73,23 +73,23 @@ public class MC2_4088 {
 
         // Step 4: Click on My account from your Account
         Reporter.log("Step 4: Click on My account from your Account", true);
-        Actions.HandlingPromoPopup(driver);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
+        CommonActions.HandlingPromoPopup(driver);
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
         Reporter.log("Click on My account link", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
 
         WebDriverWait wait_MyAccountPage = new WebDriverWait(driver, 10);
         wait_MyAccountPage.until(ExpectedConditions.visibilityOf(MyAccountPage.LeftMenu_MyAccount(driver)));
 
         // Step 5: Click on "Account Setting" from My Account page
-        Actions.clickObject((MyAccountPage.LeftMenu_AccountSettings(driver)));
+        CommonActions.clickObject((MyAccountPage.LeftMenu_AccountSettings(driver)));
         Thread.sleep(2000);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, "Account Settings", "Not navigate to My Orders Page page");
     }
 
     @Test()
-    public void HIT_MC2_4088_TC_002_Update_Address_in_My_Canon() throws InterruptedException {
+    public void HIT_MC2_4088_TC_002_Update_Address_in_My_Canon(){
 
     }
     @AfterTest
