@@ -27,7 +27,7 @@ public class MC2_5877 {
     }
 
     @Test()
-    public void HIT_MC2_MC2_437_TC_001_Product_Facets_Verify_for_colors_under_shopping_option() {
+    public void MC2_5877_MC2_9760_TC_001_Product_Facets_Verify_for_colors_under_shopping_option() {
         try {
             //Step 1: Launch the Home page for CCI
             Reporter.log("Start TC_001 on browser " + Constants.Browser, true);
