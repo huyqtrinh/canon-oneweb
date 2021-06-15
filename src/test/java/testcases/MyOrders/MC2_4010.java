@@ -2,7 +2,7 @@ package testcases.MyOrders;
 
 import Utilities.Constants;
 import Modules.Commons.LaunchBrowser;
-import Utilities.Actions;
+import Utilities.CommonActions;
 import Modules.QA.LoginQA;
 import Modules.QA.MyOrderPageActions;
 import PageObjects.WebBrowser.QA.MyAccountPage;
@@ -46,7 +46,7 @@ public class MC2_4010 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(QAHomePage.ico_User(driver)));
@@ -58,26 +58,26 @@ public class MC2_4010 {
 
         //Step 2: Click on Your Account dropdown link and click on Login link
         Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
         Thread.sleep(2000);
 
         Reporter.log("Verify button login displayed:", true);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
         Reporter.log("Button login displayed.", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-        Assert.assertTrue(Actions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
+        Assert.assertTrue(CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
         Reporter.log("Navigated to Mycanon login screen", true);
 
         //Step 3: User should provide valid login credentials and click on login CTA
         Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
         LoginQA.Execute(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
 
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
         Reporter.log("Login successfully.", true);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the Canada Home page");
@@ -85,35 +85,35 @@ public class MC2_4010 {
 
         // Step 4: Click on My account from your Account
         Reporter.log("Step 4: Click on My account from your Account", true);
-        Actions.HandlingPromoPopup(driver);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
+        CommonActions.HandlingPromoPopup(driver);
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
         Reporter.log("Click on My account link", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
 
         WebDriverWait wait_MyAccountPage = new WebDriverWait(driver, 10);
         wait_MyAccountPage.until(ExpectedConditions.visibilityOf(MyAccountPage.LeftMenu_MyAccount(driver)));
 
         Reporter.log("Verify Left Menu items", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
 
         // Step 5: Click on "My order" from My Account page
-        Actions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
+        CommonActions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
         Thread.sleep(2000);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, "My Orders", "Not navigate to My Orders Page page");
 
         Reporter.log("Verify SKU Search textbox", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
         Reporter.log("The SKU Search textbox displays correctly", true);
 
         Reporter.log("Verify My Orders table", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
         Reporter.log("The My Orders table displays correctly", true);
 
         Reporter.log("Verify My Orders table column headers", true);
@@ -121,7 +121,7 @@ public class MC2_4010 {
         //int rows_count = rows_table.size();
         int rows_count = 1;
         int row = 0;
-        String celtext = "";
+        String celtext;
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("th"));
             int columns_count = Columns_row.size();
@@ -169,7 +169,6 @@ public class MC2_4010 {
         Reporter.log("Verify My Orders table details", true);
         rows_count = rows_table.size();
         row = 1;
-        celtext = "";
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
             int columns_count = Columns_row.size();
@@ -192,7 +191,7 @@ public class MC2_4010 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(QAHomePage.ico_User(driver)));
@@ -204,26 +203,26 @@ public class MC2_4010 {
 
         //Step 2: Click on Your Account dropdown link and click on Login link
         Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
         Thread.sleep(2000);
 
         Reporter.log("Verify button login displayed:", true);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
         Reporter.log("Button login displayed.", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-        Assert.assertTrue(Actions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
+        Assert.assertTrue(CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
         Reporter.log("Navigated to Mycanon login screen", true);
 
         //Step 3: User should provide valid login credentials and click on login CTA
         Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
         LoginQA.Execute(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
 
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
         Reporter.log("Login successfully.", true);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the Canada Home page");
@@ -231,36 +230,36 @@ public class MC2_4010 {
 
         // Step 4: Click on My account from your Account
         Reporter.log("Step 4: Click on My account from your Account", true);
-        Actions.HandlingPromoPopup(driver);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
+        CommonActions.HandlingPromoPopup(driver);
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
         Reporter.log("Click on My account link", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
 
         WebDriverWait wait_MyAccountPage = new WebDriverWait(driver, 10);
         wait_MyAccountPage.until(ExpectedConditions.visibilityOf(MyAccountPage.LeftMenu_MyAccount(driver)));
 
         Reporter.log("Verify Left Menu items", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
 
         // Step 5: Click on "My order" from My Account page
         Reporter.log("Step 5: Click on \"My Order\" from My Account page", true);
-        Actions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
+        CommonActions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
         Thread.sleep(2000);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, "My Orders", "Not navigate to My Orders Page page");
 
         Reporter.log("Verify SKU Search textbox", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
         Reporter.log("The SKU Search textbox displays correctly", true);
 
         Reporter.log("Verify My Orders table", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
         Reporter.log("The My Orders table displays correctly", true);
 
         Reporter.log("Verify My Orders table column headers", true);
@@ -268,7 +267,7 @@ public class MC2_4010 {
         //int rows_count = rows_table.size();
         int rows_count = 1;
         int row = 0;
-        String celtext = "";
+        String celtext;
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("th"));
             int columns_count = Columns_row.size();
@@ -316,7 +315,6 @@ public class MC2_4010 {
         Reporter.log("Verify My Orders table details", true);
         rows_count = rows_table.size();
         row = 1;
-        celtext = "";
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
             int columns_count = Columns_row.size();
@@ -333,8 +331,6 @@ public class MC2_4010 {
 
         // Step 6: Verify orders per page
         Reporter.log("Step 6: Verify orders per page", true);
-        rows_table = MyOrdersPage.tbl_Orders(driver).findElements(By.tagName("tr"));
-        rows_count = rows_table.size();
         int VP_rows_count;
         int Ex_NumofRow = 10;
         try {
@@ -395,7 +391,7 @@ public class MC2_4010 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(QAHomePage.ico_User(driver)));
@@ -407,26 +403,26 @@ public class MC2_4010 {
 
         //Step 2: Click on Your Account dropdown link and click on Login link
         Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
         Thread.sleep(2000);
 
         Reporter.log("Verify button login displayed:", true);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
         Reporter.log("Button login displayed.", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-        Assert.assertTrue(Actions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
+        Assert.assertTrue(CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
         Reporter.log("Navigated to Mycanon login screen", true);
 
         //Step 3: User should provide valid login credentials and click on login CTA
         Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
         LoginQA.Execute(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
 
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
         Reporter.log("Login successfully.", true);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the Canada Home page");
@@ -434,36 +430,36 @@ public class MC2_4010 {
 
         // Step 4: Click on My account from your Account
         Reporter.log("Step 4: Click on My account from your Account", true);
-        Actions.HandlingPromoPopup(driver);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
+        CommonActions.HandlingPromoPopup(driver);
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
         Reporter.log("Click on My account link", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
 
         WebDriverWait wait_MyAccountPage = new WebDriverWait(driver, 10);
         wait_MyAccountPage.until(ExpectedConditions.visibilityOf(MyAccountPage.LeftMenu_MyAccount(driver)));
 
         Reporter.log("Verify Left Menu items", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
 
         // Step 5: Click on "My order" from My Account page
         Reporter.log("Step 5: Click on \"My Order\" from My Account page", true);
-        Actions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
+        CommonActions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
         Thread.sleep(2000);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, "My Orders", "Not navigate to My Orders Page page");
 
         Reporter.log("Verify SKU Search textbox", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
         Reporter.log("The SKU Search textbox displays correctly", true);
 
         Reporter.log("Verify My Orders table", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
         Reporter.log("The My Orders table displays correctly", true);
 
         Reporter.log("Verify My Orders table column headers", true);
@@ -471,7 +467,7 @@ public class MC2_4010 {
         //int rows_count = rows_table.size();
         int rows_count = 1;
         int row = 0;
-        String celtext = "";
+        String celtext;
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("th"));
             int columns_count = Columns_row.size();
@@ -519,7 +515,6 @@ public class MC2_4010 {
         Reporter.log("Verify My Orders table details", true);
         rows_count = rows_table.size();
         row = 1;
-        celtext = "";
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
             int columns_count = Columns_row.size();
@@ -540,7 +535,7 @@ public class MC2_4010 {
         Thread.sleep(2000);
         try {
             boolean VP_7040 = driver.findElement(By.xpath("//div[@class='message info empty']/span")).isDisplayed();
-            if (VP_7040 == true) {
+            if (VP_7040) {
                 Assert.fail("MC2-7040 - HIT-MC2-5884-Under My Orders section, search functionality is not working by using SKU id.");
             }
         }
@@ -557,7 +552,7 @@ public class MC2_4010 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(QAHomePage.ico_User(driver)));
@@ -569,26 +564,26 @@ public class MC2_4010 {
 
         //Step 2: Click on Your Account dropdown link and click on Login link
         Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
         Thread.sleep(2000);
 
         Reporter.log("Verify button login displayed:", true);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
         Reporter.log("Button login displayed.", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-        Assert.assertTrue(Actions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
+        Assert.assertTrue(CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
         Reporter.log("Navigated to Mycanon login screen", true);
 
         //Step 3: User should provide valid login credentials and click on login CTA
         Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
         LoginQA.Execute(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
 
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
         Reporter.log("Login successfully.", true);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the Canada Home page");
@@ -596,36 +591,36 @@ public class MC2_4010 {
 
         // Step 4: Click on My account from your Account
         Reporter.log("Step 4: Click on My account from your Account", true);
-        Actions.HandlingPromoPopup(driver);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
+        CommonActions.HandlingPromoPopup(driver);
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
         Reporter.log("Click on My account link", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
 
         WebDriverWait wait_MyAccountPage = new WebDriverWait(driver, 10);
         wait_MyAccountPage.until(ExpectedConditions.visibilityOf(MyAccountPage.LeftMenu_MyAccount(driver)));
 
         Reporter.log("Verify Left Menu items", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
 
         // Step 5: Click on "My order" from My Account page
         Reporter.log("Step 5: Click on \"My Order\" from My Account page", true);
-        Actions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
+        CommonActions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
         Thread.sleep(2000);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, "My Orders", "Not navigate to My Orders Page page");
 
         Reporter.log("Verify SKU Search textbox", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
         Reporter.log("The SKU Search textbox displays correctly", true);
 
         Reporter.log("Verify My Orders table", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
         Reporter.log("The My Orders table displays correctly", true);
 
         Reporter.log("Verify My Orders table column headers", true);
@@ -633,7 +628,7 @@ public class MC2_4010 {
         //int rows_count = rows_table.size();
         int rows_count = 1;
         int row = 0;
-        String celtext = "";
+        String celtext;
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("th"));
             int columns_count = Columns_row.size();
@@ -681,7 +676,6 @@ public class MC2_4010 {
         Reporter.log("Verify My Orders table details", true);
         rows_count = rows_table.size();
         row = 1;
-        celtext = "";
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
             int columns_count = Columns_row.size();
@@ -703,7 +697,7 @@ public class MC2_4010 {
         Reporter.log("Verify message return when no search result", true);
         try {
             boolean VP_nosearchresult = driver.findElement(By.xpath("//div[@class='message info empty']/span")).isDisplayed();
-            if (VP_nosearchresult == true) {
+            if (VP_nosearchresult) {
                 String VP_noresultmessage = driver.findElement(By.xpath("//div[@class='message info empty']/span")).getText();
                 Assert.assertEquals(VP_noresultmessage, Ex_NoSearchResult);
                 Reporter.log("The message returns correctly when no search result", true);
@@ -724,7 +718,7 @@ public class MC2_4010 {
         Reporter.log("Step 1: Launch the Home page for CCI");
         driver.get(Constants.MagentoQA_Url);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        Actions.HandlingPromoPopup(driver);
+        CommonActions.HandlingPromoPopup(driver);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(QAHomePage.ico_User(driver)));
@@ -736,26 +730,26 @@ public class MC2_4010 {
 
         //Step 2: Click on Your Account dropdown link and click on Login link
         Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
         Thread.sleep(2000);
 
         Reporter.log("Verify button login displayed:", true);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Button Login is not displayed.");
         Reporter.log("Button login displayed.", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-        Assert.assertTrue(Actions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
+        Assert.assertTrue(CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver)), "Not navigated to Mycanon login screen");
         Reporter.log("Navigated to Mycanon login screen", true);
 
         //Step 3: User should provide valid login credentials and click on login CTA
         Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
         LoginQA.Execute(driver);
         driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        Actions.clickObject(QAHomePage.ico_User(driver));
+        CommonActions.clickObject(QAHomePage.ico_User(driver));
 
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver)), "Login not successfully.");
         Reporter.log("Login successfully.", true);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, strHomeTitle, "Not navigate to the Canada Home page");
@@ -763,36 +757,36 @@ public class MC2_4010 {
 
         // Step 4: Click on My account from your Account
         Reporter.log("Step 4: Click on My account from your Account", true);
-        Actions.HandlingPromoPopup(driver);
-        Assert.assertTrue(Actions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
+        CommonActions.HandlingPromoPopup(driver);
+        Assert.assertTrue(CommonActions.checkDisplayed(QAHomePage.btn_Login(driver)), "Login not successfully.");
         Reporter.log("Click on My account link", true);
-        Actions.clickObject(QAHomePage.btn_Login(driver));
+        CommonActions.clickObject(QAHomePage.btn_Login(driver));
 
         WebDriverWait wait_MyAccountPage = new WebDriverWait(driver, 10);
         wait_MyAccountPage.until(ExpectedConditions.visibilityOf(MyAccountPage.LeftMenu_MyAccount(driver)));
 
         Reporter.log("Verify Left Menu items", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
-        Assert.assertTrue(Actions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyOrders(driver)), "The \"My Order\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MySubscriptions(driver)), "The \"My Subscriptions\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_MyWishList(driver)), "The \"My Wish List\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_StoreCredit(driver)), "The \"Store Credit\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_GiftCard(driver)), "The \"Gift Card\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_CompanyStructure(driver)), "The \"Company Structure\" left menu not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyAccountPage.LeftMenu_AccountSettings(driver)), "The \"Account Settings\" left menu not displays");
 
         // Step 5: Click on "My order" from My Account page
         Reporter.log("Step 5: Click on \"My Order\" from My Account page", true);
-        Actions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
+        CommonActions.clickObject((MyAccountPage.LeftMenu_MyOrders(driver)));
         Thread.sleep(2000);
         strCurTitle = driver.getTitle();
         Assert.assertEquals(strCurTitle, "My Orders", "Not navigate to My Orders Page page");
 
         Reporter.log("Verify SKU Search textbox", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbx_Search(driver)), "The \"SKU Search\" text box not displays");
         Reporter.log("The SKU Search textbox displays correctly", true);
 
         Reporter.log("Verify My Orders table", true);
-        Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
+        Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tbl_Orders(driver)), "The Orders table not displays");
         Reporter.log("The My Orders table displays correctly", true);
 
         Reporter.log("Verify My Orders table column headers", true);
@@ -800,7 +794,7 @@ public class MC2_4010 {
         //int rows_count = rows_table.size();
         int rows_count = 1;
         int row = 0;
-        String celtext = "";
+        String celtext;
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("th"));
             int columns_count = Columns_row.size();
@@ -871,7 +865,6 @@ public class MC2_4010 {
         Reporter.log("Verify My Orders table details", true);
         rows_count = rows_table.size();
         row = 1;
-        celtext = "";
         while (row < rows_count) {
             List < WebElement > Columns_row = rows_table.get(row).findElements(By.tagName("td"));
             int columns_count = Columns_row.size();
@@ -888,22 +881,22 @@ public class MC2_4010 {
 
         // Step 6: Click on "Filter" button
         Reporter.log("Step 6: Click on \"Filter\" button", true);
-        Actions.clickObject(MyOrdersPage.btn_Filter(driver));
+        CommonActions.clickObject(MyOrdersPage.btn_Filter(driver));
         Thread.sleep(1000);
         Reporter.log("Verify the filter section displays correctly", true);
 
         try {
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.btn_CloseFilter(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tb_Filter_OrderNumber(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tb_Filter_InvoiceNumber(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.ddl_Filter_CreatedBy(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.ddl_Filter_OrderStatus(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tb_Filter_OrderDateFrom(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tb_Filter_OrderDateTo(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tb_Filter_OrderTotalMin(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.tb_Filter_OrderTotalMax(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.btn_Apply(driver)));
-            Assert.assertTrue(Actions.checkDisplayed(MyOrdersPage.btn_ClearAll(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.btn_CloseFilter(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tb_Filter_OrderNumber(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tb_Filter_InvoiceNumber(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.ddl_Filter_CreatedBy(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.ddl_Filter_OrderStatus(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tb_Filter_OrderDateFrom(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tb_Filter_OrderDateTo(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tb_Filter_OrderTotalMin(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.tb_Filter_OrderTotalMax(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.btn_Apply(driver)));
+            Assert.assertTrue(CommonActions.checkDisplayed(MyOrdersPage.btn_ClearAll(driver)));
             Reporter.log("All items in filter section display correctly", true);
         }
         catch(Exception e) {
