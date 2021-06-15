@@ -5,7 +5,7 @@ import PageObjects.WebBrowser.QA.QAHomePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
-public class Search {
+public class MainPageActions {
     public static void SearchString(WebDriver driver, String sSearchKey) throws InterruptedException {
 
         CommonActions.setTexts(QAHomePage.tb_Search(driver), sSearchKey);
