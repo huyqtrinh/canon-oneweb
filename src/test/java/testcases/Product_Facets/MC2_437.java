@@ -1,4 +1,4 @@
-package testcases.webbrowser.Product_Facets.epic;
+package testcases.Product_Facets;
 
 import PageObjects.WebBrowser.QA.CamerasPage;
 import PageObjects.WebBrowser.QA.QAHomePage;
@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 public class MC2_437 {
     WebDriver driver;
+    int row = 4;
 
     @BeforeTest
     public void StartBrowser() {
@@ -97,13 +98,13 @@ public class MC2_437 {
             String strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, strHomeTitle, "Canada home page not displayed.");
             Reporter.log("Canada home page displayed.", true);
-            Thread.sleep(8000);
+            Thread.sleep(4000);
 
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
             CommonActions.clickObject(btn_Cameras);
-            Thread.sleep(8000);
+            Thread.sleep(2000);
             Reporter.log("Verify Cameras page displayed:", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
             strCurTitle = driver.getTitle();
@@ -130,7 +131,6 @@ public class MC2_437 {
             //Step 5: Verify Click on "+" for colors
             Reporter.log("Step 5: Verify Click on '+' for color:", true);
             CommonActions.clickObject(lb_Color);
-            int row = 4;
             WebElement lb_ColorExpand = ShopAllCamerasPage.lb_ColorExpand(driver,row);
             Boolean lb_ColorExpand_Display = CommonActions.checkDisplayed(lb_ColorExpand);
             Assert.assertEquals(lb_ColorExpand_Display, Boolean.TRUE, "'+' not clicked.");
@@ -161,13 +161,13 @@ public class MC2_437 {
             String strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, strHomeTitle, "Canada home page not displayed.");
             Reporter.log("Canada home page displayed.", true);
-            Thread.sleep(8000);
+            Thread.sleep(4000);
 
             //Step 2: Click on cameras from mega menu
             Reporter.log("Step 2: Click on cameras from mega menu", true);
             WebElement btn_Cameras = QAHomePage.btn_Cameras(driver);
             CommonActions.clickObject(btn_Cameras);
-            Thread.sleep(8000);
+            Thread.sleep(2000);
             Reporter.log("Verify Cameras page displayed'", true);
             String strCamerasTitle = "Shop Canon Cameras | Canon Canada, Inc.";
             strCurTitle = driver.getTitle();
@@ -195,7 +195,7 @@ public class MC2_437 {
             //Step 5: Verify Click on "+" for colors
             Reporter.log("Step 5: Verify Click on '+' for color:", true);
             CommonActions.clickObject(lb_Color);
-            int row = 4;
+
             WebElement lb_ColorExpand = ShopAllCamerasPage.lb_ColorExpand(driver,row);
             Boolean lb_ColorExpand_Display = CommonActions.checkDisplayed(lb_ColorExpand);
             Assert.assertEquals(lb_ColorExpand_Display, Boolean.TRUE, "'+' not clicked.");
@@ -205,57 +205,24 @@ public class MC2_437 {
             String form_Color_Text = form_Color.getText();
             Reporter.log(form_Color_Text, true);
 
-//            //Black
-//            WebElement Color_Black = ShopAllCamerasPage.Color_Black(driver);
-//            String Color_Black_text = Color_Black.getText();
-//            Reporter.log(Color_Black_text, true);
-//            Reporter.log("---------------------", true);
-//            //Blue
-//            WebElement Color_Blue = ShopAllCamerasPage.Color_Blue(driver);
-//            String Color_Blue_text = Color_Blue.getText();
-//            Reporter.log(Color_Blue_text, true);
-//            Reporter.log("---------------------", true);
-//            //Green
-//            WebElement Color_Green = ShopAllCamerasPage.Color_Green(driver);
-//            String Color_Green_text = Color_Green.getText();
-//            Reporter.log(Color_Green_text, true);
-//            Reporter.log("---------------------", true);
-//            //Gray
-//            WebElement Color_Gray = ShopAllCamerasPage.Color_Gray(driver);
-//            String Color_Gray_text = Color_Gray.getText();
-//            Reporter.log(Color_Gray_text, true);
-//            Reporter.log("---------------------", true);
-//            //Pink
-//            WebElement Color_Pink = ShopAllCamerasPage.Color_Pink(driver);
-//            String Color_Pink_text = Color_Pink.getText();
-//            Reporter.log(Color_Pink_text, true);
-//            Reporter.log("---------------------", true);
-//            //Silver
-//            WebElement Color_Silver = ShopAllCamerasPage.Color_Silver(driver);
-//            String Color_Silver_text = Color_Silver.getText();
-//            Reporter.log(Color_Silver_text, true);
-//            Reporter.log("---------------------", true);
-//            //Gold
-//            WebElement Color_Gold = ShopAllCamerasPage.Color_Gold(driver);
-//            String Color_Gold_text = Color_Gold.getText();
-//            Reporter.log(Color_Gold_text, true);
-//            Reporter.log("---------------------", true);
-//            //White
-//            WebElement Color_White = ShopAllCamerasPage.Color_White(driver);
-//            String Color_White_text = Color_White.getText();
-//            Reporter.log(Color_White_text, true);
-//            Reporter.log("---------------------", true);
-
             //Step 6: Click on any color which listed under colors
             Reporter.log("Step 6: Click on any color which listed under colors", true);
             WebElement Color_Black = ShopAllCamerasPage.Color_Black(driver,row);
-            String Color_Black_Text = Color_Black.getCssValue("background-color");
             CommonActions.clickObject(Color_Black);
-
-            Reporter.log(Color_Black_Text, true);
+            //Verify selected color visibly with black circle
             WebElement Circle_Color = ShopAllCamerasPage.Circle_Color(driver);
-            String Circle_Color_Display = ((JavascriptExecutor)driver).executeScript("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('border');",Circle_Color).toString();
-            Reporter.log("Selected color visibly with " + Circle_Color_Display + " color", true);
+            String Circle_Color_Display = ((JavascriptExecutor)driver).executeScript("return window.getComputedStyle(arguments[0], ':after').getPropertyValue('border-top-color');",Circle_Color).toString();
+            String Black_Circle = "rgb(0, 0, 0)";
+            Reporter.log("Verify selected color visibly with black circle:", true);
+            if(Circle_Color_Display.equals(Black_Circle)){
+                Reporter.log("Selected color visibly with black circle", true);
+            } else {
+                Reporter.log("Selected color not visibly with black circle", true);
+            }
+
+            Color_Black = ShopAllCamerasPage.Color_Black(driver,row);
+            String Color_Black_Text = Color_Black.getCssValue("background-color");
+            Reporter.log(Color_Black_Text, true);
 
             WebElement btn_Clear_Filter = ShopAllCamerasPage.btn_Clear_Filter(driver);
             CommonActions.clickObject(btn_Clear_Filter);
@@ -367,7 +334,7 @@ public class MC2_437 {
 
     @AfterTest
     public void closeDriver() {
-//        driver.manage().deleteAllCookies();
-//        driver.quit();
+        driver.manage().deleteAllCookies();
+        driver.quit();
     }
 }

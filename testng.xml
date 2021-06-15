@@ -67,7 +67,7 @@
 <!--                    </include>-->
 <!--                </methods>-->
 <!--            </class>-->
-            <class name="testcases.webbrowser.Product_Facets.epic.MC2_437">
+            <class name="testcases.Product_Facets.MC2_437">
                 <methods>
 <!--                    <include-->
 <!--                            name="HIT_MC2_MC2_437_TC_001_Product_Facets_Verify_for_colors_under_shopping_option">-->
