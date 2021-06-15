@@ -18,6 +18,7 @@ public class MyOrderPageActions {
         MyOrdersPage.tbx_Search(driver).sendKeys(Keys.RETURN);
         Thread.sleep(1000);
     }
+
     public static void FilterOrder(WebDriver driver, String sOrderNum, String sInvoiceNum, String sCreatedBy,
           String sOrderStatus, String sOrderDateFrom, String sOrderDateTo, String sOrderMin, String sOrderMax)
             throws InterruptedException
