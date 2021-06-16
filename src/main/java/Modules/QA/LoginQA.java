@@ -61,4 +61,19 @@ public class LoginQA {
         QALoginPage.btn_LogIn(driver).click();
         Thread.sleep(3000);
     }
+    public static void Execute_From_Data(WebDriver driver,String username, String password) throws InterruptedException {
+
+        QALoginPage.tb_Username(driver).clear();
+        QALoginPage.tb_Password(driver).clear();
+        Thread.sleep(2000);
+
+        QALoginPage.tb_Username(driver).sendKeys(username);
+        QALoginPage.tb_Password(driver).sendKeys(password);
+        Thread.sleep(3000);
+
+        QALoginPage.btn_LogIn(driver).click();
+
+        Thread.sleep(10000);
+
+    }
 }
