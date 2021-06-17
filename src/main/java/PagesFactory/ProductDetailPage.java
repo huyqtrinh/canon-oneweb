@@ -1,5 +1,6 @@
 package PagesFactory;
 
+import Utilities.Commons;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -72,9 +73,9 @@ public class ProductDetailPage {
         element.click();
     }
 
-    //Check if element displayed
-    public boolean isDisplayed(WebElement element){
-        return element.isDisplayed();
+    //Wait PDP display
+    public void waitPDPDisplay(){
+        Commons.waitForElementVisible(driver,btn_AddToCart);
     }
 
     //Click button "Add to cart" then verify popup display
