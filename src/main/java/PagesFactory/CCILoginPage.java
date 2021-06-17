@@ -1,9 +1,12 @@
 package PagesFactory;
 
+import Utilities.Commons;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 public class CCILoginPage {
     WebDriver driver;
@@ -36,6 +39,15 @@ public class CCILoginPage {
         PageFactory.initElements(driver, this);
     }
 
+    //Wait for login page displayed
+    public void waitLoginPageDisplayed(){
+        Commons.waitForElementVisible(driver,btn_Login);
+        Reporter.log("Verify Login page display", true);
+        Boolean display = btn_Login.isDisplayed();
+        Assert.assertEquals(display, Boolean.TRUE, "Login page not display");
+        Reporter.log("Login page displayed", true);
+    }
+
     //Login
     public void Login(String username, String password) throws InterruptedException {
         tbx_Username.clear();
@@ -44,7 +56,6 @@ public class CCILoginPage {
         tbx_Password.sendKeys(password);
         Thread.sleep(2000);
         btn_Login.click();
-        Thread.sleep(10000);
     }
 
     //Get message

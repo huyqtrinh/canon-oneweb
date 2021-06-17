@@ -1,5 +1,6 @@
 package PagesFactory;
 
+import Utilities.Commons;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -96,6 +97,11 @@ public class CCIHomePage {
         btn_Login.click();
     }
 
+    //Wait for home page display
+    public void waitHomePageDisplayed(){
+        Commons.waitForElementVisible(driver,icon_User);
+    }
+
     //Check if login successfully
     public boolean checkLoginSuccess() throws InterruptedException {
         return lb_UserName.isDisplayed();
@@ -147,7 +153,7 @@ public class CCIHomePage {
     }
 
     //Hover Category then select sub category
-    public void selectSubCategory(String category,String subcategory) throws InterruptedException {
+    public void hoverAndSelectSubCategory(String category,String subcategory) throws InterruptedException {
         Actions actions = new Actions(driver);
         switch (category) {
             case "Cameras":

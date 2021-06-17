@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class MC2_4972 {
+public class TC_006 {
     WebDriver driver;
     Boolean display = true;
     @BeforeMethod()

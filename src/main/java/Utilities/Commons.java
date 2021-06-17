@@ -1,7 +1,5 @@
 package Utilities;
 
-import PagesFactory.AddToCartPopup;
-import PagesFactory.ProductDetailPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
