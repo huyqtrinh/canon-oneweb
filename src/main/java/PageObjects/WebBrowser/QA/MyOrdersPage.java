@@ -29,7 +29,7 @@ public class MyOrdersPage {
         return element;
     }
     public static WebElement ctrl_Paging(WebDriver driver){
-        element = driver.findElement(By.xpath("//div[@class='pages']"));
+        element = driver.findElement(By.xpath("//div[@class='PagesFactory']"));
         return element;
     }
     // [SN] Add item for FILTER section

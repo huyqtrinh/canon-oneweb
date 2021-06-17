@@ -1,11 +1,9 @@
-package pages;
+package PagesFactory;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.concurrent.TimeUnit;
 
 public class CCILoginPage {
     WebDriver driver;
@@ -50,13 +48,7 @@ public class CCILoginPage {
     }
 
     //Get message
-    public String getMessage(String username, String password) throws InterruptedException {
-        tbx_Username.clear();
-        tbx_Username.sendKeys(username);
-        tbx_Password.clear();
-        tbx_Password.sendKeys(password);
-        btn_Login.click();
-        Thread.sleep(1000);
+    public String getMessage() {
         return txt_Message.getText();
     }
 

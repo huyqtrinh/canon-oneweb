@@ -14,43 +14,35 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CCIHomePage;
-import pages.CCILoginPage;
 
 import java.util.concurrent.TimeUnit;
 
-public class MC2_4967_MC2_10232 {
+public class TC_002 {
     WebDriver driver;
     Boolean display = true;
-    CCIHomePage objHomePage;
-    CCILoginPage objLoginPage;
-
     @BeforeMethod()
     public void beforeMethod() {
         driver = LaunchBrowser.getDriver(Constants.Browser);
     }
 
     @Test()
-    public void HIT_MC2_141_TC001_Login_Validate_login_from_the_Canada_frontend_application_with_registered_User() {
+    public void Login_Validate_login_from_MyCanon_application_and_navigate_to_MagentoCanada_with_registered_user() {
         try {
             //Step 1: Launch Canada web application with the URL
-            Reporter.log("Start testcase HIT_MC2_141_TC001 on browser " + Constants.Browser, true);
+            Reporter.log("Start testcase HIT_MC2_141_TC002 on browser " + Constants.Browser, true);
             Reporter.log("Step 1: Launch Canada web application with the URL", true);
             driver.get(Constants.MagentoQA_Url);
             driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-
-            //Create CCI home page object
-            objHomePage = new CCIHomePage(driver);
             //Close popup promo
-            objHomePage.closePromoPopup();
+            WebElement btn_ClosePopupPromo = QAHomePage.btn_ClosePopupPromo(driver);
+            if (CommonActions.checkDisplayed(btn_ClosePopupPromo)) {
+                CommonActions.clickObject(btn_ClosePopupPromo);
+                Thread.sleep(2000);
+            }
             String strHomeTitle = "Home page CCI EN";
             String strCurTitle = driver.getTitle();
             Assert.assertEquals(strCurTitle, strHomeTitle, "Canada home page not displayed.");
             Reporter.log("Canada home page displayed.", true);
-
-            //Step 2: Click on Your Account dropdown link and click on Login link
-            Reporter.log("Step 2: Click on Your Account dropdown link and click on Login link", true);
-            /*
             if(Constants.Emulator){
                 CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
@@ -62,27 +54,26 @@ public class MC2_4967_MC2_10232 {
                 Reporter.log("Button login displayed.", true);
                 CommonActions.clickObject(btn_Login);
             }
-
-             */
-
-            //Open login page
-            objHomePage.openLoginPage();
+            else {
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
+                Thread.sleep(2000);
+                WebElement btn_Login = QAHomePage.btn_Login(driver);
+                Boolean display = CommonActions.checkDisplayed(btn_Login);
+                Reporter.log("Verify button login displayed:", true);
+                Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
+                Reporter.log("Button login displayed.", true);
+                CommonActions.clickObject(btn_Login);
+            }
             driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-
-            //Create CCI login page object
-            objLoginPage = new CCILoginPage(driver);
+            Boolean display = CommonActions.checkDisplayed(QALoginPage.btn_LogIn(driver));
             Reporter.log("Verify navigated to the Federation services i.e. Mycanon Login screen", true);
-            display = objLoginPage.isOpenedLoginPage();
             Assert.assertEquals(display, Boolean.TRUE, "Not navigated to Mycanon login screen");
             Reporter.log("Navigated to Mycanon login screen", true);
 
-            //Step 3: User should provide valid login credentials and click on login CTA
-            Reporter.log("Step 3: User should provide valid login credentials and click on login CTA", true);
-            String username = "automation@gmail.com";
-            String password = "Canon123";
-            objLoginPage.Login(username,password);
-
-            /*
+            //Step 2: User should provide valid login credentials and click on login CTA
+            Reporter.log("Step 2: User should provide valid login credentials and click on login CTA", true);
+            LoginQA.Execute(driver);
+            driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
             if(Constants.Emulator){
                 CommonActions.clickObject(E_QAHomePage.menu_MenuList(driver));
                 Thread.sleep(1000);
@@ -90,10 +81,10 @@ public class MC2_4967_MC2_10232 {
                 Thread.sleep(1000);
                 display = CommonActions.checkDisplayed(E_QAHomePage.btn_Logout(driver));
             }
-
-             */
-
-            display = objHomePage.checkLoginSuccess();
+            else {
+                CommonActions.clickObject(QAHomePage.ico_User(driver));
+                display = CommonActions.checkDisplayed(QAHomePage.btn_Logout(driver));
+            }
             Assert.assertEquals(display, Boolean.TRUE, "Login not successfully.");
             Reporter.log("Login successfully.", true);
             strCurTitle = driver.getTitle();

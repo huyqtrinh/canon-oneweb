@@ -1,11 +1,15 @@
-package pages;
+package PagesFactory;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
+
+import java.util.Locale;
 
 public class CCIHomePage {
 
@@ -41,7 +45,7 @@ public class CCIHomePage {
     WebElement lb_SearchResultNumber;
 
     /*
-        Mega menu
+        Category
      */
     @FindBy(xpath = "//a[@href='https://mcstaging-estore.canon.ca/en_ca/cameras']")
     WebElement btn_Cameras;
@@ -69,6 +73,7 @@ public class CCIHomePage {
 
     @FindBy(xpath = "//button[@data-role='closeBtn']")
     WebElement btn_ClosePromoPopup;
+
 
     /*
         Methods
@@ -139,5 +144,40 @@ public class CCIHomePage {
             btn_ClosePromoPopup.click();
             Thread.sleep(1000);
         }
+    }
+
+    //Hover Category then select sub category
+    public void selectSubCategory(String category,String subcategory) throws InterruptedException {
+        Actions actions = new Actions(driver);
+        switch (category) {
+            case "Cameras":
+                actions.moveToElement(btn_Cameras).build().perform();
+                break;
+            case "Lenses":
+                actions.moveToElement(btn_Lenses).build().perform();
+                break;
+            case "Printers":
+                actions.moveToElement(btn_Printers).build().perform();
+                break;
+            case "Lighting":
+                actions.moveToElement(btn_Lighting).build().perform();
+                break;
+            case "Camcorders":
+                actions.moveToElement(btn_Camcorders).build().perform();
+                break;
+            case "InkPaperToner":
+                actions.moveToElement(btn_InkPaperToner).build().perform();
+                break;
+            case "AccessoriesMerchandise":
+                actions.moveToElement(btn_AccessoriesMerchandise).build().perform();
+                break;
+            case "OtherProducts":
+                actions.moveToElement(btn_OtherProducts).build().perform();
+                break;
+        }
+        Thread.sleep(1000);
+        String xpath_SubCategory = "//*[contains(text(),'" + subcategory.toUpperCase(Locale.ROOT) + "')]";
+        WebElement subCategory = driver.findElement(By.xpath(xpath_SubCategory));
+        subCategory.click();
     }
 }

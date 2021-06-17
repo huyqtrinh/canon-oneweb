@@ -182,7 +182,7 @@ public class MC2_5340 {
         int VP_rows_count;
         int Ex_NumofRow = 10;
         try {
-            boolean VP_PagingDisplay = driver.findElement(By.xpath("//div[@class='pages']")).isDisplayed();
+            boolean VP_PagingDisplay = driver.findElement(By.xpath("//div[@class='PagesFactory']")).isDisplayed();
             VP_rows_count = MyOrdersPage.tbl_Orders(driver).findElements(By.tagName("tr")).size() - 1; // [SN] Minus 1 row of column header
             Reporter.log("Verify page size is 20", true);
             Assert.assertEquals(VP_rows_count, Ex_NumofRow);
@@ -201,7 +201,7 @@ public class MC2_5340 {
         Thread.sleep(2000);
         Ex_NumofRow = 20;
         try {
-            boolean VP_PagingDisplay = driver.findElement(By.xpath("//div[@class='pages']")).isDisplayed();
+            boolean VP_PagingDisplay = driver.findElement(By.xpath("//div[@class='PagesFactory']")).isDisplayed();
             VP_rows_count = MyOrdersPage.tbl_Orders(driver).findElements(By.tagName("tr")).size() - 1; // [SN] Minus 1 row of column header
             Reporter.log("Verify page size is 20", true);
             Assert.assertEquals(VP_rows_count, Ex_NumofRow);
@@ -220,7 +220,7 @@ public class MC2_5340 {
         Thread.sleep(2000);
         Ex_NumofRow = 50;
         try {
-            boolean VP_PagingDisplay = driver.findElement(By.xpath("//div[@class='pages']")).isDisplayed();
+            boolean VP_PagingDisplay = driver.findElement(By.xpath("//div[@class='PagesFactory']")).isDisplayed();
             VP_rows_count = MyOrdersPage.tbl_Orders(driver).findElements(By.tagName("tr")).size() - 1; // [SN] Minus 1 row of column header
             Reporter.log("Verify page size is 50", true);
             Assert.assertEquals(VP_rows_count, Ex_NumofRow);
