@@ -35,5 +35,20 @@ public class ProductDetailPage {
         element = driver.findElement(By.xpath("//div[@class='bv-content-summary-body-text'][1]"));
         return element;
     }
-
+    public static WebElement txt_RecommendedAccessories(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[contains(text(),'Recommended Accessories')]"));
+        return element;
+    }
+    public static WebElement btn_RAsection_Carousel_RightArrow(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='accessories']/div/div[2]/div/ol/div[2]/button[2]"));
+        return element;
+    }
+    public static WebElement btn_RAsection_Carousel_LeftArrow(WebDriver driver){
+        element = driver.findElement(By.xpath("//*[@id='accessories']/div/div[2]/div/ol/div[2]/button[1]"));
+        return element;
+    }
+    public static WebElement btn_RelatedProduct_1stItem(WebDriver driver){
+        element = driver.findElement(By.xpath("(//div[@id='accessories']//div[contains(@class,'product-item-info')]/div/strong/a)[1]"));
+        return element;
+    }
 }
