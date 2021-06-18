@@ -1,6 +1,7 @@
 package PagesFactory;
 
 import Utilities.Commons;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
+
+import java.util.List;
 
 public class ProductDetailPage {
     WebDriver driver;
@@ -57,20 +60,15 @@ public class ProductDetailPage {
         //This initElements method will create all WebElements
         PageFactory.initElements(driver, this);
     }
-    //Get text of element
-    public String getText(WebElement element){
-        return element.getText();
+    //Get product name
+    public String getProductName(){
+        return txt_ProductName.getText();
     }
 
     //Click button Add to cart by java script in case click by selenium not work
     public void clickBtnAddToCart(){
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", btn_AddToCart);
-    }
-
-    //Click Element
-    public void clickElement(WebElement element){
-        element.click();
     }
 
     //Wait PDP display
@@ -81,7 +79,7 @@ public class ProductDetailPage {
     //Click button "Add to cart" then verify popup display
     public void addProductToCart(WebDriver driver){
         AddToCartPopup objAddToCartPopup = new AddToCartPopup(driver);
-        clickElement(btn_AddToCart);
+        btn_AddToCart.click();
         objAddToCartPopup.waitPopupDisplay();
         Reporter.log("Verify Add to cart popup", true);
         Boolean display = objAddToCartPopup.isPopupDisplayed();
@@ -90,5 +88,34 @@ public class ProductDetailPage {
 
         //Click on button Proceed to cart
         objAddToCartPopup.clickProceedToCart();
+    }
+
+    public Integer countRelatedProduct(){
+        List<WebElement> lst_RelatedProduct = driver.findElements(By.xpath("//div[@id='accessories']//div[contains(@class,'product-item-info')]"));
+        return lst_RelatedProduct.size();
+    }
+
+    public Boolean isRAccessoriesSectionDisplayed(){
+        return txt_RecommendedAccessories.isDisplayed();
+    }
+
+    public void clickRAsection_Carousel_RightArrow(){
+        btn_RAsection_Carousel_RightArrow.click();
+    }
+
+    public void clickRAsection_Carousel_LeftArrow(){
+        btn_RAsection_Carousel_LeftArrow.click();
+    }
+
+    public void clickRelatedProduct_1stItem(){
+        btn_RelatedProduct_1stItem.click();
+    }
+
+    public void clickShopAllAccessories(){
+        btn_ShopAllAccessories.click();
+    }
+
+    public String getRelatedProduct_1stItem_Name(){
+        return btn_RelatedProduct_1stItem.getText();
     }
 }

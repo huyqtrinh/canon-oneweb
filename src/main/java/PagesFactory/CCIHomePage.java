@@ -92,7 +92,7 @@ public class CCIHomePage {
         Thread.sleep(1000);
         Reporter.log("Verify button login displayed:", true);
         Boolean display = btn_Login.isDisplayed();
-        Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed.");
+        Assert.assertEquals(display, Boolean.TRUE, "Button Login is not displayed");
         Reporter.log("Button login displayed", true);
         btn_Login.click();
     }
@@ -103,7 +103,7 @@ public class CCIHomePage {
     }
 
     //Check if login successfully
-    public boolean checkLoginSuccess() throws InterruptedException {
+    public boolean checkLoginSuccess(){
         return lb_UserName.isDisplayed();
     }
 
